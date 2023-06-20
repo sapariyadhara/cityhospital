@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const doctorData = [
@@ -33,6 +33,15 @@ const doctorData = [
 ]
 
 function Doctors(props) {
+
+  const [doctorFData , setDoctorFData] = useState(doctorData)
+  console.log(doctorFData);
+
+  const handleClick = (id) => {
+    let fData = doctorFData.filter((v) => v.id === id)
+    console.log(fData , id);
+    setDoctorFData(id)
+  }
   
   return (
     <div>
@@ -48,11 +57,54 @@ function Doctors(props) {
                 Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu
                 sagittis nec. Phasellus a eleifend elit.
               </p>
-              <Link to={'/Doctor/1'}  >Doctor1</Link>
+             
               <Link to={'/Doctor/2'}  >Doctor2</Link>
             </div>
             <div className="row">
-              <div className="col-lg-6">
+             {
+              doctorFData.map((v , i) => {
+                return(
+                 
+                  <div className="col-lg-6">
+                  <Link to={'/Doctor/id'} onClick={() => handleClick(v.id)}>
+                <div className="member d-flex align-items-start">
+                  <div className="pic">
+                    <img
+                      src={v.url}
+                      className="img-doctor"
+                      alt
+                    /> 
+                  </div>
+                  <div className="member-info">
+                    <h4>{v.name}</h4>
+                    <span>{v.designation}</span>
+                    <p>
+                      {v.description}
+                    </p>
+                    <div className="social">
+                      <a href>
+                        <i className="ri-twitter-fill" />
+                      </a>
+                      <a href>
+                        <i className="ri-facebook-fill" />
+                      </a>
+                      <a href>
+                        <i className="ri-instagram-fill" />
+                      </a>
+                      <a href>
+                        {" "}
+                        <i className="ri-linkedin-box-fill" />{" "}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                </Link>
+              </div>
+             
+                )
+              })
+            } 
+              {/* <div className="col-lg-6">
                 <div className="member d-flex align-items-start">
                   <div className="pic">
                     <img
@@ -183,7 +235,7 @@ function Doctors(props) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
