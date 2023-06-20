@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 
@@ -35,14 +35,69 @@ const doctorF = [
 
 function Doctor(props) {
     const {id} = useParams()
-    const {fData} = useParams()
     const [doctorD , setDoctorD] = useState(doctorF)
     console.log(id ,doctorD );
+
+    useEffect(() => {
+      console.log(id );
+
+      let fData = doctorD.filter((v) => v.id === id )
+      console.log(fData ,doctorD);
+    } , [doctorD])
+
+ 
 
     
     return (
         <div>
-            <h1>Hellow {id}</h1>
+            
+              {
+                doctorD.map((v , i) => {
+                return(
+                 
+                  <div className="col-lg-6">
+                 
+                <div className="member d-flex align-items-start">
+                  <div className="pic">
+                    <img
+                      src={v.url}
+                      className="img-doctor"
+                      alt
+                    /> 
+                  </div>
+                  <div className="member-info">
+                    <h4>{v.name}</h4>
+                    <span>{v.designation}</span>
+                    <p>
+                      {v.description}
+                    </p>
+                    <div className="social">
+                      <a href>
+                        <i className="ri-twitter-fill" />
+                      </a>
+                      <a href>
+                        <i className="ri-facebook-fill" />
+                      </a>
+                      <a href>
+                        <i className="ri-instagram-fill" />
+                      </a>
+                      <a href>
+                        {" "}
+                        <i className="ri-linkedin-box-fill" />{" "}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+             
+              </div>
+             
+                )
+              })
+            }  
+             
+ 
+            
+             
         </div>
     );
 }
