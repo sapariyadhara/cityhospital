@@ -1,4 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+const doctorData = [
+  {
+    id : 1 ,
+    name : 'Atha Smith',
+    designation : 'Chief Medical Officer' ,
+    description : 'Duis sagittis rutrum neque, quis tincidunt arcu pretiumac.',
+    url : '../assets/img/doctors/doctors-1.jpg'
+  } ,
+  {
+    id : 2 ,
+    name : 'John White',
+    designation : 'Anesthesiologist' ,
+    description : 'Aenean ac turpis ante. Mauris velit sapien.',
+    url : '../assets/img/doctors/doctors-2.jpg'
+  } ,
+  {
+    id : 3 ,
+    name : 'Umika Loha',
+    designation : 'Cardiology' ,
+    description : 'Curabitur luctus eleifend odio. Phasellus placerat mi.',
+    url : '../assets/img/doctors/doctors-3.jpg'
+  } ,
+  {
+    id : 4 ,
+    name : 'Daimy Smith',
+    designation : 'Neurosurgeon' ,
+    description : ' Morbi vulputate, tortor nec pellentesque molestie, erosnisi ornare purus.',
+    url : '../assets/img/doctors/doctors-4.jpg'
+  }
+]
 
 function Doctors(props) {
   return (
@@ -15,6 +47,8 @@ function Doctors(props) {
                 Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu
                 sagittis nec. Phasellus a eleifend elit.
               </p>
+              <Link to={'/Doctor/1'}  >Doctor1</Link>
+              <Link to={'/Doctor/2'}  >Doctor2</Link>
             </div>
             <div className="row">
               <div className="col-lg-6">
