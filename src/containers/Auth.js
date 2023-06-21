@@ -71,8 +71,18 @@ function Auth(props) {
                             </div>
                         </div>
                         <div className="text-center">
-                            <button type="submit">Login</button>
+                        {
+                            authtype === 'login' ?  <button type="submit">Login</button> : 
+                            <button type="submit">Signup</button>
+                        }
+                           
                         </div>
+
+                        {
+                            authtype === 'login' ?   <span>Create a new account ?<a href='#' onClick={() => {steAuthtype('signup')}}> Signup</a></span> :
+                            <span>Already have an account ?<a href='#'  onClick={() => {steAuthtype('login')}}>Login</a></span>
+                        }
+                       
                     </form>
                 </div>
             </section>
