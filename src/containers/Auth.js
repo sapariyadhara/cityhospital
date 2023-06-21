@@ -3,15 +3,27 @@ import React, { useState } from 'react';
 function Auth(props) {
     const [authtype, setAuthtype] = useState('login')
     const [fpass , setFpass] = useState('forgotten')
+
+    
     return (
         <div>
             <section id="appointment" className="appointment">
                 <div className="container">
+                
                     <div className="section-title">
                         {
-                             authtype === 'login' ?  <h2>Login</h2> :  <h2>Signup</h2>
+                             authtype === 'login' ? (fpass === 'forgotten' ?  <h2>Find Your Account</h2> :  <h2>Login</h2> ) :  <h2>Signup</h2>
                         }
-                     
+                     {
+                        authtype === 'login' ?
+                       (fpass === 'forgotten' ? <p>Please enter your email address or mobile number to search for your account.</p> :
+                        <p>
+                            Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc
+                            aliquam eget nibh eu euismod. Donec dapibus blandit quam
+                            volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat.
+                            Donec lacinia finibus tortor. Curabitur luctus eleifend odio.
+                            Phasellus placerat mi et suscipit pulvinar.
+                        </p>) : 
                         <p>
                             Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc
                             aliquam eget nibh eu euismod. Donec dapibus blandit quam
@@ -19,6 +31,8 @@ function Auth(props) {
                             Donec lacinia finibus tortor. Curabitur luctus eleifend odio.
                             Phasellus placerat mi et suscipit pulvinar.
                         </p>
+                     }
+                        
                     </div>
                     <form action method="post" role="form" className="php-email-form">
                         <div className="row justify-content-center">
@@ -49,7 +63,9 @@ function Auth(props) {
                                 />
                                 <div className="validate" />
                             </div>
-                            <div className="col-md-7 form-group mt-3 mt-md-0">
+                            {
+                                authtype === 'login' ? (fpass === 'forgotten' ? null :
+                                  null) :  <div className="col-md-7 form-group mt-3 mt-md-0">
                                 <input
                                     type="password"
                                     className="form-control"
@@ -61,6 +77,19 @@ function Auth(props) {
                                 />
                                 <div className="validate" />
                             </div>
+                            }
+                            {/* <div className="col-md-7 form-group mt-3 mt-md-0">
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    name="password"
+                                    id="password"
+                                    placeholder="Your Password"
+                                    data-rule="minlen:4"
+                                    data-msg="Please enter at least 4 chars"
+                                />
+                                <div className="validate" />
+                            </div> */}
                         </div>
 
                         <div className="mb-3">
@@ -81,13 +110,15 @@ function Auth(props) {
 
                         {
                             authtype === 'login' ?   <span>Create a new account ?<a href='#' onClick={() => {setAuthtype('signup')}}> Signup</a>
-                            <a href='#'> Forgotten Password ?</a>
+                            <a href='#' onClick={() => {setFpass('forgotten')}}> Forgotten Password ?</a>
                             </span>
                              :
                             <span>Already have an account ?<a href='#'  onClick={() => {setAuthtype('login')}}> Login</a> 
                             </span>
                             
                         }
+
+
                        
                     </form>
                 </div>
