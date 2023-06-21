@@ -10,6 +10,9 @@ import Doctors from './containers/Doctors';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Doctor from './containers/Doctor';
+import VisitingDoctor from './containers/VisitingDoctor';
+import NotFound from './containers/NotFound';
+import Auth from './containers/Auth';
 
 
 
@@ -27,7 +30,15 @@ function App() {
         <Route path='/Contect' element={<Contect />} />
         <Route path='/Departments' element={<Departments />} />
         <Route path='/Doctors' element={<Doctors />} />
-        <Route path='/Doctor/:id' element={<Doctor />} />
+        {/* <Route path='/Doctor/:id' element={<Doctor />} />
+        <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} /> */}
+
+        <Route path='/Doctor/' >
+        <Route path=':id' element={<Doctor />} />
+        <Route path='visiting_doctor' element={<VisitingDoctor />} />
+        </Route>
+        <Route path='*' element={<NotFound />} />
+        <Route path='/Auth' element={<Auth />}/>
       </Routes>
       <Footer />
     </>

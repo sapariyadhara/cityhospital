@@ -37,11 +37,6 @@ function Doctors(props) {
   const [doctorFData, setDoctorFData] = useState(doctorData);
   console.log(doctorFData);
 
-  // const handleClick = (id) => {
-  //   let fData = doctorFData.filter((v) => v.id === id);
-  //   console.log(fData, id);
-  //   setDoctorFData(id);
-  // };
 
   return (
     <div>
@@ -57,16 +52,17 @@ function Doctors(props) {
                 Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu
                 sagittis nec. Phasellus a eleifend elit.
               </p>
+              {/* <Link to={'/Doctor/1'}> Doctor 1</Link> */}
+              <Link to={'/Doctor/visiting_doctor'}>Visiting Doctor</Link>
 
-              <Link to={"/Doctor/2"}>Doctor2</Link>
             </div>
             <div className="row">
-              {/* {
+              {
               doctorFData.map((v , i) => {
                 return(
                  
                   <div className="col-lg-6">
-                  <Link to={'/Doctor/id'} onClick={() => handleClick(v.id)}>
+                  <Link to={'/Doctor/'+ v.id }>
                 <div className="member d-flex align-items-start">
                   <div className="pic">
                     <img
@@ -103,151 +99,7 @@ function Doctors(props) {
              
                 )
               })
-            }  */}
-
-              <div className="col-lg-6">
-                <Link to={"/Doctor/1"}>
-                  <div className="member d-flex align-items-start">
-                    <div className="pic">
-                      <img
-                        src="../assets/img/doctors/doctors-1.jpg"
-                        className="img-doctor"
-                        alt
-                      />
-                    </div>
-                    <div className="member-info">
-                      <h4>Atha Smith</h4>
-                      <span>Chief Medical Officer</span>
-                      <p>
-                        Duis sagittis rutrum neque, quis tincidunt arcu pretium
-                        ac.
-                      </p>
-                      <div className="social">
-                        <a href>
-                          <i className="ri-twitter-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-facebook-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-instagram-fill" />
-                        </a>
-                        <a href>
-                          {" "}
-                          <i className="ri-linkedin-box-fill" />{" "}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="col-lg-6 mt-4 mt-lg-0">
-                <Link to={"/Doctor/2"}>
-                  <div className="member d-flex align-items-start">
-                    <div className="pic">
-                      <img
-                        src="../assets/img/doctors/doctors-2.jpg"
-                        className="img-doctor"
-                        alt
-                      />
-                    </div>
-                    <div className="member-info">
-                      <h4>John White</h4>
-                      <span>Anesthesiologist</span>
-                      <p>Aenean ac turpis ante. Mauris velit sapien.</p>
-                      <div className="social">
-                        <a href>
-                          <i className="ri-twitter-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-facebook-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-instagram-fill" />
-                        </a>
-                        <a href>
-                          {" "}
-                          <i className="ri-linkedin-box-fill" />{" "}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="col-lg-6 mt-4">
-                <Link to={"/Doctor/3"}>
-                  <div className="member d-flex align-items-start">
-                    <div className="pic">
-                      <img
-                        src="../assets/img/doctors/doctors-3.jpg"
-                        className="img-doctor"
-                        alt
-                      />
-                    </div>
-                    <div className="member-info">
-                      <h4>Umika Loha</h4>
-                      <span>Cardiology</span>
-                      <p>
-                        Curabitur luctus eleifend odio. Phasellus placerat mi.
-                      </p>
-                      <div className="social">
-                        <a href>
-                          <i className="ri-twitter-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-facebook-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-instagram-fill" />
-                        </a>
-                        <a href>
-                          {" "}
-                          <i className="ri-linkedin-box-fill" />{" "}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="col-lg-6 mt-4">
-                <Link to={"/Doctor/4"}>
-                  <div className="member d-flex align-items-start">
-                    <div className="pic">
-                      <img
-                        src="../assets/img/doctors/doctors-4.jpg"
-                        className="img-doctor"
-                        alt
-                      />
-                    </div>
-                    <div className="member-info">
-                      <h4>Daimy Smith</h4>
-                      <span>Neurosurgeon</span>
-                      <p>
-                        Morbi vulputate, tortor nec pellentesque molestie, eros
-                        nisi ornare purus.
-                      </p>
-                      <div className="social">
-                        <a href>
-                          <i className="ri-twitter-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-facebook-fill" />
-                        </a>
-                        <a href>
-                          <i className="ri-instagram-fill" />
-                        </a>
-                        <a href>
-                          {" "}
-                          <i className="ri-linkedin-box-fill" />{" "}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
+            } 
             </div>
           </div>
         </section>
