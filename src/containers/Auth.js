@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 function Auth(props) {
-    const [authtype, steAuthtype] = useState('login')
+    const [authtype, setAuthtype] = useState('login')
+    const [fpass , setFpass] = useState('forgotten')
     return (
         <div>
             <section id="appointment" className="appointment">
@@ -79,8 +80,13 @@ function Auth(props) {
                         </div>
 
                         {
-                            authtype === 'login' ?   <span>Create a new account ?<a href='#' onClick={() => {steAuthtype('signup')}}> Signup</a></span> :
-                            <span>Already have an account ?<a href='#'  onClick={() => {steAuthtype('login')}}>Login</a></span>
+                            authtype === 'login' ?   <span>Create a new account ?<a href='#' onClick={() => {setAuthtype('signup')}}> Signup</a>
+                            <a href='#'> Forgotten Password ?</a>
+                            </span>
+                             :
+                            <span>Already have an account ?<a href='#'  onClick={() => {setAuthtype('login')}}> Login</a> 
+                            </span>
+                            
                         }
                        
                     </form>
