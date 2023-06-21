@@ -109,17 +109,18 @@ function Auth(props) {
                         </div>
 
                         {
-                            authtype === 'login' ?   <span>Create a new account ?<a href='#' onClick={() => {setAuthtype('signup')}}> Signup</a>
-                            <a href='#' onClick={() => {setFpass('forgotten')}}> Forgotten Password ?</a>
-                            </span>
+                            authtype === 'login' ?   <span>Create a new account ?<a href='#' onClick={() => {setAuthtype('signup')}}> Signup</a></span>
                              :
                             <span>Already have an account ?<a href='#'  onClick={() => {setAuthtype('login')}}> Login</a> 
                             </span>
                             
                         }
 
-
-                       
+                        <div className="">
+                        {
+                            authtype === 'login' ? <a href='#' onClick={() => {setFpass('forgotten')}}> Forgotten Password ?</a> : null
+                        }
+                        </div>
                     </form>
                 </div>
             </section>
