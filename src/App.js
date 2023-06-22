@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 import Doctor from './containers/Doctor';
 import VisitingDoctor from './containers/VisitingDoctor';
 import NotFound from './containers/NotFound';
-import Auth from './containers/Auth';
+import Auth1 from './containers/Auth1';
 
 
 
@@ -38,7 +38,7 @@ function App() {
         <Route path='visiting_doctor' element={<VisitingDoctor />} />
         </Route>
         <Route path='*' element={<NotFound />} />
-        <Route path='/Auth' element={<Auth />}/>
+        <Route path='/Auth1' element={<Auth1 />}/>
       </Routes>
       <Footer />
     </>
