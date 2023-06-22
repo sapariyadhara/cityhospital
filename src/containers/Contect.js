@@ -1,6 +1,25 @@
 import React from "react";
+import { useFormik } from "formik";
+import {signUpSchema} from "../schemas/index"
+
+const  initialValues  = {
+  name : '' ,
+  email : '',
+  subject : '',
+  message : ''
+} 
 
 function Contect(props) {
+
+  const {values , errors , touched ,handleBlur , handleChange , handleSubmit} = useFormik({
+  initialValues : initialValues  ,
+  validationSchema : signUpSchema ,
+    onSubmit : values => {
+     
+      console.log(values);
+    },
+  });
+  
   return (
     <div>
       <main>
@@ -44,6 +63,7 @@ function Contect(props) {
                   method="post"
                   role="form"
                   className="php-email-form"
+                  onSubmit={handleSubmit}
                 >
                   <div className="row">
                     <div className="col-md-6 form-group">
@@ -53,8 +73,14 @@ function Contect(props) {
                         className="form-control"
                         id="name"
                         placeholder="Your Name"
-                        required
+                        onChange={handleChange}
+                        value={values.name}
+                        // required
                       />
+                      {errors.name && touched.name ? 
+                     ( <p style={{color : 'red'}} className="form-error">{errors.name}</p>) :
+                       null}
+                      
                     </div>
                     <div className="col-md-6 form-group mt-3 mt-md-0">
                       <input
@@ -63,8 +89,13 @@ function Contect(props) {
                         name="email"
                         id="email"
                         placeholder="Your Email"
-                        required
+                        onChange={handleChange}
+                        value={values.email}
+                        // required
                       />
+                       {errors.email && touched.email ? 
+                      <p style={{color : 'red'}} className="form-error">{errors.email}</p> :
+                       null}
                     </div>
                   </div>
                   <div className="form-group mt-3">
@@ -74,8 +105,13 @@ function Contect(props) {
                       name="subject"
                       id="subject"
                       placeholder="Subject"
-                      required
+                      onChange={handleChange}
+                      value={values.subject}
+                      // required
                     />
+                     {errors.subject && touched.subject ? 
+                      <p style={{color : 'red'}} className="form-error">{errors.subject}</p> :
+                       null}
                   </div>
                   <div className="form-group mt-3">
                     <textarea
@@ -83,9 +119,14 @@ function Contect(props) {
                       name="message"
                       rows={5}
                       placeholder="Message"
-                      required
+                      onChange={handleChange}
+                      value={values.message}
+                      // required
                       defaultValue={""}
                     />
+                     {errors.message && touched.message ? 
+                      <p style={{color : 'red'}} className="form-error">{errors.message}</p> :
+                       null}
                   </div>
                   <div className="my-3">
                     <div className="loading">Loading</div>
