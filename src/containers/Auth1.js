@@ -37,7 +37,7 @@ function Auth1(props) {
 
 
                             {
-                                authtype === 'login' || authtype === 'forgotten' ? null :
+                                authtype === 'login' || reset === true ? null :
                                     <div className="col-md-7 form-group">
                                         <input
                                             type="text"
@@ -94,9 +94,9 @@ function Auth1(props) {
                         </div>
                         <div className="text-center">
                             {
-                                authtype === 'login' ? <button type="submit">Login</button> :
+                                reset === true ? <button type="submit">Submit</button> :
                                     authtype === 'signup' ? <button type="submit">Signup</button> :
-                                        <button type="submit">Submit</button>
+                                        <button type="submit">Login</button>
                             }
 
                         </div>
