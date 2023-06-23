@@ -13,6 +13,7 @@ import Doctor from './containers/Doctor';
 import VisitingDoctor from './containers/VisitingDoctor';
 import NotFound from './containers/NotFound';
 import Auth1 from './containers/Auth1';
+import Contect1 from './containers/Contect1';
 
 
 
@@ -27,7 +28,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/Appoinment' element={<Appoinment />} />
-        <Route path='/Contect' element={<Contect />} />
+        <Route path='/Contect' element={<Contect1 />} />
         <Route path='/Departments' element={<Departments />} />
         <Route path='/Doctors' element={<Doctors />} />
         {/* <Route path='/Doctor/:id' element={<Doctor />} />

@@ -74,6 +74,7 @@ function Contect(props) {
                         id="name"
                         placeholder="Your Name"
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={values.name}
                         // required
                       />
@@ -90,6 +91,7 @@ function Contect(props) {
                         id="email"
                         placeholder="Your Email"
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={values.email}
                         // required
                       />
@@ -106,6 +108,7 @@ function Contect(props) {
                       id="subject"
                       placeholder="Subject"
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       value={values.subject}
                       // required
                     />
@@ -120,6 +123,7 @@ function Contect(props) {
                       rows={5}
                       placeholder="Message"
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       value={values.message}
                       // required
                       defaultValue={""}
