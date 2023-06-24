@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 function Contect1(props) {
 
     let contact1Schema = Yup.object({
-        name: Yup.string().required('Please enter name').matches(/^[a-z]+$/ , 'Please enter valid name'),
+        name: Yup.string().min(2).required('Please enter name').matches(/^[a-z]+$/ , 'Please enter valid name'),
         email: Yup.string().email('please enter valid email').required('Please enter email'),
         subject: Yup.string().required('Please enter subject'),
         message: Yup.string().required('Please enter message')

@@ -1,8 +1,31 @@
+import { useFormik, validateYupSchema } from 'formik';
 import React, { useState } from 'react';
+import * as Yup from 'yup';
 
 function Auth1(props) {
     const [authtype, setAuthtype] = useState('login')
     const [reset, setReset] = useState(false)
+
+    const formSchema = Yup.object({
+        name : Yup.string().required('Please Enter Name.'),
+        email : Yup.string().email('Wrong e-mail format').required('Please Enter Email.'),
+        password : Yup.string().required('Please Enter Password.'),
+    })
+
+  
+    const formik = useFormik({
+        initialValues : {
+            name : '',
+            email : '',
+            password : '',
+        } ,
+        validateSchema : formSchema ,
+        onSubmit : values => {
+            console.log(values);
+        }
+    })
+    
+    const {values , errors , touched , handleBlur , handleSubmit , handleChange} = formik
 
 
     return (
@@ -32,7 +55,7 @@ function Auth1(props) {
 
 
                     </div>
-                    <form action method="post" role="form" className="php-email-form">
+                    <form action method="post" role="form" className="php-email-form" onSubmit={handleSubmit}>
                         <div className="row justify-content-center">
 
 
@@ -45,13 +68,18 @@ function Auth1(props) {
                                             className="form-control"
                                             id="name"
                                             placeholder="Your Name"
-                                            data-rule="minlen:4"
-                                            data-msg="Please enter at least 4 chars"
+                                            // data-rule="minlen:4"
+                                            // data-msg="Please enter at least 4 chars"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.name}
                                         />
                                         <div className="validate" />
+                                        <span>{}</span>
+                                      
                                     </div>
                             }
-
+                            <span className='error'>{authtype === 'signup' ? errors.name && touched.name ? errors.name : null : null}</span>
                             <div className="col-md-7 form-group mt-3 mt-md-0">
                                 <input
                                     type="email"
@@ -59,10 +87,15 @@ function Auth1(props) {
                                     name="email"
                                     id="email"
                                     placeholder="Your Email"
-                                    data-rule="email"
-                                    data-msg="Please enter a valid email"
+                                    // data-rule="email"
+                                    // data-msg="Please enter a valid email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
                                 />
                                 <div className="validate" />
+                                <span className='error'>{errors.email && touched.email ? errors.email : null}</span>
+
                             </div>
 
                             {
@@ -75,8 +108,12 @@ function Auth1(props) {
                                     placeholder="Your Password"
                                     data-rule="minlen:4"
                                     data-msg="Please enter at least 4 chars"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
                                 />
                                 <div className="validate" />
+                                <span className='error'>{errors.password && touched.password ? errors.password : null}</span>
                             </div> 
                                 
                              
