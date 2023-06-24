@@ -30,7 +30,7 @@ function Contect1(props) {
         },
            validationSchema : contact1Schema ,
            onSubmit: values => {
-         
+            console.log(values);
           },
       })
 
