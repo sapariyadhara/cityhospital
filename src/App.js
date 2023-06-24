@@ -14,6 +14,7 @@ import VisitingDoctor from './containers/VisitingDoctor';
 import NotFound from './containers/NotFound';
 import Auth1 from './containers/Auth1';
 import Contect1 from './containers/Contect1';
+import Test2 from './containers/Test2';
 
 
 
@@ -23,7 +24,8 @@ function App() {
 
 
     <>
-      <Header />
+    <Test2 />
+      {/* <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -34,14 +36,14 @@ function App() {
         {/* <Route path='/Doctor/:id' element={<Doctor />} />
         <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} /> */}
 
-        <Route path='/Doctor/' >
+        {/* <Route path='/Doctor/' >
         <Route path=':id' element={<Doctor />} />
         <Route path='visiting_doctor' element={<VisitingDoctor />} />
         </Route>
         <Route path='*' element={<NotFound />} />
-        <Route path='/Auth1' element={<Auth1 />}/>
-      </Routes>
-      <Footer />
+        <Route path='/Auth1' element={<Auth1 />}/> */}
+      {/* </Routes> */}
+      {/* <Footer /> */} 
     </>
   );
 }
