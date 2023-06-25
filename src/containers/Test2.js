@@ -82,21 +82,21 @@ function Test2(props) {
       .required("Must be selected.")
       .test("hobbies", "Must 2 be selected.", function (val) {
         console.log(hobbies.length, val);
-        if (hobbies.length > "2") {
-          return true;
-        } else {
-          return false;
-        }
-      }),
-    tc: Yup.string()
-      .required("Must be selected.")
-      .test("dob", "Must be selected.", function (val) {
-        if (val.checked === true) {
+        if (val.checked > 2) {
           return false;
         } else {
           return true;
         }
       }),
+    tc: Yup.boolean()
+      .required("Must be selected.").oneOf([true], "You must accept the terms and conditions"),
+    //   .test("dob", "Must be selected.", function (val) {
+    //     if (val.checked === true) {
+    //       return false;
+    //     } else {
+    //       return true;
+    //     }
+    //   }),
   });
 
   const formik = useFormik({
@@ -137,7 +137,7 @@ function Test2(props) {
         action=""
         method="post"
       >
-        <p style={{ margin: "10px" }}>Full Name</p>
+        <p style={{ margin: "10px" , fontWeight : 700}}>Full Name</p>
         <div className="" style={{ display: "flex" }}>
           <div style={{ margin: "10px" }}>
             <input
@@ -183,7 +183,7 @@ function Test2(props) {
           </div>
         </div>
         <div style={{ margin: "10px" }}>
-          <p>Email Address</p>
+          <p style={{fontWeight : 700}} >Email Address</p>
           <input
             type="text"
             name="email"
@@ -199,7 +199,7 @@ function Test2(props) {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ margin: "10px" }}>
-            <p>Password</p>
+            <p style={{fontWeight : 700}}>Password</p>
             <input
               type="password"
               name="password"
@@ -214,7 +214,7 @@ function Test2(props) {
             </span>
           </div>
           <div style={{ margin: "10px" }}>
-            <p>Confirm Password</p>
+            <p style={{fontWeight : 700}}>Confirm Password</p>
             <input
               type="password"
               name="confirm_password"
@@ -233,7 +233,7 @@ function Test2(props) {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ margin: "10px" }}>
-            <p>Age</p>
+            <p style={{fontWeight : 700}}>Age</p>
             <input
               type="text"
               name="age"
@@ -247,7 +247,7 @@ function Test2(props) {
             </span>
           </div>
           <div style={{ margin: "10px" }}>
-            <p>Mobile Number</p>
+            <p style={{fontWeight : 700}}>Mobile Number</p>
             <input
               type="text"
               name="mobile"
@@ -262,7 +262,7 @@ function Test2(props) {
             </span>
           </div>
           <div style={{ margin: "10px" }}>
-            <p>Date Of Birth </p>
+            <p style={{fontWeight : 700}}>Date Of Birth </p>
             <input
               type="date"
               name="dob"
@@ -277,7 +277,7 @@ function Test2(props) {
           </div>
         </div>
         <div style={{ margin: "10px" }}>
-          <p>Address</p>
+          <p style={{fontWeight : 700}}>Address</p>
           <textarea
             name="add"
             id=""
@@ -295,7 +295,7 @@ function Test2(props) {
        <div style={{display : 'flex'}}>
        <div style={{ margin: "10px 100px 10px 10px " ,  }}>
          
-          <p>Country</p>
+          <p style={{fontWeight : 700}}>Country</p>
           <select
             name="country"
             onChange={handleChange}
@@ -315,7 +315,7 @@ function Test2(props) {
        
         </div>
         <div style={{ margin: "10px 100px 10px 10px " }}>
-          <p>Gender</p>
+          <p style={{fontWeight : 700}}>Gender</p>
             <p>
               <input
                 type="radio"
@@ -344,7 +344,7 @@ function Test2(props) {
             </span>
           </div>
         <div style={{ margin: "10px" }}>
-          <p>
+          <p style={{fontWeight : 700}}>
             Hobbies <i>(Optional)</i>
           </p>
 
@@ -392,7 +392,7 @@ function Test2(props) {
         <div style={{ margin: "10px" }}>
           <span class="error" id="tcErr"></span>
           <div class="form-inline">
-            <p>
+            <p style={{fontWeight : 700}}>
               <input  style={{ margin: "0 10px 0 0" }}
                 type="checkbox"
                 name="tc"

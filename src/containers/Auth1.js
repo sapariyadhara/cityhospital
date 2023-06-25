@@ -1,4 +1,4 @@
-import { useFormik, validateYupSchema } from 'formik';
+import { useFormik} from 'formik';
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 
@@ -75,10 +75,11 @@ function Auth1(props) {
                                             value={values.name}
                                         />
                                         <div className="validate" />
-                                        <span>{}</span>
+                                        <span>{errors.name}</span>
                                       
                                     </div>
                             }
+                            
                             <span className='error'>{authtype === 'signup' ? errors.name && touched.name ? errors.name : null : null}</span>
                             <div className="col-md-7 form-group mt-3 mt-md-0">
                                 <input
