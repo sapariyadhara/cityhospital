@@ -24,8 +24,8 @@ function App() {
 
 
     <>
-    {/* <Test2 /> */}
-       <Header />
+    <Test2 />
+       {/* <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -43,7 +43,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
         <Route path='/Auth1' element={<Auth1 />}/> 
        </Routes> 
-       <Footer /> 
+       <Footer />  */}
     </>
   );
 }
