@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 function Homemui(props) {
     return (
          <>
-            <Box height={100} />
+            <Box height={200} />
               <div style={{fontSize : '70px', marginLeft:'250px'}}>  Home </div>
            
         </>

@@ -16,6 +16,9 @@ function Test2(props) {
     },
   ];
 
+  const today = new Date();
+  const birthDate = today.toLocaleDateString()
+  
   let testSchema = Yup.object({
     fname: Yup.string()
       .required("Please enter first name").test("fname", "Please Enter First name , middel name , Last name", function (val) {
@@ -29,16 +32,6 @@ function Test2(props) {
           return true;
         }
       }),
-    // mname: Yup.string()
-    //   .required("Please enter middel name")
-    //   .min(2)
-    //   .max(24)
-    //   .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
-    // lname: Yup.string()
-    //   .required("Please enter last name")
-    //   .min(2)
-    //   .max(24)
-    //   .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
     email: Yup.string()
       .email("please enter valid email")
       .required("Please enter email"),
@@ -56,18 +49,7 @@ function Test2(props) {
       .max(10)
       .matches(/^[0-9\b]+$/, "Please Enter Only Number")
       .required("Please enter mobile number"),
-    dob: Yup.string()
-      .required("Please enter date of birth")
-      .test("dob", "Must be in present and past.", function (val) {
-        let todate = new Date();
-        let bdate = new Date(val);
-        console.log(bdate < todate);
-        if (bdate < todate) {
-          return true;
-        } else {
-          return false;
-        }
-      }),
+    dob: Yup.date().max(today).required("Please enter date of birth"),    
     add: Yup.string()
       .required("Please enter Address")
       .test("add", "Maximum 5 word allow", function (val) {
@@ -87,9 +69,10 @@ function Test2(props) {
       }),
     hobbies: Yup.boolean()
       .required("Must be selected.")
-      .test("hobbies", "Must 2 be selected.", function (val) {
+      .test("hobbies", "Must be 2 selected.", function (val) {
         console.log(hobbies.length, val);
         if (val.checked > 2) {
+          console.log(val.checked);
           return false;
         } else {
           return true;
@@ -97,20 +80,11 @@ function Test2(props) {
       }),
     tc: Yup.boolean()
       .required("Must be selected.").oneOf([true], "You must accept the terms and conditions"),
-    //   .test("dob", "Must be selected.", function (val) {
-    //     if (val.checked === true) {
-    //       return false;
-    //     } else {
-    //       return true;
-    //     }
-    //   }),
   });
 
   const formik = useFormik({
     initialValues: {
       fname: "",
-    //   mname: "",
-    //   lname: "",
       email: "",
       password: "",
       confirm_password: "",
@@ -131,7 +105,6 @@ function Test2(props) {
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     formik;
-    console.log(errors);
   return (
     <div>
       <form
@@ -161,34 +134,6 @@ function Test2(props) {
               {errors.fname && touched.fname ? errors.fname : null}
             </span>
           </div>
-
-          {/* <div style={{ margin: "10px" }}>
-            <input
-              type="text"
-              name="mname"
-              placeholder="Middel Name"
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <br></br>
-            <span style={{ color: "red" }} className="error">
-              {errors.mname && touched.mname ? errors.mname : null}
-            </span>
-          </div>
-
-          <div style={{ margin: "10px" }}>
-            <input
-              type="text"
-              name="lname"
-              placeholder="Last Name"
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <br></br>
-            <span style={{ color: "red" }} className="error">
-              {errors.lname && touched.lname ? errors.lname : null}
-            </span>
-          </div> */}
         </div>
         <div style={{ margin: "10px" }}>
           <p style={{fontWeight : 700}} >Email Address</p>

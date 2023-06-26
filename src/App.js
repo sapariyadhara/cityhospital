@@ -26,8 +26,8 @@ function App() {
 
 
     <>
-    <SideDrawermui />
-    {/* <Test2 /> */}
+    {/* <SideDrawermui /> */}
+    <Test2 />
        {/* <Header />
       <Routes>
         <Route path='/' element={<Home />} />
