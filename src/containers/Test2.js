@@ -18,20 +18,27 @@ function Test2(props) {
 
   let testSchema = Yup.object({
     fname: Yup.string()
-      .required("Please enter first name")
-      .min(2)
-      .max(24)
-      .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
-    mname: Yup.string()
-      .required("Please enter middel name")
-      .min(2)
-      .max(24)
-      .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
-    lname: Yup.string()
-      .required("Please enter last name")
-      .min(2)
-      .max(24)
-      .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
+      .required("Please enter first name").test("fname", "Please Enter First name , middel name , Last name", function (val) {
+        let arr = val.split(" ");
+        if (arr.length < 3) {
+          return false;
+        } 
+        if (arr.length > 3) {
+            return false;
+          } else {
+          return true;
+        }
+      }),
+    // mname: Yup.string()
+    //   .required("Please enter middel name")
+    //   .min(2)
+    //   .max(24)
+    //   .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
+    // lname: Yup.string()
+    //   .required("Please enter last name")
+    //   .min(2)
+    //   .max(24)
+    //   .matches(/^[a-zA-Z]+$/, "Please enter valid name"),
     email: Yup.string()
       .email("please enter valid email")
       .required("Please enter email"),
@@ -102,8 +109,8 @@ function Test2(props) {
   const formik = useFormik({
     initialValues: {
       fname: "",
-      mname: "",
-      lname: "",
+    //   mname: "",
+    //   lname: "",
       email: "",
       password: "",
       confirm_password: "",
@@ -144,7 +151,7 @@ function Test2(props) {
             <input
               type="text"
               name="fname"
-              placeholder="First Name"
+              placeholder="Full Name "
               onChange={handleChange}
               value={values.fname}
               onBlur={handleBlur}
@@ -155,7 +162,7 @@ function Test2(props) {
             </span>
           </div>
 
-          <div style={{ margin: "10px" }}>
+          {/* <div style={{ margin: "10px" }}>
             <input
               type="text"
               name="mname"
@@ -181,7 +188,7 @@ function Test2(props) {
             <span style={{ color: "red" }} className="error">
               {errors.lname && touched.lname ? errors.lname : null}
             </span>
-          </div>
+          </div> */}
         </div>
         <div style={{ margin: "10px" }}>
           <p style={{fontWeight : 700}} >Email Address</p>
