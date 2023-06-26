@@ -15,6 +15,8 @@ import NotFound from './containers/NotFound';
 import Auth from './containers/Auth';
 import Contect1 from './containers/Contect1';
 import Test2 from './containers/Test2';
+import SideDrawermui from './containers/SideDrawermui';
+
 
 
 
@@ -24,7 +26,8 @@ function App() {
 
 
     <>
-    <Test2 />
+    <SideDrawermui />
+    {/* <Test2 /> */}
        {/* <Header />
       <Routes>
         <Route path='/' element={<Home />} />
