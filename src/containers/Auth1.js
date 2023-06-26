@@ -14,19 +14,20 @@ function Auth1(props) {
 
   
     const formik = useFormik({
+        validationSchema : formSchema ,
         initialValues : {
             name : '',
             email : '',
             password : '',
         } ,
-        validateSchema : formSchema ,
+       
         onSubmit : values => {
             console.log(values);
         }
     })
     
     const {values , errors , touched , handleBlur , handleSubmit , handleChange} = formik
-
+console.log(errors);
 
     return (
         <div>

@@ -124,6 +124,7 @@ function Test2(props) {
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     formik;
+    console.log(errors);
   return (
     <div>
       <form

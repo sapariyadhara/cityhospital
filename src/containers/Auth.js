@@ -1,8 +1,62 @@
 import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function Auth(props) {
     const [authtype, setAuthtype] = useState('login')
 
+    let authObj = {}, initVal = {};
+    if (authtype === 'login') {
+        authObj = {
+            email: Yup.string().email('Wrong e-mail format').required('Please Enter Email.'),
+            password: Yup.string().matches(
+                /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/,
+                "length at least 8 characters"
+              ) .required('Please Enter Password.'),
+        }
+        initVal = {
+            email: '',
+            password: '',
+        }
+    } else if (authtype === 'signup') {
+        authObj = {
+            name: Yup.string().min(2).required('Please Enter Name.'),
+            email: Yup.string().email('Wrong e-mail format').required('Please Enter Email.'),
+            password: Yup.string().matches(
+                /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/,
+                "length at least 8 characters"
+              ).required('Please Enter Password.'),
+        }
+        initVal = {
+            name: '',
+            email: '',
+            password: '',
+        }
+    } else {
+        authObj = {
+            email: Yup.string().email('Wrong e-mail format').required('Please Enter Email.')
+        }
+        initVal = {
+            email: '',
+        }
+    }
+
+    const formSchema = Yup.object().shape(authObj)
+
+
+
+    const formik = useFormik({
+        initialValues: initVal,
+        validationSchema: formSchema,
+        enableReinitialize: true,
+        onSubmit: (values, action) => {
+            action.resetForm()
+            console.log(values);
+        },
+    })
+
+    const { values, errors, touched, handleBlur, handleSubmit, handleChange } = formik
+    console.log(errors);
 
     return (
         <div>
@@ -30,24 +84,26 @@ function Auth(props) {
 
 
                     </div>
-                    <form action method="post" role="form" className="php-email-form">
+                    <form method="post" role="form" className="php-email-form" onSubmit={handleSubmit}>
                         <div className="row justify-content-center">
 
 
                             {
-                                 authtype === 'login' ||  authtype === 'forgotten' ? null : 
-                                 <div className="col-md-7 form-group">
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="form-control"
-                                        id="name"
-                                        placeholder="Your Name"
-                                        data-rule="minlen:4"
-                                        data-msg="Please enter at least 4 chars"
-                                    />
-                                    <div className="validate" />
-                                </div>
+                                authtype === 'login' || authtype === 'forgotten' ? null :
+                                    <div className="col-md-7 form-group">
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            className="form-control"
+                                            id="name"
+                                            placeholder="Your Name"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.name}
+                                        />
+
+                                        <span style={{color : 'red'}} className='error'>{errors.name && touched.name ? errors.name : null}</span>
+                                    </div>
                             }
 
                             <div className="col-md-7 form-group mt-3 mt-md-0">
@@ -57,28 +113,36 @@ function Auth(props) {
                                     name="email"
                                     id="email"
                                     placeholder="Your Email"
-                                    data-rule="email"
-                                    data-msg="Please enter a valid email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
                                 />
-                                <div className="validate" />
+                                <span style={{color : 'red'}} className='error'>{errors.email && touched.email ? errors.email : null}</span>
                             </div>
 
                             {
+
                                 authtype === 'login' || authtype === 'signup' ?
-                                <div className="col-md-7 form-group mt-3 mt-md-0">
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    name="password"
-                                    id="password"
-                                    placeholder="Your Password"
-                                    data-rule="minlen:4"
-                                    data-msg="Please enter at least 4 chars"
-                                />
-                                <div className="validate" />
-                            </div> : null
-                                
+
+                                    <div className="col-md-7 form-group mt-3 mt-md-0">
+                                        <>
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            name="password"
+                                            id="password"
+                                            placeholder="Your Password"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.password}
+                                        /> 
+                                        <span className='error' style={{color : 'red'}}>{errors.password && touched.password ? errors.password : null}</span>
+                                        </>
+                                    </div> : null
+
+
                             }
+                            
                         </div>
 
                         <div className="mb-3">
@@ -91,9 +155,9 @@ function Auth(props) {
                         </div>
                         <div className="text-center">
                             {
-                                authtype === 'login' ? <button type="submit">Login</button> : 
-                                authtype === 'signup' ?    <button type="submit">Signup</button>  : 
-                                 <button type="submit">Submit</button> 
+                                authtype === 'login' ? <button type="submit">Login</button> :
+                                    authtype === 'signup' ? <button type="submit">Signup</button> :
+                                        <button type="submit">Submit</button>
                             }
 
                         </div>
