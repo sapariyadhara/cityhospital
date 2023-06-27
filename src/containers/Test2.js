@@ -4,17 +4,6 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 function Test2(props) {
-  const hobbies = [
-    {
-      defaultValue: "sports",
-    },
-    {
-      defaultValue: "movies",
-    },
-    {
-      defaultValue: "music",
-    },
-  ];
 
   const today = new Date();
   const birthDate = today.toLocaleDateString()
@@ -23,13 +12,11 @@ function Test2(props) {
     fname: Yup.string()
       .required("Please enter first name").test("fname", "Please Enter First name , middel name , Last name", function (val) {
         let arr = val.split(" ");
-        if (arr.length < 3) {
-          return false;
-        } 
-        if (arr.length > 3) {
-            return false;
-          } else {
+        if (arr.length === 3) {
           return true;
+        } 
+       else {
+          return false;
         }
       }),
     email: Yup.string()
@@ -41,15 +28,23 @@ function Test2(props) {
         "length at least 8 characters"
       )
       .required("Please enter password"),
-    confirm_password: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Password Must Match")
+    confirm_password: Yup.string().test('confirm_password' ,'Password Must Match' , function(val){
+        // console.log(this.parent.password);
+        if(this.parent.password === val){
+            return true
+        } else {
+          return false
+        }
+
+    } )
+      // .oneOf([Yup.ref("password"), null], "Password Must Match")
       .required("Please enter confirm password"),
-    age: Yup.number().min(0).max(150).required("Please enter Age"),
+    age: Yup.number().min(0).max(150).required("Please enter Age").typeError('Please enter Number'),
     mobile: Yup.string()
       .max(10)
       .matches(/^[0-9\b]+$/, "Please Enter Only Number")
       .required("Please enter mobile number"),
-    dob: Yup.date().max(today).required("Please enter date of birth"),    
+    dob: Yup.date().max(today ,'Please enter valid date').required("Please enter date of birth"),    
     add: Yup.string()
       .required("Please enter Address")
       .test("add", "Maximum 5 word allow", function (val) {
@@ -61,23 +56,10 @@ function Test2(props) {
         }
       }),
     country: Yup.string().required(" Must be selected."),
-    gender: Yup.boolean()
-      .required()
-      .oneOf([0, 1])
-      .test("gender", "Gender must be selected.", function (val) {
-        console.log(val, "val");
-      }),
-    hobbies: Yup.boolean()
-      .required("Must be selected.")
-      .test("hobbies", "Must be 2 selected.", function (val) {
-        console.log(hobbies.length, val);
-        if (val.checked > 2) {
-          console.log(val.checked);
-          return false;
-        } else {
-          return true;
-        }
-      }),
+    gender: Yup.string()
+      .required(),
+    hobbies: Yup.array().min(2 , 'Please 2 Select ' )
+      .required("Must be selected."),
     tc: Yup.boolean()
       .required("Must be selected.").oneOf([true], "You must accept the terms and conditions"),
   });
@@ -276,7 +258,7 @@ function Test2(props) {
                 defaultValue="male"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.gender}
+                value={'male'}
               />{" "}
               Male
             </p>
@@ -287,7 +269,7 @@ function Test2(props) {
                 defaultValue="female"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.gender}
+                value={'female'}
               />{" "}
               Female
             </p>
@@ -309,7 +291,7 @@ function Test2(props) {
                 defaultValue="sports"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.hobbies}
+                value={'sports'}
               />{" "}
               Sports
             </p>
@@ -320,7 +302,7 @@ function Test2(props) {
                 defaultValue="movies"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.hobbies}
+                value={'movies'}
               />{" "}
               Movies
             </p>
@@ -331,7 +313,7 @@ function Test2(props) {
                 defaultValue="music"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.hobbies}
+                value={'music'}
               />{" "}
               Music
             </p>
