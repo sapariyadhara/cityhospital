@@ -26,7 +26,22 @@ import Medicine from '../containers/Medicine';
 import Appointment from '../containers/Appointment';
 import Department from '../containers/Department';
 import Doctor from '../containers/Doctor';
+import { createTheme ,colors , ThemeProvider} from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
 
+
+
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: purple[500],
+      },
+      secondary: {
+        main: '#f44336',
+      },
+    },
+  });
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -52,6 +67,7 @@ const closedMixin = (theme) => ({
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
+  main: purple[500],
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
