@@ -26,22 +26,13 @@ import Medicine from '../containers/Medicine';
 import Appointment from '../containers/Appointment';
 import Department from '../containers/Department';
 import Doctor from '../containers/Doctor';
-import { createTheme ,colors , ThemeProvider} from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
+import { createTheme , colors , ThemeProvider} from '@mui/material/styles';
 
 
 
 
-const theme = createTheme({
-    palette: {
-      primary: {
-        main: purple[500],
-      },
-      secondary: {
-        main: '#f44336',
-      },
-    },
-  });
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -67,7 +58,6 @@ const closedMixin = (theme) => ({
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
-  main: purple[500],
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
@@ -126,7 +116,7 @@ export default function Sidenavbar() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar sx={{ bgcolor : 'secondary.main'}} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -134,13 +124,14 @@ export default function Sidenavbar() {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
+                
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography  variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography>
         </Toolbar>
@@ -154,7 +145,7 @@ export default function Sidenavbar() {
         <Divider />
         <List>
          
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Medicine")}>
+            <ListItem  disablePadding sx={{display: 'block' }} onClick={() => setMenudata("Medicine")}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

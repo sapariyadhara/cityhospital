@@ -39,7 +39,9 @@ function Medicine(props) {
         amount : ''
     },
     validationSchema : medicineSchema ,
-    onSubmit : (values) => {
+    enableReinitialize : true,
+    onSubmit : (values , action) => {
+        action.resetForm()
         console.log(values);
     }
   })
@@ -131,7 +133,7 @@ function Medicine(props) {
                 value={values.amount}
               />
                <span style={{color : 'red'}}>{errors.amount && touched.amount ? errors.amount : null}</span>
-               <Button onClick={handleClose}>Cancel</Button>
+               <Button  onClick={handleClose}>Cancel</Button>
               <Button type="submit" onClick={handleClose}>
                 Submit
               </Button>

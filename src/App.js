@@ -17,9 +17,16 @@ import Contect1 from './users/containers/Contect1';
 import Test2 from './users/containers/Test2';
 import SideDrawermui from './users/containers/SideDrawermui';
 import Sidenavbar from './admin/components/Sidenavbar';
+import { createTheme , colors ,  ThemeProvider} from '@mui/material/styles';
 
 
-
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: '#ff6337',
+    },
+  },
+});
 
 
 function App() {
@@ -27,6 +34,7 @@ function App() {
 
 
     <>
+    <ThemeProvider theme={theme}>
     <Sidenavbar />
     {/* <SideDrawermui /> */}
     {/* <Test2 /> */}
@@ -49,6 +57,7 @@ function App() {
         <Route path='/Auth' element={<Auth />}/> 
        </Routes> 
        <Footer />  */}
+       </ThemeProvider>
     </>
   );
 }
