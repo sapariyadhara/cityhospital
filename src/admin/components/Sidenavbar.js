@@ -27,6 +27,7 @@ import Appointment from '../containers/Appointment';
 import Department from '../containers/Department';
 import Doctor from '../containers/Doctor';
 import { createTheme , colors , ThemeProvider} from '@mui/material/styles';
+import {Link} from 'react-router-dom'
 
 
 
@@ -100,7 +101,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Sidenavbar() {
+export default function Sidenavbar({children}) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menudata, setMenudata] = useState('Medicine');
@@ -113,10 +114,16 @@ export default function Sidenavbar() {
     setOpen(false);
   };
 
+  const listData = (
+    {label : 'Medicine' , icon : <MedicationIcon /> , to : '/admin/Medicine'},
+    {label : 'Appointment' , icon : <CalendarMonthIcon /> , to : '/admin/Appointment'},
+    {label : 'Department' , icon : <DomainAddIcon /> , to : '/admin/Department'},
+    {label : 'Doctor' , icon : <GroupsIcon /> , to : '/admin/Doctor'}
+  )
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar sx={{ bgcolor : 'secondary.main'}} position="fixed" open={open}>
+      <AppBar sx={{ bgcolor : '#ff6337 '}} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -143,14 +150,20 @@ export default function Sidenavbar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
+
         <List>
-         
-            <ListItem  disablePadding sx={{display: 'block' }} onClick={() => setMenudata("Medicine")}>
+          { listData.map((v, i) => (
+            <ListItem key={i}
+             disablePadding sx={{ display: 'block' }}
+             component={Link}
+             to={v.to}
+             >
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+                 
                 }}
               >
                 <ListItemIcon
@@ -160,85 +173,19 @@ export default function Sidenavbar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <MedicationIcon fontSize="large" />
+                  {v.icon}
                 </ListItemIcon>
-                <ListItemText primary='Medicine' sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={v.label} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Appointment")}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <CalendarMonthIcon  fontSize="large"/>
-                </ListItemIcon>
-                <ListItemText primary='Appointment' sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Department")}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <DomainAddIcon fontSize='large' />
-                </ListItemIcon>
-                <ListItemText primary='Department' sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Doctor")}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <GroupsIcon fontSize='large' />
-                </ListItemIcon>
-                <ListItemText primary='Doctor' sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          
+          ))}
         </List>
-        <Divider />
+      
+  
        
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      {menudata === 'Medicine' && <Medicine />}
-      {menudata === 'Appointment' && <Appointment />}
-      {menudata === 'Department' && <Department />}
-      {menudata === 'Doctor' && <Doctor />}
-      </Box>
+  
+     {children}
     </Box>
   );
 }

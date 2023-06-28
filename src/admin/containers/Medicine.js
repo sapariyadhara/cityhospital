@@ -22,21 +22,25 @@ function Medicine(props) {
   };
 
   const medicineSchema = Yup.object({
-    name : Yup.string().min(2).max(25).matches(/^[a-zA-Z ]+$/  , 'Please Enter Valid Name').required(),
-    medication : Yup.string().required(),
-    disease : Yup.string().required(),
-    date : Yup.string().required(),
-    amount : Yup.number().required()
-
+    mname : Yup.string().min(2).max(25).matches(/^[a-zA-Z ]+$/  , 'Please Enter Valid Name').required(),
+    exdate : Yup.date().min(new Date() , 'Please Enter Future Date.').required(),
+    amount : Yup.number().min(0).required(),
+    pres:Yup.string().test('pres' , 'Please Enter Max 100 Word' , function(val){
+      let arr = val.split(" ");
+      if (arr.length > 5) {
+        return false;
+      } else {
+        return true;
+      } 
+    }).required()
   })
 
   const formik = useFormik({
     initialValues : {
-        name : '',
-        medication:'',
-        disease : '',
-        date : '',
-        amount : ''
+        mname : '',
+        exdate : '',
+        amount : '',
+        pres : ''
     },
     validationSchema : medicineSchema ,
     enableReinitialize : true,
@@ -57,7 +61,7 @@ function Medicine(props) {
           variant="outlined"
           onClick={handleClickOpen}
         >
-          Open form dialog
+          Open Medication Log
         </Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Medication Log</DialogTitle>
@@ -67,58 +71,30 @@ function Medicine(props) {
                 autoFocus
                 margin="dense"
                 id="name"
-                label="Name"
+                label="Medicine Name"
                 type="text"
                 fullWidth
                 variant="standard"
                 name="name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.name}
+                value={values.mname}
               />
-              <span style={{color : 'red'}}>{errors.name && touched.name ? errors.name : null}</span>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="Medication"
-                label="Medication"
-                type="text"
-                fullWidth
-                variant="standard"
-                name="medication"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.medication}
-              />
-               <span style={{color : 'red'}}>{errors.medication && touched.medication ? errors.medication : null}</span>
-               <TextField
-                autoFocus
-                margin="dense"
-                id="disease"
-                label="Disease"
-                type="disease"
-                fullWidth
-                variant="standard"
-                name="disease"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.disease}
-              />
-               <span style={{color : 'red'}}>{errors.disease && touched.disease ? errors.disease : null}</span>
+              <span style={{color : 'red'}}>{errors.mname && touched.mname ? errors.mname : null}</span>
                <TextField
                 autoFocus
                 margin="dense"
                 id="date"
-                label="Date"
+                label="Expire Date"
                 type="date"
                 fullWidth
                 variant="standard"
-                name="date"
+                name="exdate"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.date}
+                value={values.exdate}
               />
-               <span style={{color : 'red'}}>{errors.date && touched.date ? errors.date : null}</span>
+               <span style={{color : 'red'}}>{errors.exdate && touched.exdate ? errors.exdate : null}</span>
                <TextField
                 autoFocus
                 margin="dense"
@@ -133,6 +109,20 @@ function Medicine(props) {
                 value={values.amount}
               />
                <span style={{color : 'red'}}>{errors.amount && touched.amount ? errors.amount : null}</span>
+               <TextField
+                autoFocus
+                margin="dense"
+                id="pres"
+                label="Prescription"
+                type="text"
+                fullWidth
+                variant="standard"
+                name="pres"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.pres}
+              />
+               <span style={{color : 'red'}}>{errors.pres && touched.pres ? errors.pres : null}</span>
                <Button  onClick={handleClose}>Cancel</Button>
               <Button type="submit" onClick={handleClose}>
                 Submit
