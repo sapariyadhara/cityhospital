@@ -22,9 +22,9 @@ function Medicine(props) {
   };
 
   const medicineSchema = Yup.object({
-    mname : Yup.string().min(2).max(25).matches(/^[a-zA-Z ]+$/  , 'Please Enter Valid Name').required(),
-    exdate : Yup.date().min(new Date() , 'Please Enter Future Date.').required(),
-    amount : Yup.number().min(0).required(),
+    mname : Yup.string().min(2).max(25).matches(/^[a-zA-Z ]+$/  , 'Please Enter Valid Name').required('Please Enter Name'),
+    exdate : Yup.date().min(new Date() , 'Please Enter Future Date.').required('Please Enter Expire Date'),
+    amount : Yup.number().min(0).required('Please Enter Amount'),
     pres:Yup.string().test('pres' , 'Please Enter Max 100 Word' , function(val){
       let arr = val.split(" ");
       if (arr.length > 5) {
@@ -32,7 +32,7 @@ function Medicine(props) {
       } else {
         return true;
       } 
-    }).required()
+    }).required('Please Enter Prescription')
   })
 
   const formik = useFormik({
@@ -70,12 +70,12 @@ function Medicine(props) {
               <TextField
                 autoFocus
                 margin="dense"
-                id="name"
+                id="mname"
                 label="Medicine Name"
                 type="text"
                 fullWidth
                 variant="standard"
-                name="name"
+                name="mname"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.mname}

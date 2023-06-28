@@ -114,16 +114,16 @@ export default function Sidenavbar({children}) {
     setOpen(false);
   };
 
-  const listData = (
+  const listData = [
     {label : 'Medicine' , icon : <MedicationIcon /> , to : '/admin/Medicine'},
     {label : 'Appointment' , icon : <CalendarMonthIcon /> , to : '/admin/Appointment'},
     {label : 'Department' , icon : <DomainAddIcon /> , to : '/admin/Department'},
     {label : 'Doctor' , icon : <GroupsIcon /> , to : '/admin/Doctor'}
-  )
+  ]
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar sx={{ bgcolor : '#ff6337 '}} position="fixed" open={open}>
+      <AppBar sx={{ bgcolor : 'primary '}} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -181,11 +181,17 @@ export default function Sidenavbar({children}) {
           ))}
         </List>
       
-  
+       
        
       </Drawer>
-  
-     {children}
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <DrawerHeader />
+       
+       
+        {children}
+       
+       
+    </Box>
     </Box>
   );
 }

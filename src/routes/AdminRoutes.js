@@ -13,10 +13,10 @@ function AdminRoutes(props) {
 
            <Sidenavbar>
                 <Routes>
-                    <Route path='./Medicine' element={<Medicine />} />
-                    <Route path='./Appointment' element={<Appointment />}/>
-                    <Route path='./Department' element={<Department />} />
-                    <Route path='./Doctor' element={<Doctor />} />
+                    <Route path='/Medicine' element={<Medicine />} />
+                    <Route path='/Appointment' element={<Appointment />}/>
+                    <Route path='/Department' element={<Department />} />
+                    <Route path='/Doctor' element={<Doctor />} />
                 </Routes>
            </Sidenavbar>
         </>
