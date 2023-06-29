@@ -21,10 +21,30 @@ function Medicine(props) {
     setOpen(false);
   };
 
+  const handleAdddata = (data) => {
+    let localData = JSON.parse(localStorage.getItem("medicine"));
+    console.log(localData);
+
+    let rnd = Math.floor(Math.random() * 10000)
+    let nData = {id : rnd , ...data} 
+
+    if(localData === null){
+        localStorage.setItem("medicine" , JSON.stringify([nData]))
+    } else {
+      localData.push(nData)
+      localStorage.setItem("medicine" , JSON.stringify(localData))
+    }
+    handleClose()
+  }
+
+  const d = new Date()
+  let nd = new Date(d.setDate(d.getDate() -1))
+  //current date mathi 1 minus karva 
+
   const medicineSchema = Yup.object({
-    mname : Yup.string().min(2).max(25).matches(/^[a-zA-Z ]+$/  , 'Please Enter Valid Name').required('Please Enter Name'),
-    exdate : Yup.date().min(new Date() , 'Please Enter Future Date.').required('Please Enter Expire Date'),
-    amount : Yup.number().min(0).required('Please Enter Amount'),
+    mname : Yup.string().required('Please Enter Name'),
+    exdate : Yup.date().min(nd , 'Please Enter Future Date.').required('Please Enter Expire Date'),
+    amount : Yup.number().min(0).required('Please Enter Amount').typeError('Please Enter Valid Amount'),
     pres:Yup.string().test('pres' , 'Please Enter Max 100 Word' , function(val){
       let arr = val.split(" ");
       if (arr.length > 5) {
@@ -47,6 +67,7 @@ function Medicine(props) {
     onSubmit : (values , action) => {
         action.resetForm()
         console.log(values);
+        handleAdddata(values)
     }
   })
 
@@ -55,20 +76,18 @@ function Medicine(props) {
   return (
     <>
       <div>
-        <Box height={200} />
         <Button
           style={{ marginLeft: "200px" }}
           variant="outlined"
           onClick={handleClickOpen}
         >
-          Open Medication Log
+          Add Medicine
         </Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Medication Log</DialogTitle>
           <DialogContent>
             <form onSubmit={handleSubmit}>
               <TextField
-                autoFocus
                 margin="dense"
                 id="mname"
                 label="Medicine Name"
@@ -82,7 +101,6 @@ function Medicine(props) {
               />
               <span style={{color : 'red'}}>{errors.mname && touched.mname ? errors.mname : null}</span>
                <TextField
-                autoFocus
                 margin="dense"
                 id="date"
                 label="Expire Date"
@@ -96,7 +114,6 @@ function Medicine(props) {
               />
                <span style={{color : 'red'}}>{errors.exdate && touched.exdate ? errors.exdate : null}</span>
                <TextField
-                autoFocus
                 margin="dense"
                 id="amount"
                 label="Amount"
@@ -110,10 +127,9 @@ function Medicine(props) {
               />
                <span style={{color : 'red'}}>{errors.amount && touched.amount ? errors.amount : null}</span>
                <TextField
-                autoFocus
                 margin="dense"
                 id="pres"
-                label="Prescription"
+                label="Description"
                 type="text"
                 fullWidth
                 variant="standard"
@@ -124,10 +140,9 @@ function Medicine(props) {
               />
                <span style={{color : 'red'}}>{errors.pres && touched.pres ? errors.pres : null}</span>
                <Button  onClick={handleClose}>Cancel</Button>
-              <Button type="submit" onClick={handleClose}>
+              <Button type="submit" >
                 Submit
               </Button>
-              {/* <input type="submit" value="Submit" /> */}
             </form>
           </DialogContent>
           <DialogActions>

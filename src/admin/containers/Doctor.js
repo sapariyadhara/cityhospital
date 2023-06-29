@@ -83,7 +83,6 @@ export default function Doctor() {
           </DialogContentText>
           <form method="post" onSubmit={handleSubmit}>
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               label="Name"
@@ -99,7 +98,6 @@ export default function Doctor() {
               {errors.name && touched.name ? errors.name : null}
             </span>
             <TextField
-              autoFocus
               margin="dense"
               id="designation"
               label="Designation"
@@ -117,7 +115,6 @@ export default function Doctor() {
                 : null}
             </span>
             <TextField
-              autoFocus
               margin="dense"
               id="description"
               label="Description"
@@ -140,7 +137,7 @@ export default function Doctor() {
               type="file"
               id="imgd"
               name="imgd"
-              accept="../assets/img/doctors/*"
+              // accept="../assets/img/doctors/*"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.imgd}
@@ -256,7 +253,7 @@ export default function Doctor() {
                 </span>
               </div> */}
             <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit" onClick={handleClose}>
+            <Button type="submit">
               Submit
             </Button>
           </form>
