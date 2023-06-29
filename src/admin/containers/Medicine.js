@@ -10,6 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { DataGrid } from "@mui/x-data-grid";
+import { json } from "react-router-dom";
 
 
 // const rows = [
@@ -53,17 +54,14 @@ const columns = [
   },
 ];
 
-  // React.useEffect(() => {
+  React.useEffect(() => {
 
-  //   let rows
-  //   console.log(rows); 
-  //   if(getmData === null){
-  //       rows = []
-  //   } else {
-  //     rows = [...getmData]
-  //   }
-  //     setGetmData(getmData)
-  // },[getmData])
+   let getnewData = JSON.parse(localStorage.getItem('medicine'))
+   console.log(getnewData);
+      setGetmData(getmData)
+
+      console.log(setGetmData(getmData));
+  },[getmData])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -127,13 +125,15 @@ const columns = [
       action.resetForm();
       console.log(values);
       handleAdddata(values);
-      setGetmData(getmData)
+      setGetmData(getData)
+      window.location.reload(true);
     },
   });
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     formik;
 
+ 
   return (
     <>
       <div>
@@ -234,3 +234,5 @@ const columns = [
 }
 
 export default Medicine;
+
+
