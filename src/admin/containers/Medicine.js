@@ -11,57 +11,29 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { DataGrid } from "@mui/x-data-grid";
 import { json } from "react-router-dom";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-
-// const rows = [
-//   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-//   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-//   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-//   { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-//   { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-//   { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-//   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-//   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-//   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-// ];
-
-let getData = JSON.parse(localStorage.getItem("medicine"));
-console.log(getData);
 
 function Medicine(props) {
   const [open, setOpen] = React.useState(false);
 
-  const [getmData, setGetmData] = React.useState(getData);
+  const [getmData, setGetmData] = React.useState([]); //1
   console.log(getmData);
 
   
-const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "mname", headerName: "Medicine Name", width: 130 },
-  { field: "exdate", headerName: "Expire Date", width: 130 },
-  {
-    field: "amount",
-    headerName: "Amount",
-    type: "number",
-    width: 90,
-  },
-  {
-    field: "pres",
-    headerName: "Description",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    width: 160,
-  },
-];
+//3  //5
 
   React.useEffect(() => {
 
-   let getnewData = JSON.parse(localStorage.getItem('medicine'))
+   let getnewData = JSON.parse(localStorage.getItem("medicine"))
    console.log(getnewData);
-      setGetmData(getmData)
+     if(getnewData !== null){
+      setGetmData(getnewData)
+     } 
 
-      console.log(setGetmData(getmData));
-  },[getmData])
+     
+  },[])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -80,9 +52,11 @@ const columns = [
 
     if (localData === null) {
       localStorage.setItem("medicine", JSON.stringify([nData]));
+      setGetmData([nData])
     } else {
       localData.push(nData);
       localStorage.setItem("medicine", JSON.stringify(localData));
+      setGetmData(localData)
     }
     handleClose();
   };
@@ -125,15 +99,50 @@ const columns = [
       action.resetForm();
       console.log(values);
       handleAdddata(values);
-      setGetmData(getData)
-      window.location.reload(true);
     },
   });
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     formik;
 
+  const handleDelete = (id) => {
+    
+    let localData = JSON.parse(localStorage.getItem("medicine"));
+    let fData = localData.filter((v , i) => v.id !== id)
+    setGetmData(fData)
+    localStorage.setItem("medicine" , JSON.stringify(fData))
+
+  }
+
+    const columns = [
+      { field: "id", headerName: "ID", width: 70 },
+      { field: "mname", headerName: "Medicine Name", width: 130 },
+      { field: "exdate", headerName: "Expire Date", width: 130 },
+      {
+        field: "amount",
+        headerName: "Amount",
+        type: "number",
+        width: 90,
+      },
+      {
+        field: "pres",
+        headerName: "Description",
+        description: "This column has a value getter and is not sortable.",
+        sortable: false,
+        width: 160,
+      },
+      { field: "action",
+       headerName: "Actoin",
+       renderCell: (params) => (
+        <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+        <DeleteIcon />
+      </IconButton>
+       ),
+        width: 130 },
+    ];
  
+
+    //2 
   return (
     <>
       <div>
@@ -215,6 +224,8 @@ const columns = [
           <DialogActions></DialogActions>
         </Dialog>
       </div>
+
+      {/* 4 6 */}
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
        
