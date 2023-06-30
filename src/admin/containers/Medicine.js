@@ -20,7 +20,7 @@ function Medicine(props) {
 
   const [getmData, setGetmData] = React.useState([]); //1
 
-  const [editData , setEditData] = React.useState([]);
+  const [value , setValue] = React.useState([]);
 
   //3  //5
 
@@ -30,11 +30,13 @@ function Medicine(props) {
     if (getnewData !== null) {
       setGetmData(getnewData);
     }
+
+   
   }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
-  
+
   };
 
   const handleClose = () => {
@@ -100,7 +102,7 @@ function Medicine(props) {
     },
   });
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+  const { values, errors, touched, setValues , handleBlur, handleChange, handleSubmit } =
     formik;
 
   const [initialValues, setInitialValues] = React.useState();
@@ -115,25 +117,36 @@ function Medicine(props) {
   const handleEdit = (row) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
     console.log(localData);
-    let fData = localData.filter((v) => v.id === row.id);
-    console.log(fData[0].mname);
+   let  editData = localData.filter((v) => v.id === row.id)
+    console.log(editData);
 
-    formik.setValues({
-      fData: {
-        mname: fData[0].mname,
-        exdate: fData[0].exdate,
-        amount: fData[0].amount,
-        pres: fData[0].pres,
-      },
-    });
+    setValues({
+        mname: row.mname,
+        exdate: row.exdate,
+        amount: row.amount,
+        pres: row.pres,
+    })
+  
+
+
+  
     console.log(
-      (fData = {
-        mname: fData[0].mname,
-        exdate: fData[0].exdate,
-        amount: fData[0].amount,
-        pres: fData[0].pres,
+      (editData = {
+        mname: editData[0].mname,
+        exdate: editData[0].exdate,
+        amount: editData[0].amount,
+        pres: editData[0].pres,
       })
+      ,
+      ({
+        mname: row.mname,
+        exdate: row.exdate,
+        amount: row.amount,
+        pres: row.pres,
+    })
     );
+
+    localStorage.setItem("edit" , JSON.stringify(editData))
     handleClickOpen();
   };
 
@@ -215,6 +228,7 @@ function Medicine(props) {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.exdate}
+                setValues={setValues.exdate}
               />
               <span style={{ color: "red" }}>
                 {errors.exdate && touched.exdate ? errors.exdate : null}
