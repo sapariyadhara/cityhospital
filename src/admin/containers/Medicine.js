@@ -11,32 +11,30 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { DataGrid } from "@mui/x-data-grid";
 import { json } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 
 function Medicine(props) {
   const [open, setOpen] = React.useState(false);
 
   const [getmData, setGetmData] = React.useState([]); //1
-  console.log(getmData);
 
-  
-//3  //5
+  const [editData , setEditData] = React.useState([]);
+
+  //3  //5
 
   React.useEffect(() => {
+    let getnewData = JSON.parse(localStorage.getItem("medicine"));
 
-   let getnewData = JSON.parse(localStorage.getItem("medicine"))
-   console.log(getnewData);
-     if(getnewData !== null){
-      setGetmData(getnewData)
-     } 
-
-     
-  },[])
+    if (getnewData !== null) {
+      setGetmData(getnewData);
+    }
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
+  
   };
 
   const handleClose = () => {
@@ -52,11 +50,11 @@ function Medicine(props) {
 
     if (localData === null) {
       localStorage.setItem("medicine", JSON.stringify([nData]));
-      setGetmData([nData])
+      setGetmData([nData]);
     } else {
       localData.push(nData);
       localStorage.setItem("medicine", JSON.stringify(localData));
-      setGetmData(localData)
+      setGetmData(localData);
     }
     handleClose();
   };
@@ -105,44 +103,78 @@ function Medicine(props) {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     formik;
 
+  const [initialValues, setInitialValues] = React.useState();
+
   const handleDelete = (id) => {
-    
     let localData = JSON.parse(localStorage.getItem("medicine"));
-    let fData = localData.filter((v , i) => v.id !== id)
-    setGetmData(fData)
-    localStorage.setItem("medicine" , JSON.stringify(fData))
+    let fData = localData.filter((v, i) => v.id !== id);
+    setGetmData(fData);
+    localStorage.setItem("medicine", JSON.stringify(fData));
+  };
 
-  }
+  const handleEdit = (row) => {
+    let localData = JSON.parse(localStorage.getItem("medicine"));
+    console.log(localData);
+    let fData = localData.filter((v) => v.id === row.id);
+    console.log(fData[0].mname);
 
-    const columns = [
-      { field: "id", headerName: "ID", width: 70 },
-      { field: "mname", headerName: "Medicine Name", width: 130 },
-      { field: "exdate", headerName: "Expire Date", width: 130 },
-      {
-        field: "amount",
-        headerName: "Amount",
-        type: "number",
-        width: 90,
+    formik.setValues({
+      fData: {
+        mname: fData[0].mname,
+        exdate: fData[0].exdate,
+        amount: fData[0].amount,
+        pres: fData[0].pres,
       },
-      {
-        field: "pres",
-        headerName: "Description",
-        description: "This column has a value getter and is not sortable.",
-        sortable: false,
-        width: 160,
-      },
-      { field: "action",
-       headerName: "Actoin",
-       renderCell: (params) => (
-        <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
-        <DeleteIcon />
-      </IconButton>
-       ),
-        width: 130 },
-    ];
- 
+    });
+    console.log(
+      (fData = {
+        mname: fData[0].mname,
+        exdate: fData[0].exdate,
+        amount: fData[0].amount,
+        pres: fData[0].pres,
+      })
+    );
+    handleClickOpen();
+  };
 
-    //2 
+  const columns = [
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "mname", headerName: "Medicine Name", width: 130 },
+    { field: "exdate", headerName: "Expire Date", width: 130 },
+    {
+      field: "amount",
+      headerName: "Amount",
+      type: "number",
+      width: 90,
+    },
+    {
+      field: "pres",
+      headerName: "Description",
+      description: "This column has a value getter and is not sortable.",
+      sortable: false,
+      width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Actoin",
+      renderCell: (params) => (
+        <>
+          <IconButton
+            aria-label="delete"
+            onClick={() => handleDelete(params.row.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+          <IconButton aria-label="edit" onClick={() => handleEdit(params.row)}>
+            <EditNoteIcon />
+          </IconButton>
+        </>
+      ),
+      width: 130,
+    },
+  ];
+
+  //2
   return (
     <>
       <div>
@@ -156,7 +188,7 @@ function Medicine(props) {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Medication Log</DialogTitle>
           <DialogContent>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} initialValues={setInitialValues}>
               <TextField
                 margin="dense"
                 id="mname"
@@ -228,7 +260,6 @@ function Medicine(props) {
       {/* 4 6 */}
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
-       
           rows={getmData}
           columns={columns}
           initialState={{
@@ -245,5 +276,3 @@ function Medicine(props) {
 }
 
 export default Medicine;
-
-
