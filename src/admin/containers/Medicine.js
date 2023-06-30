@@ -22,6 +22,8 @@ function Medicine(props) {
 
   const [value , setValue] = React.useState([]);
 
+  const [update , setUpdate] = React.useState(false)
+
   //3  //5
 
   React.useEffect(() => {
@@ -98,7 +100,7 @@ function Medicine(props) {
     onSubmit: (values, action) => {
       action.resetForm();
       console.log(values);
-      handleAdddata(values);
+      handleDese();
     },
   });
 
@@ -149,6 +151,19 @@ function Medicine(props) {
     localStorage.setItem("edit" , JSON.stringify(editData))
     handleClickOpen();
   };
+
+  const handleUpdate = () => {
+    update = true 
+    console.log('handleUpdate' , update);
+  }
+
+  const handleDese = () => {
+    if(update){
+        handleUpdate()
+    } else {
+      handleAdddata(values)
+    }
+  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
