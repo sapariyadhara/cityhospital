@@ -13,6 +13,7 @@ import VisitingDoctor from '../users/containers/VisitingDoctor';
 import NotFound from '../users/containers/NotFound';
 import Auth from '../users/containers/Auth';
 import Contect1 from '../users/containers/Contect1';
+import MediicineU from '../users/containers/MediicineU';
 
 
 function UserRoutes(props) {
@@ -25,6 +26,7 @@ function UserRoutes(props) {
                 <Route path='/Appoinment' element={<Appoinment />} />
                 <Route path='/Contect1' element={<Contect1 />} />
                 <Route path='/Departments' element={<Departments />} />
+                <Route path='/MedicineU' element={<MediicineU />}/>
                 <Route path='/Doctors' element={<Doctors />} />
                 <Route path='/Doctor/:id' element={<Doctor />} />
                 <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} />
