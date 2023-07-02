@@ -17,12 +17,11 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 
 function Medicine(props) {
   const [open, setOpen] = React.useState(false);
-
   const [getmData, setGetmData] = React.useState([]); //1
+  // const [update , setUpdate] = React.useState(false)
 
-  const [value , setValue] = React.useState([]);
 
-  const [update , setUpdate] = React.useState(false)
+  let update = false , uid = null
 
   //3  //5
 
@@ -104,10 +103,12 @@ function Medicine(props) {
     },
   });
 
-  const { values, errors, touched, setValues , handleBlur, handleChange, handleSubmit } =
+ 
+
+  const { values, errors, touched, setValues , handleBlur, handleChange, handleSubmit} =
     formik;
 
-  const [initialValues, setInitialValues] = React.useState();
+  // const [initialValues, setInitialValues] = React.useState();
 
   const handleDelete = (id) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
@@ -119,8 +120,10 @@ function Medicine(props) {
   const handleEdit = (row) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
     console.log(localData);
-   let  editData = localData.filter((v) => v.id === row.id)
-    console.log(editData);
+
+  
+    uid = row.id
+    console.log(uid);
 
     setValues({
         mname: row.mname,
@@ -128,40 +131,25 @@ function Medicine(props) {
         amount: row.amount,
         pres: row.pres,
     })
-  
-
-
-  
-    console.log(
-      (editData = {
-        mname: editData[0].mname,
-        exdate: editData[0].exdate,
-        amount: editData[0].amount,
-        pres: editData[0].pres,
-      })
-      ,
-      ({
-        mname: row.mname,
-        exdate: row.exdate,
-        amount: row.amount,
-        pres: row.pres,
-    })
-    );
-
-    localStorage.setItem("edit" , JSON.stringify(editData))
     handleClickOpen();
   };
 
+ 
   const handleUpdate = () => {
     update = true 
+    console.log('uid',uid);
     console.log('handleUpdate' , update);
   }
 
   const handleDese = () => {
+    console.log('dese');
     if(update){
-        handleUpdate()
+      handleUpdate()
+      console.log('dese' ,update);
+   
     } else {
       handleAdddata(values)
+      console.log('dese' , 'handleAdddata');
     }
   }
 
@@ -216,7 +204,7 @@ function Medicine(props) {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Medication Log</DialogTitle>
           <DialogContent>
-            <form onSubmit={handleSubmit} initialValues={setInitialValues}>
+            <form onSubmit={handleSubmit} >
               <TextField
                 margin="dense"
                 id="mname"
