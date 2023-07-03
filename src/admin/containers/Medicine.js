@@ -18,10 +18,10 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 function Medicine(props) {
   const [open, setOpen] = React.useState(false);
   const [getmData, setGetmData] = React.useState([]); //1
-  // const [update , setUpdate] = React.useState(false)
+  const [update , setUpdate] = React.useState(false)
 
 
-  let update = false , uid = null
+  let  uid = null
 
   //3  //5
 
@@ -143,7 +143,7 @@ function Medicine(props) {
 
   const handleDese = () => {
     console.log('dese');
-    if(update){
+    if(setUpdate(update ) === true){
       handleUpdate()
       console.log('dese' ,update);
    
