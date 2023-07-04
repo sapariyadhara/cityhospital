@@ -10,7 +10,7 @@ function ListMedicines({ mdata }) {
 
 
                     return (
-                        <div div className='col-md-3' >
+                        <div div className='mmmm' >
                             <CoustomCard value={v} />
                         </div>
                     )
