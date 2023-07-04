@@ -17,7 +17,7 @@ function MedicineForm(props) {
 
     const handleClickOpen = () => {
         setOpen(true);
-    
+        
       };
     
       const handleClose = () => {
@@ -60,8 +60,8 @@ function MedicineForm(props) {
       enableReinitialize: true,
       onSubmit: (values, action) => {
         action.resetForm();
-        console.log(values);
-        // handleAdddata(values)
+        console.log(values , 'Submit');
+        props.handleAdddata(values)
         handleClose();
       },
     });
@@ -77,7 +77,7 @@ function MedicineForm(props) {
                 <Button
                     style={{ marginLeft: "200px" }}
                     variant="outlined"
-                    onClick={handleClickOpen}
+                    onClick={() => handleClickOpen()}
                 >
                     Add Medicine
                 </Button>

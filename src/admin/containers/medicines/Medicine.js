@@ -9,6 +9,7 @@ import MedicineForm from "./MedicineForm";
 function Medicine(props) {
   const [getmData, setGetmData] = React.useState([]); //1
   const [update , setUpdate] = React.useState(null)
+  const [open, setOpen] = React.useState(false);
 
   //3  //5
 
@@ -24,6 +25,7 @@ function Medicine(props) {
 
 
   const handleAdddata = (data) => {
+    console.log(data);
     let localData = JSON.parse(localStorage.getItem("medicine"));
     console.log(localData);
 
@@ -62,14 +64,20 @@ function Medicine(props) {
     localStorage.setItem("medicine", JSON.stringify(fData));
   };
 
-  // const handleUpdate = (row) => {
-  //   let localData = JSON.parse(localStorage.getItem("medicine"));
-  //   console.log(localData);
+  const handleUpdate = (row) => {
+    let localData = JSON.parse(localStorage.getItem("medicine"));
+    console.log(localData);
 
-  //   // formik.setValues(row)
-  //   setUpdate(row)
-  //   handleClickOpen();
-  // };
+    // formik.setValues(row)
+    setUpdate(row)
+    handleClickOpen();
+  };
+
+ const handleClickOpen = () => {
+    console.log();
+    setOpen(true)
+    console.log(setOpen(true));
+ }
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -99,9 +107,9 @@ function Medicine(props) {
           >
             <DeleteIcon />
           </IconButton>
-          {/* <IconButton aria-label="edit" onClick={() => handleUpdate(params.row)}>
+          <IconButton aria-label="edit" onClick={() => handleUpdate(params.row)}>
             <EditNoteIcon />
-          </IconButton> */}
+          </IconButton>
         </>
       ),
       width: 130,
@@ -111,8 +119,7 @@ function Medicine(props) {
   //2
   return (
     <>
-
-    <MedicineForm />
+    <MedicineForm handleAdddata={handleAdddata} />
 
       {/* 4 6 */}
       <div style={{ height: 400, width: "100%" }}>
