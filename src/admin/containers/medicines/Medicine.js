@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import IconButton from "@mui/material/IconButton";
@@ -8,8 +7,8 @@ import MedicineForm from "./MedicineForm";
 
 function Medicine(props) {
   const [getmData, setGetmData] = React.useState([]); //1
-  const [update , setUpdate] = React.useState(null)
-  const [open, setOpen] = React.useState(false);
+  const [update, setUpdate] = React.useState(null);
+  const [nOpen , setNOpen] = React.useState(false)
 
   //3  //5
 
@@ -19,10 +18,7 @@ function Medicine(props) {
     if (getnewData !== null) {
       setGetmData(getnewData);
     }
-
-   
   }, []);
-
 
   const handleAdddata = (data) => {
     console.log(data);
@@ -36,26 +32,24 @@ function Medicine(props) {
       localStorage.setItem("medicine", JSON.stringify([nData]));
       setGetmData([nData]);
     } else {
-      if(update){
-          let uData = localData.map((v) => {
-            if(v.id === data.id){
-              return data ;
-            } else {
-              return v
-            }
-          })
-          localStorage.setItem("medicine", JSON.stringify(uData));
-          setGetmData(uData);
+      if (update) {
+        let uData = localData.map((v) => {
+          if (v.id === data.id) {
+            return data;
+          } else {
+            return v;
+          }
+        });
+        localStorage.setItem("medicine", JSON.stringify(uData));
+        setGetmData(uData);
       } else {
         localData.push(nData);
         localStorage.setItem("medicine", JSON.stringify(localData));
         setGetmData(localData);
       }
-     
     }
-    setUpdate(null)
+    setUpdate(null);
   };
-
 
   const handleDelete = (id) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
@@ -69,15 +63,26 @@ function Medicine(props) {
     console.log(localData);
 
     // formik.setValues(row)
-    setUpdate(row)
-    handleClickOpen();
+    setUpdate(row);
+    // setOpen()
+    // console.log(setOpen());
+    // handleClickOpen();
   };
 
- const handleClickOpen = () => {
-    console.log();
-    setOpen(true)
-    console.log(setOpen(true));
- }
+  //  const handleClickOpen = () => {
+  //     console.log();
+  //     setOpen(true)
+  //     console.log(setOpen(true));
+  //  }
+
+  const setOpen = (val) => {
+    setOpen(val)
+    // console.log(nOpen , val );
+    //   if(nOpen === false){
+    //     setNOpen(val)
+    //       console.log(nOpen , val , setNOpen(val));
+    //   }
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -107,7 +112,10 @@ function Medicine(props) {
           >
             <DeleteIcon />
           </IconButton>
-          <IconButton aria-label="edit" onClick={() => handleUpdate(params.row)}>
+          <IconButton
+            aria-label="edit"
+            onClick={() => handleUpdate(params.row)}
+          >
             <EditNoteIcon />
           </IconButton>
         </>
@@ -119,7 +127,7 @@ function Medicine(props) {
   //2
   return (
     <>
-    <MedicineForm handleAdddata={handleAdddata} />
+      <MedicineForm handleAdddata={handleAdddata} setOpen={setOpen} />
 
       {/* 4 6 */}
       <div style={{ height: 400, width: "100%" }}>

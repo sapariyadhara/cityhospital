@@ -16,12 +16,14 @@ function MedicineForm(props) {
 
 
     const handleClickOpen = () => {
-        setOpen(true);
+      setOpen(true)
+        props.setOpen(true);
         
       };
     
       const handleClose = () => {
-        setOpen(false);
+        setOpen(false)
+        props.setOpen(false);
       };
 
     const d = new Date();
@@ -77,7 +79,7 @@ function MedicineForm(props) {
                 <Button
                     style={{ marginLeft: "200px" }}
                     variant="outlined"
-                    onClick={() => handleClickOpen()}
+                    onClick={handleClickOpen}
                 >
                     Add Medicine
                 </Button>
