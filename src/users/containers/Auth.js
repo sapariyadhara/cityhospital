@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import {  useNavigate } from 'react-router-dom';
 
 function Auth(props) {
     const [authtype, setAuthtype] = useState('login')
+    const navigate = useNavigate()
+
+    const handleAuth = () => {
+        
+    }
+    useEffect(() => {
+        let localData = JSON.parse(localStorage.getItem('auth'))
+        if(!localData){
+            navigate('/Medicine')
+        }
+    } , [])
+
+
 
     let authObj = {}, initVal = {};
     if (authtype === 'login') {
@@ -52,6 +66,8 @@ function Auth(props) {
         onSubmit: (values, action) => {
             action.resetForm()
             console.log(values);
+            localStorage.setItem('auth' , JSON.stringify(values))
+            navigate('/Medicine')
         },
     })
 
@@ -155,7 +171,7 @@ function Auth(props) {
                         </div>
                         <div className="text-center">
                             {
-                                authtype === 'login' ? <button type="submit">Login</button> :
+                                authtype === 'login' ? <button type="submit" onClick={handleAuth}>Login</button> :
                                     authtype === 'signup' ? <button type="submit">Signup</button> :
                                         <button type="submit">Submit</button>
                             }

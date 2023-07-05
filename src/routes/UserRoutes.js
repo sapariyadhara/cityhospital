@@ -15,6 +15,7 @@ import Auth from '../users/containers/Auth';
 import Contect1 from '../users/containers/Contect1';
 import MediicineU from '../users/containers/MediicineU';
 import Medicines from '../users/medicines/Medicines';
+import ProtectedRoute from '../users/containers/ProtectedRoute';
 
 
 function UserRoutes(props) {
@@ -27,7 +28,7 @@ function UserRoutes(props) {
                 <Route path='/Appoinment' element={<Appoinment />} />
                 <Route path='/Contect1' element={<Contect1 />} />
                 <Route path='/Departments' element={<Departments />} />
-                <Route path='/Medicine' element={<Medicines />}/>
+                <Route path='/Medicine' element={<ProtectedRoute Component={Medicines} />}/>
                 <Route path='/Doctors' element={<Doctors />} />
                 <Route path='/Doctor/:id' element={<Doctor />} />
                 <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} />
