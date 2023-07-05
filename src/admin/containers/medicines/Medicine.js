@@ -8,8 +8,6 @@ import MedicineForm from "./MedicineForm";
 function Medicine(props) {
   const [getmData, setGetmData] = React.useState([]); //1
   const [update, setUpdate] = React.useState(null);
-  const [nOpen , setNOpen] = React.useState(false)
-
   //3  //5
 
   React.useEffect(() => {
@@ -61,27 +59,9 @@ function Medicine(props) {
   const handleUpdate = (row) => {
     let localData = JSON.parse(localStorage.getItem("medicine"));
     console.log(localData);
-
     // formik.setValues(row)
-    setUpdate(row);
-    // setOpen()
-    // console.log(setOpen());
     // handleClickOpen();
-  };
-
-  //  const handleClickOpen = () => {
-  //     console.log();
-  //     setOpen(true)
-  //     console.log(setOpen(true));
-  //  }
-
-  const setOpen = (val) => {
-    setOpen(val)
-    // console.log(nOpen , val );
-    //   if(nOpen === false){
-    //     setNOpen(val)
-    //       console.log(nOpen , val , setNOpen(val));
-    //   }
+    setUpdate(row);
   };
 
   const columns = [
@@ -127,7 +107,7 @@ function Medicine(props) {
   //2
   return (
     <>
-      <MedicineForm handleAdddata={handleAdddata} setOpen={setOpen} />
+      <MedicineForm onHandleAdddata={handleAdddata} onUpdate={update} />
 
       {/* 4 6 */}
       <div style={{ height: 400, width: "100%" }}>
