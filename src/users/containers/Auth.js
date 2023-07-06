@@ -7,15 +7,26 @@ function Auth(props) {
     const [authtype, setAuthtype] = useState('login')
     const navigate = useNavigate()
 
-    const handleAuth = () => {
+   
+    // useEffect(() => {
+    //     let localData = JSON.parse(localStorage.getItem('auth'))
+    //     if(!localData){
+    //         navigate('/Medicine')
+    //     }
+    // } , [])
+
+    const handleLogin = () => {
+        localStorage.setItem("status" , 'true')
+        navigate('/')
+    }
+
+    const handleRegister = () => {
         
     }
-    useEffect(() => {
-        let localData = JSON.parse(localStorage.getItem('auth'))
-        if(!localData){
-            navigate('/Medicine')
-        }
-    } , [])
+
+    const handleForgotten = () => {
+        
+    }
 
 
 
@@ -68,6 +79,13 @@ function Auth(props) {
             console.log(values);
             localStorage.setItem('auth' , JSON.stringify(values))
             navigate('/Medicine')
+            if(authtype === 'login'){
+                handleLogin()
+            } else if(authtype === 'signup'){
+                handleRegister()
+            } else if(authtype === 'forgotten'){
+                handleForgotten()
+            }
         },
     })
 
@@ -171,7 +189,7 @@ function Auth(props) {
                         </div>
                         <div className="text-center">
                             {
-                                authtype === 'login' ? <button type="submit" onClick={handleAuth}>Login</button> :
+                                authtype === 'login' ? <button type="submit">Login</button> :
                                     authtype === 'signup' ? <button type="submit">Signup</button> :
                                         <button type="submit">Submit</button>
                             }
