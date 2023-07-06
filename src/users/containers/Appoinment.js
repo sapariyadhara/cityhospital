@@ -1,4 +1,5 @@
 import React from "react";
+import StyledButton from "../components/Button";
 
 function Appoinment(props) {
   return (
@@ -101,7 +102,7 @@ function Appoinment(props) {
                 </div>
               </div>
               <div className="text-center">
-                <button type="submit">Make an Appointment</button>
+              <StyledButton type="submit">Make an Appointment</StyledButton>
               </div>
             </form>
           </div>
