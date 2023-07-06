@@ -7,6 +7,7 @@ import Department from '../admin/containers/Department';
 import Doctor from '../admin/containers/Doctor';
 import Sidenavbar from '../admin/components/Sidenavbar';
 import Medicine from '../admin/containers/medicines/Medicine';
+import DashBorad from '../admin/containers/dashborad/DashBorad';
 
 function AdminRoutes(props) {
     return (
@@ -14,6 +15,7 @@ function AdminRoutes(props) {
 
            <Sidenavbar>
                 <Routes>
+                <Route path='/' element={ <DashBorad />} />
                     <Route path='/Medicine' element={ <Medicine />} />
                     {/* <Route path='/Medicine' element={<Medicine />} /> */}
                     <Route path='/Appointment' element={<Appointment />}/>

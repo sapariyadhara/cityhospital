@@ -4,9 +4,10 @@ import React from 'react';
 // import Contect from './users/containers/Contect';
 import Test2 from './users/containers/Test2';
 import SideDrawermui from './users/containers/SideDrawermui';
-import { createTheme , colors ,  ThemeProvider} from '@mui/material/styles';
+import { createTheme, colors, ThemeProvider } from '@mui/material/styles';
 import UserRoutes from './routes/UserRoutes';
 import AdminRoutes from './routes/AdminRoutes';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 
 // const theme = createTheme({
@@ -23,16 +24,18 @@ function App() {
 
 
     <>
-    {/* <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}>
     <Sidenavbar /> */}
-    {/* <SideDrawermui /> */}
-    {/* <Test2 /> */}
-       {/* </ThemeProvider> */}
+      {/* <SideDrawermui /> */}
+      {/* <Test2 /> */}
+      {/* </ThemeProvider> */}
 
-       <Routes>
-            <Route path='/*' element={<UserRoutes />} />
-            <Route path='/admin/*' element={<AdminRoutes />} />
-       </Routes>
+      <Routes>
+        <Route path='/*' element={<UserRoutes />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/admin/*' element={<AdminRoutes />} />
+        </Route>
+      </Routes>
     </>
   );
 }
