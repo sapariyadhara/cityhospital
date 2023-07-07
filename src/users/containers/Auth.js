@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import StyledButton from "../components/Ui/Button/Button";
 import Button from "../components/Ui/Button/Button";
+import Input from "../components/Ui/Input/Input";
 
 
 
@@ -136,7 +136,7 @@ function Auth(props) {
             <div className="row justify-content-center">
               {authtype === "login" || authtype === "forgotten" ? null : (
                 <div className="col-md-7 form-group">
-                  <input
+                <Input
                     type="text"
                     name="name"
                     className="form-control"
@@ -145,8 +145,8 @@ function Auth(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.name}
-                  />
-
+                >
+                </Input>
                   <span style={{ color: "red" }} className="error">
                     {errors.name && touched.name ? errors.name : null}
                   </span>
@@ -154,7 +154,7 @@ function Auth(props) {
               )}
 
               <div className="col-md-7 form-group mt-3 mt-md-0">
-                <input
+                <Input
                   type="email"
                   className="form-control"
                   name="email"
@@ -163,7 +163,8 @@ function Auth(props) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                />
+                >
+              </Input>
                 <span style={{ color: "red" }} className="error">
                   {errors.email && touched.email ? errors.email : null}
                 </span>
@@ -172,7 +173,7 @@ function Auth(props) {
               {authtype === "login" || authtype === "signup" ? (
                 <div className="col-md-7 form-group mt-3 mt-md-0">
                   <>
-                    <input
+                    <Input
                       type="password"
                       className="form-control"
                       name="password"
@@ -181,7 +182,8 @@ function Auth(props) {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.password}
-                    />
+                    >
+                    </Input>
                     <span className="error" style={{ color: "red" }}>
                       {errors.password && touched.password
                         ? errors.password

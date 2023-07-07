@@ -10,7 +10,7 @@ function Button({children , type , btnDisabled=false}) {
           case 'secendory':
             return SecendoryButton ;
           case 'outlined':
-            return OutlinedButton ;
+            return OutlinedButton ; 
             default :
             return PrimaryButton;
       }
