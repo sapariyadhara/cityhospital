@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup'
-import StyledButton from '../components/Button';
+
 
 function Contect1(props) {
 
@@ -148,7 +148,7 @@ function Contect1(props) {
                                         </div>
                                     </div>
                                     <div className="text-center">
-                                        <StyledButton type="submit">Send Message</StyledButton>
+                                        <button type="submit">Send Message</button  >
                                     </div>
                                 </form>
                             </div>

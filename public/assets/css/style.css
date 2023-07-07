@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
-/* .back-to-top {
+.back-to-top {
   position: fixed;
   visibility: hidden;
   opacity: 0;
@@ -78,18 +78,18 @@ h1, h2, h3, h4, h5, h6 {
   height: 40px;
   border-radius: 4px;
   transition: all 0.4s;
-} */
+}
 
-/* .back-to-top i {
+.back-to-top i {
   font-size: 28px;
   color: #fff;
   line-height: 0;
-} */
+}
 
-/* .back-to-top:hover {
+.back-to-top:hover {
   background: #298ce5;
   color: #fff;
-} */
+}
 
 .back-to-top.active {
   visibility: visible;
@@ -200,7 +200,7 @@ h1, h2, h3, h4, h5, h6 {
 /**
 * Appointment Button *
 */
-/* .appointment-btn {
+.appointment-btn {
   margin-left: 25px;
   background: #FF6337;
   color: #fff;
@@ -210,12 +210,12 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
   font-size: 14px;
   display: inline-block;
-} */
+}
 
-/* .appointment-btn:hover {
+.appointment-btn:hover {
   background: #166ab5;
   color: #fff;
-} */
+} 
 
 @media (max-width: 768px) {
   .appointment-btn {
@@ -1069,9 +1069,9 @@ section {
   padding: 10px !important;
 }
 
-/* .appointment .php-email-form input:focus, .appointment .php-email-form textarea:focus, .appointment .php-email-form select:focus {
+.appointment .php-email-form input:focus, .appointment .php-email-form textarea:focus, .appointment .php-email-form select:focus {
   border-color: #FF6337;
-} */
+}
 
 .appointment .php-email-form input, .appointment .php-email-form select {
   height: 44px;
@@ -1081,18 +1081,18 @@ section {
   padding: 10px 12px;
 }
 
-/* .appointment .php-email-form button[type="submit"] {
+.appointment .php-email-form button[type="submit"] {
   background: #FF6337;
   border: 0;
   padding: 10px 35px;
   color: #fff;
   transition: 0.4s;
   border-radius: 50px;
-} */
+}
 
-/* .appointment .php-email-form button[type="submit"]:hover {
+.appointment .php-email-form button[type="submit"]:hover {
   background: #1c84e3;
-} */
+}
 
 /*--------------------------------------------------------------
 # Departments
@@ -1552,18 +1552,18 @@ section {
   padding: 10px 12px;
 }
 
-/* .contact .php-email-form button[type="submit"] {
+.contact .php-email-form button[type="submit"] {
   background: #FF6337;
   border: 0;
   padding: 10px 35px;
   color: #fff;
   transition: 0.4s;
   border-radius: 50px;
-} */
+}
 
-/* .contact .php-email-form button[type="submit"]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #1c84e3;
-} */
+}
 
 @-webkit-keyframes animate-loading {
   0% {

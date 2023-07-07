@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import StyledButton from "./Button";
+
 
 function Header(props) {
   let localData = localStorage.getItem("status");
@@ -82,10 +82,10 @@ function Header(props) {
               <i className="bi bi-list mobile-nav-toggle" />
             </nav>
             <Link to={"/Appoinment "} className="appointment-btn scrollto">
-              <StyledButton>
+             
                 <span className="d-none d-md-inline">Make an</span>
                 Appointment
-              </StyledButton>
+              
             </Link>
 
             {localData ? (
@@ -94,16 +94,16 @@ function Header(props) {
                 className="appointment-btn scrollto"
                 onClick={handleLogout}
               >
-                <StyledButton>
+              
                   <span className="d-none d-md-inline">Logout</span>
-                </StyledButton>
+                
               </Link>
             ) : (
               <Link to={"/Auth"} className="appointment-btn scrollto">
-                <StyledButton>
+               
                   {" "}
                   <span className="d-none d-md-inline">Login/ Signup</span>
-                </StyledButton>
+               
               </Link>
             )}
           </div>

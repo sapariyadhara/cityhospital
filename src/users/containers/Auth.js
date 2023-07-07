@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import StyledButton from "../components/Button";
+import StyledButton from "../components/Ui/Button/Button";
+import Button from "../components/Ui/Button/Button";
+
 
 
 function Auth(props) {
@@ -199,11 +201,11 @@ function Auth(props) {
             </div>
             <div className="text-center">
               {authtype === "login" ? (
-                <StyledButton type="submit">Login</StyledButton>
+                <Button type='primary' btnDisabled={true}>Login</Button>
               ) : authtype === "signup" ? (
-                <StyledButton type="submit">Signup</StyledButton>
+                <Button type='secendory'>Signup</Button>
               ) : (
-                <StyledButton type="submit">Submit</StyledButton>
+                <Button type='outlined'>Submit</Button>
               )}
             </div>
 
