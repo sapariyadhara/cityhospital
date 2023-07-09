@@ -2,7 +2,7 @@ import React from 'react';
 import {OutlinedButton, PrimaryButton, SecendoryButton, StyledButton} from './Button.style';
 
 function Button({children , type , btnDisabled=false}) {
-
+ 
   const customButtontype = () => {
       switch(type){
           case 'primary' :

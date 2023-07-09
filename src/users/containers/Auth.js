@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
+import Span from "../components/Ui/Span/Span";
 
 
 
@@ -147,9 +148,7 @@ function Auth(props) {
                     value={values.name}
                 >
                 </Input>
-                  <span style={{ color: "red" }} className="error">
-                    {errors.name && touched.name ? errors.name : null}
-                  </span>
+                <Span> {errors.name && touched.name ? errors.name : null}</Span>
                 </div>
               )}
 
@@ -165,9 +164,7 @@ function Auth(props) {
                   value={values.email}
                 >
               </Input>
-                <span style={{ color: "red" }} className="error">
-                  {errors.email && touched.email ? errors.email : null}
-                </span>
+              <Span>{errors.email && touched.email ? errors.email : null}</Span>
               </div>
 
               {authtype === "login" || authtype === "signup" ? (
@@ -184,11 +181,9 @@ function Auth(props) {
                       value={values.password}
                     >
                     </Input>
-                    <span className="error" style={{ color: "red" }}>
-                      {errors.password && touched.password
+                    <Span>{errors.password && touched.password
                         ? errors.password
-                        : null}
-                    </span>
+                        : null}</Span>
                   </>
                 </div>
               ) : null}

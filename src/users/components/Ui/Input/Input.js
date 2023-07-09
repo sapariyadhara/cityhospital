@@ -1,10 +1,11 @@
 import React from 'react';
 import { InputCustom } from './Input.style';
 
-function Input({children , placeholder , onBlur , type ,name}) {
+function Input({children , placeholder ,name , type , onBlur}) {
+ 
     console.log(type ,name);
     return (
-       <InputCustom type={type} placeholder={placeholder} onBlur={onBlur} >
+       <InputCustom type={type} placeholder={placeholder} >
             {children}
        </InputCustom>
     );
