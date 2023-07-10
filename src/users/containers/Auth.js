@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
+import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
 
 
 
@@ -105,26 +106,26 @@ function Auth(props) {
         <div className="container">
           <div className="section-title">
             {authtype === "login" ? (
-              <h2>Login</h2>
+              <H2>Login</H2>
             ) : authtype === "forgotten" ? (
-              <h2>Reset Password </h2>
+              <H2>Reset Password </H2>
             ) : (
-              <h2>Signup</h2>
+              <H2>Signup</H2>
             )}
             {authtype !== "forgotten" ? (
-              <p>
+              <P>
                 {" "}
                 Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc
                 aliquam eget nibh eu euismod. Donec dapibus blandit quam
                 volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat.
                 Donec lacinia finibus tortor. Curabitur luctus eleifend odio.
                 Phasellus placerat mi et suscipit pulvinar.{" "}
-              </p>
+              </P>
             ) : (
-              <p>
+              <P>
                 Please enter your email address or mobile number to search for
                 your account.
-              </p>
+              </P>
             )}
           </div>
           <form

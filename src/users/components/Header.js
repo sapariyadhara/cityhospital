@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LinkCustom from "./Ui/Link/LinkCustom";
+// import { LinkT } from "./Ui/Link/Link.style";
 
 
 function Header(props) {
@@ -50,9 +51,9 @@ function Header(props) {
             <nav id="navbar" className="navbar order-last order-lg-0">
               <ul>
                 <li>
-                  <LinkCustom className="nav-link scrollto active" to={"/"} >
+                  <LinkCustom  to={"/"} text='Home' />
                     Home
-                  </LinkCustom>
+                  {/* </LinkCustom> */}
 
                 </li>
                 <li>

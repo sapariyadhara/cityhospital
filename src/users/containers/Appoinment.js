@@ -1,5 +1,6 @@
 import React from "react";      
 import Button from "../components/Ui/Button/Button";
+import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
 
 function Appoinment(props) {
   return (
@@ -8,14 +9,14 @@ function Appoinment(props) {
         <section id="appointment" className="appointment">
           <div className="container">
             <div className="section-title">
-              <h2>Make an Appointment</h2>
-              <p>
+              <H2>Make an Appointment</H2>
+              <P>
                 Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc
                 aliquam eget nibh eu euismod. Donec dapibus blandit quam
                 volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat.
                 Donec lacinia finibus tortor. Curabitur luctus eleifend odio.
                 Phasellus placerat mi et suscipit pulvinar.
-              </p>
+              </P>
             </div>
             <form action method="post" role="form" className="php-email-form">
               <div className="row">

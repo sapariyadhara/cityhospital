@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup'
+import { H2, H4, I, P } from '../components/Ui/Hadding/Haddinds.style';
 
 
 function Contect1(props) {
@@ -43,14 +44,14 @@ function Contect1(props) {
                 <section id="contact" className="contact">
                     <div className="container">
                         <div className="section-title">
-                            <h2>Contact</h2>
-                            <p>
+                            <H2>Contact</H2>
+                            <P>
                                 Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc
                                 aliquam eget nibh eu euismod. Donec dapibus blandit quam
                                 volutpat sollicitudin. Aenean ac turpis ante. Mauris velit
                                 sapien, aliquet aliquet rhoncus quis, luctus at neque. Mauris
                                 sit amet massa sed orci vehicula facilisis.
-                            </p>
+                            </P>
                         </div>
                     </div>
                     <div className="container">
@@ -58,19 +59,19 @@ function Contect1(props) {
                             <div className="col-lg-4">
                                 <div className="info">
                                     <div className="address">
-                                        <i className="bi bi-geo-alt" />
-                                        <h4>Location:</h4>
-                                        <p> F-505, Inovative Plazza New Delhi, India</p>
+                                        <I className="bi bi-geo-alt" />
+                                        <H4>Location:</H4>
+                                        <P> F-505, Inovative Plazza New Delhi, India</P>
                                     </div>
                                     <div className="email">
-                                        <i className="bi bi-envelope" />
-                                        <h4>Email:</h4>
-                                        <p>cityhospital@example.com</p>
+                                        <I className="bi bi-envelope" />
+                                        <H4>Email:</H4>
+                                        <P>cityhospital@example.com</P>
                                     </div>
                                     <div className="phone">
-                                        <i className="bi bi-phone" />
-                                        <h4>Call:</h4>
-                                        <p>+91 9988776655</p>
+                                        <I className="bi bi-phone" />
+                                        <H4>Call:</H4>
+                                        <P>+91 9988776655</P>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +149,7 @@ function Contect1(props) {
                                         </div>
                                     </div>
                                     <div className="text-center">
-                                        <button type="submit">Send Message</button  >
+                                        <button type="submit">Send Message</button>
                                     </div>
                                 </form>
                             </div>

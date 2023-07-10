@@ -1,4 +1,6 @@
 import React from "react";
+import { A, H4, I, Icon, IconBoxCus, P } from "../components/Ui/IconBox/IconBoxCustom.style";
+import { H2 } from "../components/Ui/Hadding/Haddinds.style";
 
 function Home(props) {
   return (
@@ -55,93 +57,93 @@ function Home(props) {
           <section id="services" className="services">
             <div className="container">
               <div className="section-title">
-                <h2>Our Facilities</h2>
-                <p>
+                <H2>Our Facilities</H2>
+                <P>
                   Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam
                   volutpat sollicitudin. Fusce tincidunt sit amet ex in
                   volutpat. Donec lacinia finibus tortor. Curabitur luctus
                   eleifend odio. Phasellus placerat mi et suscipit pulvinar.
                   Donec quis tristique lectus.
-                </p>
+                </P>
               </div>
               <div className="row">
                 <div className="col-lg-4 col-md-6 d-flex align-items-stretch">
-                  <div className="icon-box">
-                    <div className="icon">
-                      <i className="fas fa-hospital-alt" />
-                    </div>
-                    <h4>
-                      <a href>24x7 Emergency Available</a>
-                    </h4>
-                    <p>
+                  <IconBoxCus >
+                    <Icon>
+                      <I className="fas fa-hospital-alt" />
+                    </Icon>
+                    <H4>
+                      <A href>24x7 Emergency Available</A>
+                    </H4>
+                    <P>
                       Nullam accumsan, velit et porta consequat, purus leo
                       congue risus
-                    </p>
-                  </div>
+                    </P>
+                  </IconBoxCus>
                 </div>
                 <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                  <div className="icon-box">
-                    <div className="icon">
-                      <i className="fas fa-bed" />
-                    </div>
-                    <h4>
-                      <a href>40+ Bed Facilities</a>
-                    </h4>
-                    <p>
+                  <IconBoxCus>
+                    <Icon>
+                      <I className="fas fa-bed" />
+                    </Icon>
+                    <H4>
+                      <A href>40+ Bed Facilities</A>
+                    </H4>
+                    <P>
                       Pellentesque id felis elit. Pellentesque blandit sem a
                       nisi dictum
-                    </p>
-                  </div>
+                    </P>
+                  </IconBoxCus>
                 </div>
                 <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                  <div className="icon-box">
-                    <div className="icon">
-                      <i className="fas fa-hospital-user" />
-                    </div>
-                    <h4>
-                      <a href>Cardiogram Machine</a>
-                    </h4>
-                    <p>
+                  <IconBoxCus>
+                    <Icon>
+                      <I className="fas fa-hospital-user" />
+                    </Icon>
+                    <H4>
+                      <A href>Cardiogram Machine</A>
+                    </H4>
+                    <P>
                       Donec lacinia finibus tortor. Curabitur luctus eleifend
                       odio.
-                    </p>
-                  </div>
+                    </P>
+                  </IconBoxCus>
                 </div>
                 <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                  <div className="icon-box">
-                    <div className="icon">
-                      <i className="fas fa-dna" />
-                    </div>
-                    <h4>
-                      <a href>X-ray and Sonography</a>
-                    </h4>
-                    <p>
+                  <IconBoxCus>
+                    <Icon>
+                      <I className="fas fa-dna" />
+                    </Icon>
+                    <H4>
+                      <A href>X-ray and Sonography</A>
+                    </H4>
+                    <P>
                       Aliquam auctor felis ut sem elementum, ac rutrum turpis
                       venenatis.
-                    </p>
-                  </div>
+                    </P>
+                  </IconBoxCus>
                 </div>
                 <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                  <div className="icon-box">
-                    <div className="icon">
-                      <i className="fas fa-wheelchair" />
-                    </div>
-                    <h4>
-                      <a href>Semi Special, Special and Delux Room Available</a>
-                    </h4>
-                    <p>Etiam in massa eu neque euismod consectetur.</p>
-                  </div>
+                  <IconBoxCus>
+                    <Icon>
+                      <I className="fas fa-wheelchair" />
+                    </Icon>
+                    <H4>
+                      <A href>Semi Special, Special and Delux Room Available</A>
+                    </H4>
+                    <P>Etiam in massa eu neque euismod consectetur.</P>
+                  </IconBoxCus>
                 </div>
                 <div className="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                  <div className="icon-box">
-                    <div className="icon">
-                      <i className="fas fa-notes-medical" />
-                    </div>
-                    <h4>
-                      <a href>Medical</a>
-                    </h4>
-                    <p>Morbi vulputate, tortor nec pellentesque molestie</p>
-                  </div>
+                  <IconBoxCus>
+                    <Icon>
+                      <I className="fas fa-notes-medical" />
+                    </Icon>
+                    <H4>
+                      <A href>Medical</A>
+                    </H4>
+                    <P>Morbi vulputate, tortor nec pellentesque molestie</P>
+                  </IconBoxCus>
                 </div>
               </div>
             </div>
