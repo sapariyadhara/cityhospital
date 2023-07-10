@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
-import Span from "../components/Ui/Span/Span";
 
 
 
@@ -140,31 +139,33 @@ function Auth(props) {
                 <Input
                     type="text"
                     name="name"
-                    className="form-control"
                     id="name"
                     placeholder="Your Name"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.name}
-                >
-                </Input>
-                <Span> {errors.name && touched.name ? errors.name : null}</Span>
+                    errorText={errors.name && touched.name
+                      ? errors.name
+                      : null}
+                />
                 </div>
               )}
 
               <div className="col-md-7 form-group mt-3 mt-md-0">
                 <Input
                   type="email"
-                  className="form-control"
                   name="email"
                   id="email"
                   placeholder="Your Email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                >
-              </Input>
-              <Span>{errors.email && touched.email ? errors.email : null}</Span>
+                  errorText={errors.email && touched.email
+                    ? errors.email
+                    : null}
+                />
+            
+             
               </div>
 
               {authtype === "login" || authtype === "signup" ? (
@@ -172,18 +173,16 @@ function Auth(props) {
                   <>
                     <Input
                       type="password"
-                      className="form-control"
                       name="password"
                       id="password"
                       placeholder="Your Password"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.password}
-                    >
-                    </Input>
-                    <Span>{errors.password && touched.password
+                      errorText={errors.password && touched.password
                         ? errors.password
-                        : null}</Span>
+                        : null}
+                    />
                   </>
                 </div>
               ) : null}

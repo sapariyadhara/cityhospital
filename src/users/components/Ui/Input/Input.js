@@ -1,13 +1,19 @@
 import React from 'react';
-import { InputCustom } from './Input.style';
+import { InputCustom, InputError } from './Input.style';
 
-function Input({children , placeholder ,name , type , onBlur}) {
- 
-    console.log(type ,name);
+function Input({ errorText, ...rest }) {
     return (
-       <InputCustom type={type} placeholder={placeholder} >
-            {children}
-       </InputCustom>
+        <>
+            <InputCustom
+                {...rest}
+                errorText={errorText}
+                className="form-control"
+            >
+            </InputCustom>
+            <InputError>
+                {errorText}
+            </InputError>
+        </>
     );
 }
 
