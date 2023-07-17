@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import LinkCustom from "./Ui/Link/LinkCustom";
 // import { LinkT } from "./Ui/Link/Link.style";
 
-
 function Header(props) {
   let localData = localStorage.getItem("status");
 
@@ -51,10 +50,9 @@ function Header(props) {
             <nav id="navbar" className="navbar order-last order-lg-0">
               <ul>
                 <li>
-                  <LinkCustom  to={"/"} text='Home' />
-                    Home
+                  <LinkCustom to={"/"} text="Home" />
+                  Home
                   {/* </LinkCustom> */}
-
                 </li>
                 <li>
                   <Link className="nav-link scrollto" to={"/Departments"}>
@@ -80,15 +78,18 @@ function Header(props) {
                   <Link className="nav-link scrollto" to={"/Contect1"}>
                     Contact
                   </Link>
+                 </li>
+                 <li>
+                  <Link className="nav-link scrollto" to={"/Counter"}>
+                    Counter
+                  </Link>
                 </li>
               </ul>
               <i className="bi bi-list mobile-nav-toggle" />
             </nav>
             <Link to={"/Appoinment "} className="appointment-btn scrollto">
-
               <span className="d-none d-md-inline">Make an</span>
               Appointment
-
             </Link>
 
             {localData ? (
@@ -97,16 +98,12 @@ function Header(props) {
                 className="appointment-btn scrollto"
                 onClick={handleLogout}
               >
-
                 <span className="d-none d-md-inline">Logout</span>
-
               </Link>
             ) : (
               <Link to={"/Auth"} className="appointment-btn scrollto">
-
                 {" "}
                 <span className="d-none d-md-inline">Login/ Signup</span>
-
               </Link>
             )}
           </div>

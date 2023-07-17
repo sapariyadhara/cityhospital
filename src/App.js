@@ -8,6 +8,8 @@ import { createTheme, colors, ThemeProvider } from '@mui/material/styles';
 import UserRoutes from './routes/UserRoutes';
 import AdminRoutes from './routes/AdminRoutes';
 import ProtectedRoute from './routes/ProtectedRoute';
+import { Provider } from 'react-redux';
+import { configureStore } from './redux/store';
 
 
 // const theme = createTheme({
@@ -20,22 +22,26 @@ import ProtectedRoute from './routes/ProtectedRoute';
 
 
 function App() {
+
+  const store = configureStore()
   return (
 
 
     <>
+    <Provider store={store}>
       {/* <ThemeProvider theme={theme}>
     <Sidenavbar /> */}
       {/* <SideDrawermui /> */}
       {/* <Test2 /> */}
       {/* </ThemeProvider> */}
-
       <Routes>
         <Route path='/*' element={<UserRoutes />} />
         <Route element={<ProtectedRoute />}>
           <Route path='/admin/*' element={<AdminRoutes />} />
         </Route>
       </Routes>
+          
+    </Provider>
     </>
   );
 }

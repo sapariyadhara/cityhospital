@@ -16,6 +16,7 @@ import Contect1 from '../users/containers/Contect1';
 import MediicineU from '../users/containers/MediicineU';
 import Medicines from '../users/medicines/Medicines';
 import ProtectedRoute from './ProtectedRoute';
+import Counter from '../users/containers/Counter/Counter';
 
 
 
@@ -28,6 +29,7 @@ function UserRoutes(props) {
                 <Route path='/about' element={<About />} />
                 <Route path='/Appoinment' element={<Appoinment />} />
                 <Route path='/Contect1' element={<Contect1 />} />
+                <Route path='/Counter' element={<Counter />} />
                 <Route path='/Departments' element={<Departments />} />
                 <Route element={<ProtectedRoute />}>
                     <Route path='/Medicine' element={<Medicines />} />
