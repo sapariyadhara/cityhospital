@@ -4,10 +4,10 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Appointment from '../admin/containers/Appointment';
 import Department from '../admin/containers/Department';
-import Doctor from '../admin/containers/Doctor';
+import Doctor from '../admin/containers/Doctors/Doctor';
 import Sidenavbar from '../admin/components/Sidenavbar';
 import Medicine from '../admin/containers/medicines/Medicine';
-import DashBorad from '../admin/containers/dashborad/DashBorad';
+
 
 function AdminRoutes(props) {
     return (
