@@ -19,7 +19,7 @@ export default function Doctor() {
   const dispatch = useDispatch()
   const doctorD = useSelector(state => state.Doctor)
 
-  console.log(doctorD);
+  console.log(doctorD.dData , 'Doctor');
 
   React.useEffect(() => {
    
@@ -272,6 +272,18 @@ export default function Doctor() {
           </form>
         </DialogContent>
       </Dialog>
+
+
+      <h1>Data</h1>
+            {/* <p>
+              {
+                doctorD.dData.map((v , i) => {
+                    return(
+                        <h1> {v.id} </h1>
+                    )
+                })
+              }
+            </p> */}
     </div>
   );
 }
