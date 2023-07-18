@@ -16,17 +16,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import MailIcon from '@mui/icons-material/Mail';
 import MedicationIcon from '@mui/icons-material/Medication';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import GroupsIcon from '@mui/icons-material/Groups';
 // import Medicine from '../containers/Medicine';
-import Appointment from '../containers/Appointment';
-import Department from '../containers/Department';
-import Doctor from '../containers/Doctor';
-import { createTheme , colors , ThemeProvider} from '@mui/material/styles';
+// import Appointment from '../containers/Appointment';
+// import Department from '../containers/Department';
+// import Doctor from '../containers/Doctor';
+// import { createTheme , colors , ThemeProvider} from '@mui/material/styles';
 import {Link} from 'react-router-dom'
 
 

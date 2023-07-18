@@ -11,9 +11,22 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import MedicationIcon from '@mui/icons-material/Medication';
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../../../redux/action/doctor.action";
 
 export default function Doctor() {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch()
+  const doctorD = useSelector(state => state.Doctor)
+
+  console.log(doctorD);
+
+  React.useEffect(() => {
+   
+      dispatch(getData())
+ 
+   
+  } , [])
 
   const handleClickOpen = () => {
     setOpen(true);
