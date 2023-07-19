@@ -21,33 +21,50 @@
       "id": 101,
       "name": "ABC",
       "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
-      "description" : "fajsf asjkbajks askjcfnas"
-   
+      "description": "fajsf asjkbajks askjcfnas",
+      "imgd": ""
     },
     {
       "id": 102,
       "name": "ABC",
-      "price": 100
+      "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
+      "description": "fajsf asjkbajks askjcfnas",
+      "imgd": ""
     },
     {
       "id": 103,
       "name": "ABC",
-      "price": 1099
+      "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
+      "description": "fajsf asjkbajks askjcfnas",
+      "imgd": ""
     },
     {
       "id": 104,
       "name": "XYZbdgfnvdf",
-      "price": 900
+      "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
+      "description": "fajsf asjkbajks askjcfnas",
+      "imgd": ""
     },
     {
       "id": 105,
       "name": "ABC",
-      "price": 100
+      "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
+      "description": "fajsf asjkbajks askjcfnas",
+      "imgd": ""
     },
     {
       "id": 107,
       "name": "XYZbdf",
-      "price": 90
+      "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
+      "description": "fajsf asjkbajks askjcfnas",
+      "imgd": ""
+    },
+    {
+      "id": 2148,
+      "name": "fdvbdf",
+      "designation": "gbdgb",
+      "description": "vdfgvser",
+      "imgd": "C:\\fakepath\\doctors-1.jpg"
     }
   ]
 }

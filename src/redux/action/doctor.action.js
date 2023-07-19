@@ -13,6 +13,7 @@ export const getData = () => (dispatch) => {
 }
 
 export const addDoctor = (data) => (dispatch) => {
+  console.log(data);
   try{
     fetch("http://localhost:3004/doctors", {
       method: "POST",

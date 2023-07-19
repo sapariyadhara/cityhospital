@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import Button from "@mui/material/Button";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 
-function DoctorForm(onhndleSubmit) {
+function DoctorForm({onhandleSubmit}) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -48,9 +48,12 @@ function DoctorForm(onhndleSubmit) {
         validationSchema: doctorSchema,
         enableReinitialize: true,
         onSubmit: (values, action) => {
+          let rnd = Math.floor(Math.random() * 10000) 
+          let dV = {id : rnd , ...values}
+          console.log(dV);
           console.log(values);
           action.resetForm();
-          onhndleSubmit(values)
+          onhandleSubmit(dV);
         },
       });
     

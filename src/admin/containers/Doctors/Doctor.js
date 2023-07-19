@@ -21,7 +21,7 @@ export default function Doctor() {
   const dispatch = useDispatch()
   const doctorD = useSelector(state => state.Doctor)
 
-  console.log(doctorD.dData , 'Doctor');
+  // console.log(doctorD.dData , 'Doctor');
 
   React.useEffect(() => {
    
@@ -31,8 +31,9 @@ export default function Doctor() {
   } , [])
 
   const handleSubmit = (data) => {
-      console.log(data);
+      console.log(data , 'sdvsv');
       dispatch(addDoctor(data))
+      console.log(dispatch(addDoctor(data)));
   }
 
 
@@ -41,13 +42,16 @@ export default function Doctor() {
     const columns = [
       { field: "id", headerName: "ID", width: 70 },
       { field: "name", headerName: "Name", width: 130 },
-      { field: "price", headerName: "Price", width: 130 },   
+      { field: "designation", headerName: "Designation", width: 130 },   
+      { field: "description", headerName: "Description", width: 130 },   
+      { field: "imgd", headerName: "Img", width: 130 }  
+
     ];
 
   return (
     <>
      
-    <DoctorForm onhndleSubmit={handleSubmit}/>
+    <DoctorForm onhandleSubmit={handleSubmit}/>
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
            rows={doctorD.dData}
