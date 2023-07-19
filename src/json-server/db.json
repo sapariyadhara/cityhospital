@@ -1,0 +1,53 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "doctors": [
+    {
+      "id": 101,
+      "name": "ABC",
+      "designation": "bfbdxfdfbvc fhdfg dfhdcn fb",
+      "description" : "fajsf asjkbajks askjcfnas"
+   
+    },
+    {
+      "id": 102,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 103,
+      "name": "ABC",
+      "price": 1099
+    },
+    {
+      "id": 104,
+      "name": "XYZbdgfnvdf",
+      "price": 900
+    },
+    {
+      "id": 105,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 107,
+      "name": "XYZbdf",
+      "price": 90
+    }
+  ]
+}
