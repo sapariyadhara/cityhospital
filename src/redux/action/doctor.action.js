@@ -25,9 +25,37 @@ export const addDoctor = (data) => (dispatch) => {
    
     )
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => dispatch({type : ActionType.ADD_DOCTOR , payload : data}) )
     // .catch((error) => console.log(error))
   } catch (error) {
       console.log(error);
+  }
+}
+
+export const deletDoctor = (id) => (dispatch) => {
+  try{
+    fetch("http://localhost:3004/doctors/" + id , {
+      method : "DELETE"
+    } )
+    .then(dispatch({type : ActionType.DELET_DOCTOR , payload : id}))
+    .catch((error) => console.log(error))
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+export const updateData = (data) => (dispatch) => {
+  try{
+      fetch("http://localhost:3004/doctors/" + data.id ,{
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      .then(dispatch({type : ActionType.UPDATE_DOCTOR , payload : data}))
+      .catch((error) => console.log(error))
+  } catch (error) {
+    console.log(error);
   }
 }

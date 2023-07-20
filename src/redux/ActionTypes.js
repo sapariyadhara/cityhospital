@@ -3,3 +3,6 @@ export const DECREMENT_COUNTER = "DECREMENT_COUNTER"
 
 
 export const GET_DOCTOR = "GET_DOCTOR" 
+export const ADD_DOCTOR = "ADD_DOCTOR"
+export const DELET_DOCTOR = "DELET_DOCTOR"
+export const UPDATE_DOCTOR = "UPDATE_DOCTOR"

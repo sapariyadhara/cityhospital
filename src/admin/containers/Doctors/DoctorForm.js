@@ -4,8 +4,15 @@ import { useFormik } from "formik";
 import Button from "@mui/material/Button";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 
-function DoctorForm({onhandleSubmit}) {
+function DoctorForm({onhandleSubmit , onUpdate}) {
     const [open, setOpen] = React.useState(false);
+
+    React.useEffect(() => {
+      if (onUpdate) {
+        formik.setValues(onUpdate)
+        handleClickOpen();
+      }
+    }, [onUpdate])
 
     const handleClickOpen = () => {
         setOpen(true);
