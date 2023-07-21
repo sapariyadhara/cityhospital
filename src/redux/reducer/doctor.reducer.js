@@ -1,19 +1,33 @@
 import * as  ActionType from '../ActionTypes'
 
 const init = {
-    loading : false ,
     dData : [],
+    loading : false ,
     error : ''
 
 }
 
 export const doctorReducer = (state = init, action) => {
     console.log(action , 'hh');
+
     switch (action.type) {
+        case ActionType.LOADING_DOCTOR :
+            return{
+                dData : [],
+                loading : true,
+                error : ''
+            }
+            case ActionType.ERROR_DOCTOR :
+                return{
+                    dData : [],
+                    loading : false,
+                    error : action.payload
+                }
         case ActionType.GET_DOCTOR :
             return {
                 ...state,
-                dData : action.payload,               
+                dData : action.payload,  
+                loading : false,             
             }
         case ActionType.ADD_DOCTOR :
             return {

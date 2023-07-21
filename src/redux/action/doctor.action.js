@@ -2,10 +2,18 @@ import * as  ActionType from '../ActionTypes'
 
 export const getData = () => (dispatch) => {
   try{
-    fetch("http://localhost:3004/doctors")
-    .then((response) => response.json())
-    .then((data) => dispatch({type : ActionType.GET_DOCTOR , payload : data}))
-    .catch((error) => console.log(error))
+    dispatch(loadingData(true))
+    setTimeout(function() {
+      fetch("http://localhost:3004/doctor")
+      .then((response) => {
+        if(response.ok){
+          return response.json()
+        } 
+        throw new Error('Something went wrong');
+      })
+      .then((data) => dispatch({type : ActionType.GET_DOCTOR , payload : data}))
+      .catch((error) => dispatch(errorData(error)))
+    }, 3000)  
   } catch (error) {
       console.log(error);
   }
@@ -58,4 +66,15 @@ export const updateData = (data) => (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+}
+
+
+export const loadingData = (status) => (dispatch) => {
+  console.log(status)
+  dispatch({type : ActionType.LOADING_DOCTOR , payload : status})
+}
+
+export const errorData = (errorMsg) => (dispatch) => {
+  console.log(errorMsg);
+  dispatch({type :ActionType.ERROR_DOCTOR , payload : errorMsg})
 }

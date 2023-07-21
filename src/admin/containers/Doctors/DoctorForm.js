@@ -39,7 +39,7 @@ function DoctorForm({onhandleSubmit , onUpdate}) {
             }
           })
           .required("Please Enter Description"),
-        imgd: Yup.string().required("Please Add Photo")
+        // imgd: Yup.string().required("Please Add Photo")
         
       });
     
@@ -50,7 +50,7 @@ function DoctorForm({onhandleSubmit , onUpdate}) {
           name: "",
           designation: "",
           description: "",
-          imgd: ""    
+          // imgd: ""    
         },
         validationSchema: doctorSchema,
         enableReinitialize: true,
@@ -133,7 +133,7 @@ function DoctorForm({onhandleSubmit , onUpdate}) {
                         </span>
                         <br></br>
                         <br></br>
-                        <input
+                        {/* <input
                             type="file"
                             id="imgd"
                             name="imgd"
@@ -144,7 +144,7 @@ function DoctorForm({onhandleSubmit , onUpdate}) {
                         ></input>
                         <span style={{ color: "red" }}>
                             {errors.imgd && touched.imgd ? errors.imgd : null}
-                        </span>
+                        </span> */}
 
                         <Button onClick={handleClose}>Cancel</Button>
                         <Button type="submit">
