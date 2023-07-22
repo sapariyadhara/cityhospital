@@ -3,12 +3,8 @@ import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'react
 
 function CoustomCard({value}) {
     return (
-        <div>
-            <Card
-                style={{
-                    width: '18rem'
-                }}
-            >
+        <>
+            <Card>
                {
                    value.url ? 
                    <img
@@ -19,33 +15,32 @@ function CoustomCard({value}) {
                 
                 <CardBody>
                     <CardTitle tag="h5">
-                       {value.mname}
+                       {value.name}
                     </CardTitle>
                     <CardSubtitle
                         className="mb-2 text-muted"
                         tag="h6"
                     >
-                        {value.amount}
+                      Price : {value.price} 
                     </CardSubtitle>
                     <CardSubtitle
                         className="mb-2 text-muted"
                         tag="h6"
                     >
-                        {value.exdate}
+                        {value.expiry}
                     </CardSubtitle>
                     <CardText>
-                        {value.pres}
+                        {value.desc}
                     </CardText>
-                    {
-                        value.btndata ? 
+                  
                         <Button>
                         Button
-                    </Button> : null
-                    }
+                    </Button> 
+                 
                    
                 </CardBody>
             </Card>
-        </div>
+            </>
     );
 }
 

@@ -11,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Box from "@mui/material/Box";
 import { json } from "react-router-dom";
 
-function MedicineForm({ onHandleAdddata, onUpdate }) {
+function MedicineForm({ onHandleSubmit, onUpdate }) {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
@@ -35,18 +35,18 @@ function MedicineForm({ onHandleAdddata, onUpdate }) {
   //current date mathi 1 minus karva
 
   const medicineSchema = Yup.object({
-    mname: Yup.string().required("Please Enter Name"),
-    exdate: Yup.date()
+    name: Yup.string().required("Please Enter Name"),
+    expiry: Yup.date()
       .min(nd, "Please Enter Future Date.")
       .required("Please Enter Expire Date"),
-    amount: Yup.number()
+      price: Yup.number()
       .min(0)
       .required("Please Enter Amount")
       .typeError("Please Enter Valid Amount"),
-    pres: Yup.string()
+      desc: Yup.string()
       .test("pres", "Please Enter Max 100 Word", function (val) {
         let arr = val.split(" ");
-        if (arr.length > 5) {
+        if (arr.length > 100) {
           return false;
         } else {
           return true;
@@ -57,17 +57,17 @@ function MedicineForm({ onHandleAdddata, onUpdate }) {
 
   const formik = useFormik({
     initialValues: {
-      mname: "",
-      exdate: "",
-      amount: "",
-      pres: "",
+      name: "",
+      expiry: "",
+      price: "",
+      desc: "",
     },
     validationSchema: medicineSchema,
     enableReinitialize: true,
     onSubmit: (values, action) => {
       action.resetForm();
       console.log(values, 'Submit');
-      onHandleAdddata(values)
+      onHandleSubmit(values)
       handleClose();
     },
   });
@@ -93,18 +93,18 @@ function MedicineForm({ onHandleAdddata, onUpdate }) {
             <form onSubmit={handleSubmit} >
               <TextField
                 margin="dense"
-                id="mname"
+                id="name"
                 label="Medicine Name"
                 type="text"
                 fullWidth
                 variant="standard"
-                name="mname"
+                name="name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.mname}
+                value={values.name}
               />
               <span style={{ color: "red" }}>
-                {errors.mname && touched.mname ? errors.mname : null}
+                {errors.name && touched.name ? errors.name : null}
               </span>
               <TextField
                 margin="dense"
@@ -113,29 +113,29 @@ function MedicineForm({ onHandleAdddata, onUpdate }) {
                 type="date"
                 fullWidth
                 variant="standard"
-                name="exdate"
+                name="expiry"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.exdate}
-                setValues={setValues.exdate}
+                value={values.expiry}
+                setValues={setValues.expiry}
               />
               <span style={{ color: "red" }}>
-                {errors.exdate && touched.exdate ? errors.exdate : null}
+                {errors.expiry && touched.expiry ? errors.expiry : null}
               </span>
               <TextField
                 margin="dense"
-                id="amount"
-                label="Amount"
+                id="price"
+                label="Price"
                 type="number"
                 fullWidth
                 variant="standard"
-                name="amount"
+                name="price"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.amount}
+                value={values.price}
               />
               <span style={{ color: "red" }}>
-                {errors.amount && touched.amount ? errors.amount : null}
+                {errors.price && touched.price ? errors.price : null}
               </span>
               <TextField
                 margin="dense"
@@ -144,13 +144,13 @@ function MedicineForm({ onHandleAdddata, onUpdate }) {
                 type="text"
                 fullWidth
                 variant="standard"
-                name="pres"
+                name="desc"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.pres}
+                value={values.desc}
               />
               <span style={{ color: "red" }}>
-                {errors.pres && touched.pres ? errors.pres : null}
+                {errors.desc && touched.desc ? errors.desc : null}
               </span>
               <Button onClick={handleClose}>Cancel</Button>
               <Button type="submit">Submit</Button>

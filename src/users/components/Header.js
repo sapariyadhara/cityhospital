@@ -50,9 +50,12 @@ function Header(props) {
             <nav id="navbar" className="navbar order-last order-lg-0">
               <ul>
                 <li>
-                  <LinkCustom to={"/"} text="Home" />
-                  Home
+                  {/* <LinkCustom to={"/"} text="Home" />
+                  Home */}
                   {/* </LinkCustom> */}
+                  <Link className="nav-link scrollto" to={"/"}>
+                    Home
+                  </Link>
                 </li>
                 <li>
                   <Link className="nav-link scrollto" to={"/Departments"}>

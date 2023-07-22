@@ -34,7 +34,7 @@ function MediicineU(props) {
             <div class="input-group" style={{ width: '600px', margin: ' 20px auto' }}>
                 <input type="search" name='search' value={svalue} class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
                     onChange={() => handleChange(svalue)} />
-                <button type="button" class="btn btn-outline-primary" >search</button>
+                <button type="button" class="btn btn-outline-primary" >search11</button>
             </div>
             {/* <input type='search' name='search' id='search' placeholder='Search Here'></input> */}
             <div style={{
