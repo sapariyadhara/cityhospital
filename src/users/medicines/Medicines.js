@@ -3,6 +3,7 @@ import ListMedicines from "./ListMedicines";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/action/medicine.action";
 import { Row } from "reactstrap";
+import { addToCart } from "../../redux/action/cart.action";
 
 function Medicines(props) {
   const dispatch = useDispatch();
@@ -39,6 +40,13 @@ function Medicines(props) {
 
     console.log(fData);
   };
+
+  const handleCart = (id) => {
+    console.log("handleCart" , id);
+    dispatch(addToCart(id))
+  }
+
+
   return (
     <section id="contact" className="contact">
       <div className="container">
@@ -73,7 +81,10 @@ function Medicines(props) {
         </div>
         <div class="row">
           {/* <ListMedicines mdata={filterData.length > 0 ? filterData :  mediUser} /> */}
-          <ListMedicines mdata={filterData.length > 0 ? filterData : mediUser.medicineD} />
+          <ListMedicines 
+          mdata={filterData.length > 0 ? filterData : mediUser.medicineD} 
+          handleCart1={handleCart}
+          />
         </div>
       </div>
     </section>

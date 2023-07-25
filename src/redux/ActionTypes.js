@@ -16,3 +16,8 @@ export const GET_MEDICINE = "GET_MEDICINE"
 export const ADD_MEDICINE = "ADD_MEDICINE"
 export const DELETE_MEDICINE = "DELETE_MEDICINE"
 export const UPDATE_MEDICINE = "UPDATE_MEDICINE"
+
+export const ADD_TO_CART = "ADD_TO_CART"
+export const INC_CART = "INC_CART"
+export const DEC_CART = "DEC_CART"
+export const REMOVE_TO_CART = "REMOVE_TO_CART"
