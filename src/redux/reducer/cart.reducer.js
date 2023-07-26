@@ -23,6 +23,17 @@ export const cartReducer = (state = init , action) => {
                 error : null ,
                 loading : false
             }
+        case ActionType.INC_CART :
+            console.log(state.items , action.payload);
+            let index = state.items.findIndex((v) => v.pid === action.payload)
+            console.log(index);
+            state.items[index].qty++
+            return{
+                items : state.items,
+                error : null,
+                loading : false
+            }
+
         default :
             return state
     }
