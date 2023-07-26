@@ -19,7 +19,7 @@ function Header(props) {
     countCart = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
-  console.log(countCart);
+  // console.log(countCart);
 
   const handleLogout = () => {
     localStorage.removeItem("status");

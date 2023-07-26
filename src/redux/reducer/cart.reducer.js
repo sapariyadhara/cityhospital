@@ -7,7 +7,7 @@ const init = {
 }
 
 export const cartReducer = (state = init , action) => {
-    console.log(action);
+    console.log(action , state);
     switch(action.type){
         case ActionType.ADD_TO_CART :
             let item = state.items.some((v) => v.pid === action.payload.pid)
@@ -33,7 +33,24 @@ export const cartReducer = (state = init , action) => {
                 error : null,
                 loading : false
             }
-
+        case ActionType.DEC_CART :
+            let index1 = state.items.findIndex((v) => v.pid === action.payload)
+            state.items[index1].qty--
+            return{
+                items : state.items,
+                error : null,
+                loading : false
+            }
+        case ActionType.REMOVE_TO_CART :
+         
+            return{
+                items : state.items.filter((v) => v.pid !== action.payload.pid),
+                error : null,
+                loading : false
+            }
+               
+             
+           
         default :
             return state
     }
