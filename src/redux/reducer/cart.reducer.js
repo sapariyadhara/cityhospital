@@ -44,7 +44,7 @@ export const cartReducer = (state = init , action) => {
         case ActionType.REMOVE_TO_CART :
          
             return{
-                items : state.items.filter((v) => v.pid !== action.payload.pid),
+                items : state.items.filter((v) => v.pid !== action.payload),
                 error : null,
                 loading : false
             }

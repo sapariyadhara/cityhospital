@@ -12,6 +12,6 @@ export const decCartQty = (id) => (dispatch) => {
     dispatch({type : ActionType.DEC_CART , payload : id})
 }
 
-export const deleteToCart = (data) => (dispatch) => {
-    dispatch({type : ActionType.REMOVE_TO_CART , payload : data})
+export const deleteToCart = (id) => (dispatch) => {
+    dispatch({type : ActionType.REMOVE_TO_CART , payload : id})
 }

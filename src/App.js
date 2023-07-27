@@ -10,38 +10,30 @@ import AdminRoutes from './routes/AdminRoutes';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
-
-
-// const theme = createTheme({
-//   palette: {
-//     secondary: {
-//       main: '#ff6337',
-//     },
-//   },
-// });
-
+import { PersistGate } from 'redux-persist/integration/react'
 
 function App() {
 
-  const store = configureStore()
+  const {store, persistor} = configureStore()
   return (
 
 
     <>
-    <Provider store={store}>
-      {/* <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          {/* <ThemeProvider theme={theme}>
     <Sidenavbar /> */}
-      {/* <SideDrawermui /> */}
-      {/* <Test2 /> */}
-      {/* </ThemeProvider> */}
-      <Routes>
-        <Route path='/*' element={<UserRoutes />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path='/admin/*' element={<AdminRoutes />} />
-        </Route>
-      </Routes>
-          
-    </Provider>
+          {/* <SideDrawermui /> */}
+          {/* <Test2 /> */}
+          {/* </ThemeProvider> */}
+          <Routes>
+            <Route path='/*' element={<UserRoutes />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/admin/*' element={<AdminRoutes />} />
+            </Route>
+          </Routes>
+        </PersistGate>
+      </Provider>
     </>
   );
 }

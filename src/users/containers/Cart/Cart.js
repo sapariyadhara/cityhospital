@@ -24,17 +24,10 @@ function Cart(props) {
 
   console.log(cartitems, "add");
 
-  let totalBill = cartitems.map((v) => {
-    let total = v.price * v.qty;
+  let totalBill = cartitems.reduce((acc, v) => acc + v.price * v.qty, 0);
 
-    console.log(total);
-
-    return total;
-  });
   console.log(totalBill);
 
-  // let bb = tt.reduce((acc , v) => acc + v , 0)
-  // console.log(bb);
   const handleInc = (id) => {
     dispatch(incCartQty(id));
   };
@@ -43,9 +36,9 @@ function Cart(props) {
     dispatch(decCartQty(id));
   };
 
-  const handleDeletetoCart = (data) => {
-    dispatch(deleteToCart(data));
-    console.log(data);
+  const handleDeletetoCart = (id) => {
+    dispatch(deleteToCart(id));
+    console.log(id);
   };
   return (
     <>
@@ -95,8 +88,7 @@ function Cart(props) {
                             >
                               -
                             </Button>
-                          )}
-                          {/* <Button onClick={() => handleDec(c.pid)}>-</Button> */}
+                          )} 
                           <span style={{ margin: "5px" }}>{c.qty} </span>
                           <Button onClick={() => handleInc(c.pid)}>+</Button>
                         </h5>
@@ -108,7 +100,7 @@ function Cart(props) {
                         </h5>
                       </div>
 
-                      <Button onClick={() => handleDeletetoCart(c)}>
+                      <Button onClick={() => handleDeletetoCart(c.pid)}>
                         <a href="#!" style={{ color: "#cecece" }}>
                           <i className="fas fa-trash-alt" />
                         </a>
@@ -131,7 +123,7 @@ function Cart(props) {
                 <div className="d-flex flex-row align-items-center">
                   <div style={{ width: 80, marginRight: "40px" }}>
                     <h5 className="mb-0">
-                      {totalBill.reduce((acc, v) => acc + v, 0)}
+                      {totalBill}
                     </h5>
                   </div>
                 </div>
