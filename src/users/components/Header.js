@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LinkCustom from "./Ui/Link/LinkCustom";
 // import { LinkT } from "./Ui/Link/Link.style";
@@ -10,22 +10,74 @@ import { useSelector } from "react-redux";
 
 
 function Header(props) {
+  const [countData , setCountData] = useState([])
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
+
+  useEffect(() => {
+    try{
+      fetch("http://localhost:3004/medicines")
+      .then((response) => response.json())
+      .then((data) => setCountData(data) )
+      .catch((error) => console.log( error))
+  } catch(error){
+      console.log( error)
+  }
+
+  } , [])
+
+  // console.log( countData )
+  // let qData = {qty : 1}
+  // let cData = countData.map((v) => {
+  //   let mediDatas = {...v , ...qData}
+  //   return mediDatas
+  // })
+  // console.log(cData);
+
+  // let countAddC = 0
+
+  // if(cData){
+  //   countAddC = cData.reduce((acc , v) => acc + v.qty , 0)
+  //   console.log(countAddC);
+  // }
+
+  // console.log(countAddC , cData.qty);
+
+  let cartDatad = JSON.parse(localStorage.getItem('cart'))
+  console.log(cartDatad);
+
+  if(cartDatad){
+    let index = cartDatad.findIndex((v) => v.pid === countData.id)
+    console.log(index , cartDatad.pid === countData.id); 
+  
+  }
+
+  
+  
+  
+
+  let countCart1 = 0
+  if(cartDatad){
+    countCart1 = cartDatad.reduce((acc, v, i) => acc + v.qty, 0)
+    
+  }
+
+  console.log(countCart1);
+  ///////////////////////////////add to cart with redux///////////////////
 
   let countCart = 0
 
   if (cartData.items) {
+    
     countCart = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
   // console.log(countCart);
+  ///////////////////////////////////////////////////////////////////////////
 
   const handleLogout = () => {
     localStorage.removeItem("status");
   };
-
-
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -49,6 +101,15 @@ function Header(props) {
             </div>
 
             <div className="d-none d-lg-flex social-links align-items-center">
+            <Link to={'/Cart1'}>
+              <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
+                <StyledBadge badgeContent={1} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton>
+              </Link>
+
+
               <Link to={'/Cart'}>
               <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
                 <StyledBadge badgeContent={countCart} color="secondary">

@@ -19,6 +19,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Counter from '../users/containers/Counter/Counter';
 import Cart from '../users/containers/Cart/Cart';
 import Medicine1 from '../users/containers/medicene1/Medicine1';
+import Cart1 from '../users/containers/CartAdd1/Cart1';
 
 
 
@@ -48,6 +49,7 @@ function UserRoutes(props) {
                 <Route path='*' element={<NotFound />} />
                 <Route path='/Auth' element={<Auth />} />
                 <Route path='/Cart' element={<Cart />} />
+                <Route path='/Cart1' element={<Cart1 />} />
             </Routes>
             <Footer />
         </>
