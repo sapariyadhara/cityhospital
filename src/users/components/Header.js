@@ -103,6 +103,11 @@ function Header(props) {
                   </Link>
                 </li>
                 <li>
+                  <Link className="nav-link scrollto" to={"/Medicine1"}>
+                    Medicine1
+                  </Link>
+                </li>
+                <li>
                   <Link className="nav-link scrollto" to={"/Doctors"}>
                     Doctors
                   </Link>

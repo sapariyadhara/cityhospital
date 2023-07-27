@@ -18,6 +18,7 @@ import Medicines from '../users/medicines/Medicines';
 import ProtectedRoute from './ProtectedRoute';
 import Counter from '../users/containers/Counter/Counter';
 import Cart from '../users/containers/Cart/Cart';
+import Medicine1 from '../users/containers/medicene1/Medicine1';
 
 
 
@@ -35,7 +36,7 @@ function UserRoutes(props) {
                 <Route element={<ProtectedRoute />}>
                     <Route path='/Medicine' element={<Medicines />} />
                 </Route>
-
+                <Route path='/Medicine1' element={<Medicine1 />} />
                 <Route path='/Doctors' element={<Doctors />} />
                 <Route path='/Doctor/:id' element={<Doctor />} />
                 <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} />

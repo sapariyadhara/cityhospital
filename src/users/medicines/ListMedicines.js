@@ -1,6 +1,6 @@
 import React from "react";
 import CoustomCard from "../components/Ui/CoustomCard";
-import { Col } from "reactstrap";
+
 
 function ListMedicines({ mdata ,handleCart1 }) {
   return (
