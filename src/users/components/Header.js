@@ -26,22 +26,7 @@ function Header(props) {
 
   } , [])
 
-  // console.log( countData )
-  // let qData = {qty : 1}
-  // let cData = countData.map((v) => {
-  //   let mediDatas = {...v , ...qData}
-  //   return mediDatas
-  // })
-  // console.log(cData);
-
-  // let countAddC = 0
-
-  // if(cData){
-  //   countAddC = cData.reduce((acc , v) => acc + v.qty , 0)
-  //   console.log(countAddC);
-  // }
-
-  // console.log(countAddC , cData.qty);
+ 
 
   let cartDatad = JSON.parse(localStorage.getItem('cart'))
   console.log(cartDatad);

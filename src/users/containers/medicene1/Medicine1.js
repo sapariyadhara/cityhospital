@@ -34,58 +34,30 @@ function Medicine1(props) {
 
   const handleAddCart = (id) => {
     console.log("handleAddCart", id, mediData);
+    let cardD = JSON.parse(localStorage.getItem("cart"))
 
-    let cardD = { pid: id, qty: 1 };
-    console.log(cardD);
-
-    let cData = mediData.map((v) => {
-      // let mediDatas = {...cardD ,...v}
-      // return mediDatas
-
-      if (v.id) {
-        let fData = {pid : v.id , qty : 1}
-        return fData
+    if (cardD === null) {
+      console.log('if');
+      localStorage.setItem("cart", JSON.stringify([{
+        pid: id,
+        qty: 1
+      }]))
+    } else {
+      let fData = cardD.some((v) => v.pid === id)
+      if (fData) {
+        let index = cardD.findIndex((v) => v.pid === id)
+        console.log(index);
+        cardD[index].qty++
+        localStorage.setItem("cart", JSON.stringify(cardD))
+      } else {
+        cardD.push({
+          pid: id,
+          qty: 1
+        })
+        localStorage.setItem("cart", JSON.stringify(cardD))
       }
-    });
-    console.log(cData);
-
-    // if(cData){
-    //   let index = cData.findIndex((v) => v.pid === id)
-    //   console.log(index);
-    //   console.log(cData[index].qty++);
-    // }
-
-    let index = cData.findIndex((v) => v.pid === id);
-    console.log(index);
-    cData[index].qty++;
-
-    let countAddC = 0;
-
-    if (cData) {
-      countAddC = cData.reduce((acc, v) => acc + v.qty, 0);
-      console.log(countAddC);
     }
 
-    // console.log(countAddC);
-
-    localStorage.setItem("cart" , JSON.stringify(cData))
-
-    // let cardD = JSON.parse(localStorage.getItem("cart"))
-    //     if(cardD === null){
-    //           localStorage.setItem("cart",JSON.stringify([{
-    //             pid : id ,
-    //             qty : 1
-    //           }]))
-    //     } else {
-    //       cardD.push({
-    //         pid : id ,
-    //         qty : 1
-    //       })
-    //         localStorage.setItem("cart" , JSON.stringify(cardD))
-    //     }
-    //     let index = cardD.findIndex((v) => v.pid === id)
-    //     let tt = cardD[index].qty++
-    //     console.log(tt , 'tt');
   };
 
   return (
