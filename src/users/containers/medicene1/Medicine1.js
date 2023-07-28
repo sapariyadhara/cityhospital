@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MedicineList1 from "./MedicineList1";
 
-function Medicine1(props) {
+function Medicine1({ onCartCount }) {
   const [mediData, setMediData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   // const [cardD , setCardD] = useState([])
 
   useEffect(() => {
@@ -17,47 +18,51 @@ function Medicine1(props) {
   }, []);
 
   const handleChange = (val) => {
-    // console.log(val);
-    // let localData = JSON.parse(localStorage.getItem("medicine"));
-    // let mData = mediData
-    // console.log(mData ,'mData');
-    // let fData = mData.filter(
-    //   (v) =>
-    //     v.name.toLowerCase().includes(val.toLowerCase()) ||
-    //     v.price.toString().includes(val) ||
-    //     v.expiry.toString().includes(val) ||
-    //     v.desc.toLowerCase().includes(val.toLowerCase())
-    // );
-    // setFilterData(fData);
-    // console.log(fData);
+    console.log(val);
+    let mData = mediData;
+    console.log(mData, "mData");
+    let fData = mData.filter(
+      (v) =>
+        v.name.toLowerCase().includes(val.toLowerCase()) ||
+        v.price.toString().includes(val) ||
+        v.expiry.toString().includes(val) ||
+        v.desc.toLowerCase().includes(val.toLowerCase())
+    );
+    setFilterData(fData);
+    console.log(fData);
   };
 
   const handleAddCart = (id) => {
     console.log("handleAddCart", id, mediData);
-    let cardD = JSON.parse(localStorage.getItem("cart"))
+    let cardD = JSON.parse(localStorage.getItem("cart"));
 
     if (cardD === null) {
-      console.log('if');
-      localStorage.setItem("cart", JSON.stringify([{
-        pid: id,
-        qty: 1
-      }]))
+      console.log("if");
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([
+          {
+            pid: id,
+            qty: 1,
+          },
+        ])
+      );
     } else {
-      let fData = cardD.some((v) => v.pid === id)
+      let fData = cardD.some((v) => v.pid === id);
       if (fData) {
-        let index = cardD.findIndex((v) => v.pid === id)
+        let index = cardD.findIndex((v) => v.pid === id);
         console.log(index);
-        cardD[index].qty++
-        localStorage.setItem("cart", JSON.stringify(cardD))
+        cardD[index].qty++;
+        localStorage.setItem("cart", JSON.stringify(cardD));
       } else {
         cardD.push({
           pid: id,
-          qty: 1
-        })
-        localStorage.setItem("cart", JSON.stringify(cardD))
+          qty: 1,
+        });
+        localStorage.setItem("cart", JSON.stringify(cardD));
       }
     }
-
+    onCartCount((prev) => prev + 1);
   };
 
   return (
@@ -93,13 +98,15 @@ function Medicine1(props) {
           </button>
         </div>
         <div class="row">
-          {/* <ListMedicines mdata={filterData.length > 0 ? filterData :  mediUser} /> */}
-          {/* <ListMedicines 
-            mdata={filterData.length > 0 ? filterData : mediUser.medicineD} 
+          {/* <ListMedicines
+            mdata={filterData.length > 0 ? filterData : mediUser}
+          />
+          <ListMedicines
+            mdata={filterData.length > 0 ? filterData : mediUser.medicineD}
             handleCart1={handleCart}
-            /> */}
+          /> */}
 
-          <MedicineList1 mdData={mediData} onHandleClick={handleAddCart} />
+          <MedicineList1 mdData={filterData.length > 0 ? filterData : mediData} onHandleClick={handleAddCart} />
         </div>
       </div>
     </section>

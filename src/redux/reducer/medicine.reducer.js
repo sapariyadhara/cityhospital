@@ -7,7 +7,7 @@ const init = {
 };
 
 export const medicineReducer = (state = init, action) => {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case ActionType.GET_MEDICINE:
       return {

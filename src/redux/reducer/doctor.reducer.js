@@ -8,7 +8,7 @@ const init = {
 }
 
 export const doctorReducer = (state = init, action) => {
-    console.log(action , 'hh');
+    // console.log(action , 'hh');
 
     switch (action.type) {
         case ActionType.LOADING_DOCTOR :

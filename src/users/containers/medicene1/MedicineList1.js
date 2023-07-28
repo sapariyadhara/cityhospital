@@ -3,7 +3,7 @@ import CoustomCard from '../../components/Ui/CoustomCard';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col } from "reactstrap";
 
 function MedicineList1({mdData , onHandleClick }) {
-    console.log(mdData , 'mdData');
+    // console.log(mdData , 'mdData');
     return (
         <>
         {mdData.map((v, i) => {

@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from "react-redux";
 
 
-function Header(props) {
+function Header({count}) {
   const [countData , setCountData] = useState([])
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
@@ -26,28 +26,6 @@ function Header(props) {
 
   } , [])
 
- 
-
-  let cartDatad = JSON.parse(localStorage.getItem('cart'))
-  console.log(cartDatad);
-
-  if(cartDatad){
-    let index = cartDatad.findIndex((v) => v.pid === countData.id)
-    console.log(index , cartDatad.pid === countData.id); 
-  
-  }
-
-  
-  
-  
-
-  let countCart1 = 0
-  if(cartDatad){
-    countCart1 = cartDatad.reduce((acc, v, i) => acc + v.qty, 0)
-    
-  }
-
-  console.log(countCart1);
   ///////////////////////////////add to cart with redux///////////////////
 
   let countCart = 0
@@ -88,7 +66,7 @@ function Header(props) {
             <div className="d-none d-lg-flex social-links align-items-center">
             <Link to={'/Cart1'}>
               <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
-                <StyledBadge badgeContent={1} color="secondary">
+                <StyledBadge badgeContent={count} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton>

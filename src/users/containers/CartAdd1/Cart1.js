@@ -31,11 +31,32 @@ function Cart1(props) {
 
     return mData
   })
-  console.log(cData);
+  // console.log(cData);
 
   const handleDec = (id) => {
-      console.log(id);
-      
+      console.log(cData);
+      let index = cData.findIndex((v) => v.pid === id)
+      let qtyDec =  cData[index].qty--
+      console.log(qtyDec);
+      localStorage.setItem("cart" , JSON.stringify(cData))
+      setCartD(cData)
+  }
+
+  const handleInc = (id) => {
+    console.log(cData);
+      let index = cData.findIndex((v) => v.pid === id)
+      let qtyDec =  cData[index].qty++
+      console.log(qtyDec);
+      localStorage.setItem("cart" , JSON.stringify(cData))
+      setCartD(cData)
+  }
+
+  const handleDelete = (id) => {
+    console.log(cData);
+    let DeletData = cData.filter((v) => v.id !== id)
+    console.log(DeletData);
+    localStorage.setItem("cart" , JSON.stringify(DeletData))
+    setCartD(DeletData)
   }
 
   return (
@@ -78,16 +99,19 @@ function Cart1(props) {
                         <div style={{ width: 200 }}>
 
                           <h5 className="fw-normal mb-0">
-                            <Button onClick={() => handleDec(v.id)}>-</Button>
-                            {v.qty}
-                            <Button>+</Button>
+                          {
+                            v.qty > 1 ?  <Button onClick={() => handleDec(v.id)}>-</Button> :
+                            <Button disabled={true} onClick={() => handleDec(v.id)}>-</Button>
+                          }                      
+                            <span style={{ margin: "5px" }}>{v.qty} </span>
+                            <Button onClick={() => handleInc(v.id)}>+</Button>
                           </h5>
 
                         </div>
                         <div style={{ width: 80 }}>
-                          <h5 className="mb-0">{v.price}</h5>
+                          <h5 className="mb-0">{v.price ? v.price * v.qty : v.price}</h5>
                         </div>
-                        <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a>
+                       <Button onClick={() => handleDelete(v.id)}> <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a></Button>
                       </div>
                     </div>
                   </div>
@@ -97,6 +121,25 @@ function Cart1(props) {
             })
           }
 
+          <div className="card mb-3">
+            <div className="card-body">
+              <div className="d-flex justify-content-between">
+                <div className="d-flex flex-row align-items-center">
+                  <div className="ms-3">
+                    <h5>Total Payable Amount </h5>
+                  </div>
+                </div>
+                <div className="d-flex flex-row align-items-center">
+                  <div style={{ width: 80, marginRight: "40px" }}>
+                    <h5 className="mb-0">
+                   { cData.reduce((acc , v ) => acc + v.price * v.qty , 0 )}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
         </div>
       </section>
     </>

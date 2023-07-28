@@ -7,7 +7,7 @@ const init = {
 }
 
 export const cartReducer = (state = init , action) => {
-    console.log(action , state);
+    // console.log(action , state);
     switch(action.type){
         case ActionType.ADD_TO_CART :
             let item = state.items.some((v) => v.pid === action.payload.pid)

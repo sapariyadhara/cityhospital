@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import About from '../users/containers/About';
 import Home from '../users/containers/Home';
@@ -24,9 +24,10 @@ import Cart1 from '../users/containers/CartAdd1/Cart1';
 
 
 function UserRoutes(props) {
+    const [cartCount , setCartCount] = useState(0)
     return (
         <>
-            <Header />
+            <Header count={cartCount}/>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/about' element={<About />} />
@@ -37,7 +38,7 @@ function UserRoutes(props) {
                 <Route element={<ProtectedRoute />}>
                     <Route path='/Medicine' element={<Medicines />} />
                 </Route>
-                <Route path='/Medicine1' element={<Medicine1 />} />
+                <Route path='/Medicine1' element={<Medicine1 onCartCount={setCartCount}/>} />
                 <Route path='/Doctors' element={<Doctors />} />
                 <Route path='/Doctor/:id' element={<Doctor />} />
                 <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} />
