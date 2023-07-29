@@ -21,3 +21,8 @@ export const ADD_TO_CART = "ADD_TO_CART"
 export const INC_CART = "INC_CART"
 export const DEC_CART = "DEC_CART"
 export const REMOVE_TO_CART = "REMOVE_TO_CART"
+
+export const ADD_TO_FAV = "ADD_TO_FAV"
+export const INC_FAV = "INC_FAV"
+export const DEC_FAV = "DEC_FAV"
+export const REMOVE_TO_FAV = "REMOVE_TO_FAV"

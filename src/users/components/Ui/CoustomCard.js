@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
-function CoustomCard({ value, btnVal, onClick1 }) {
+function CoustomCard({ value, btnVal, onClick1 ,handleAddFav}) {
+    // const handleAddFav = (id) => {
+    //     console.log(id , value); 
+    // }
     return (
         <>
             <Card>
@@ -14,9 +18,16 @@ function CoustomCard({ value, btnVal, onClick1 }) {
                 }
 
                 <CardBody>
-                    <CardTitle tag="h5">
-                        {value.name}
+                    <CardTitle tag="h5" style={{display:'flex' , justifyContent : 'space-between'}}>
+                        <span>{value.name}</span>
+                        {
+                            
+                        }
+                        <FavoriteBorderOutlinedIcon onClick={() => handleAddFav(value.id)}/>
                     </CardTitle>
+                   
+
+                    {/* </FavoriteBorderOutlinedIcon> */}
                     <CardSubtitle
                         className="mb-2 text-muted"
                         tag="h6"

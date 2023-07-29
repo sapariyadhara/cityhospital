@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/action/medicine.action";
 import { Row } from "reactstrap";
 import { addToCart } from "../../redux/action/cart.action";
+import { addToFav } from "../../redux/action/myfav.action";
 
 function Medicines(props) {
   const dispatch = useDispatch();
   const mediUser = useSelector((state) => state.Medicine);
-  console.log(mediUser, "userM");
+  const mFav = useSelector((state) => state.myfav)
+  console.log(mFav);
+  // console.log(mediUser, "userM");
 
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -45,6 +48,11 @@ function Medicines(props) {
     console.log("handleCart" , id);
     dispatch(addToCart(id))
   }
+
+  const handleAddToFav = (id) => {
+    console.log(id);
+    dispatch(addToFav(id))
+  } 
 
 
   return (
@@ -83,7 +91,9 @@ function Medicines(props) {
           {/* <ListMedicines mdata={filterData.length > 0 ? filterData :  mediUser} /> */}
           <ListMedicines 
           mdata={filterData.length > 0 ? filterData : mediUser.medicineD} 
-          handleCart1={handleCart}
+          handleCart1={handleCart} 
+          handleAddToFav={handleAddToFav}
+          favData={mFav}
           />
         </div>
       </div>

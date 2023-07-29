@@ -7,31 +7,44 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from "react-redux";
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-function Header({count}) {
-  const [countData , setCountData] = useState([])
+
+
+
+function Header({ count }) {
+  const [countData, setCountData] = useState([])
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
+  const favData = useSelector((state) => state.myfav )
 
   useEffect(() => {
-    try{
+    try {
       fetch("http://localhost:3004/medicines")
-      .then((response) => response.json())
-      .then((data) => setCountData(data) )
-      .catch((error) => console.log( error))
-  } catch(error){
-      console.log( error)
-  }
+        .then((response) => response.json())
+        .then((data) => setCountData(data))
+        .catch((error) => console.log(error))
+    } catch (error) {
+      console.log(error)
+    }
 
-  } , [])
+  }, [])
+
+  let favCount = 0
+
+  if(favData.fav){
+    favCount = favData.fav.reduce((acc , v , i) => acc + v.qty ,0)
+  }
 
   ///////////////////////////////add to cart with redux///////////////////
 
   let countCart = 0
 
   if (cartData.items) {
-    
+
     countCart = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
@@ -50,7 +63,15 @@ function Header({count}) {
       background: '#FF6337',
       padding: '0 4px',
     },
+
   }));
+
+  const shapeStyles = { bgcolor: 'primary.main', width: 30, height: 30 };
+  const shapeCircleStyles = { borderRadius: '50%' };
+  const circle = (
+    <Box component="span" sx={{ ...shapeStyles, ...shapeCircleStyles }} />
+  );
+
 
   return (
     <div>
@@ -64,21 +85,27 @@ function Header({count}) {
             </div>
 
             <div className="d-none d-lg-flex social-links align-items-center">
-            <Link to={'/Cart1'}>
-              <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
-                <StyledBadge badgeContent={count} color="secondary">
-                  <ShoppingCartIcon />
-                </StyledBadge>
-              </IconButton>
+             <Link to={'/MyFav'}>
+             <Badge color="secondary" overlap="circular" badgeContent={favCount}>
+            <FavoriteIcon />
+              </Badge>
+              </Link>
+
+              <Link to={'/Cart1'}>
+                <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
+                  <StyledBadge badgeContent={count} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                </IconButton>
               </Link>
 
 
               <Link to={'/Cart'}>
-              <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
-                <StyledBadge badgeContent={countCart} color="secondary">
-                  <ShoppingCartIcon />
-                </StyledBadge>
-              </IconButton>
+                <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
+                  <StyledBadge badgeContent={countCart} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                </IconButton>
               </Link>
               <a href="#" className="twitter">
                 <i className="bi bi-twitter" />
