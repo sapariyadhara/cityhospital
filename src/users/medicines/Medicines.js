@@ -51,7 +51,7 @@ function Medicines(props) {
 
   const handleAddToFav = (id) => {
     console.log(id);
-    dispatch(addToFav(id))
+      dispatch(addToFav(id))  
   } 
 
 

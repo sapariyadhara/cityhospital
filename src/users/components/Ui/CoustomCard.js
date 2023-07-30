@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function CoustomCard({ value, btnVal, onClick1 ,handleAddFav}) {
+function CoustomCard({ value, btnVal, onClick1, handleAddFav }) {
     // const handleAddFav = (id) => {
     //     console.log(id , value); 
     // }
@@ -18,19 +19,21 @@ function CoustomCard({ value, btnVal, onClick1 ,handleAddFav}) {
                 }
 
                 <CardBody>
-                    <CardTitle tag="h5" style={{display:'flex' , justifyContent : 'space-between'}}>
+                    <CardTitle tag="h5" style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>{value.name}</span>
-                        {
-                            
-                        }
-                        <FavoriteBorderOutlinedIcon onClick={() => handleAddFav(value.id)}/>
-                    </CardTitle>
-                   
+                        <label className="switch">
+                            <input type="checkbox" />
+                            <FavoriteIcon className="slider round" onClick={() => handleAddFav(value.id)} />
+                            {/* <span className="slider round" ><FavoriteBorderOutlinedIcon  className="slider round" onClick={() => handleAddFav(value.id)} /> </span> */}
+                        </label>
 
-                    {/* </FavoriteBorderOutlinedIcon> */}
+                        {/* <span id='span1'> <FavoriteBorderOutlinedIcon className="slider round" onClick={() => handleAddFav(value.id)} /></span> */}
+                    </CardTitle>
+
                     <CardSubtitle
                         className="mb-2 text-muted"
                         tag="h6"
+
                     >
                         Price : {value.price}
                     </CardSubtitle>
@@ -44,10 +47,10 @@ function CoustomCard({ value, btnVal, onClick1 ,handleAddFav}) {
                         {value.desc}
                     </CardText>
                     {
-                        btnVal ? 
-                        <Button onClick={() => onClick1(value.id)}>
-                            {btnVal}
-                        </Button> : null
+                        btnVal ?
+                            <Button onClick={() => onClick1(value.id)}>
+                                {btnVal}
+                            </Button> : null
                     }
 
 

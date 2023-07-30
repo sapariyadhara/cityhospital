@@ -43,7 +43,7 @@
     {
       "id": 2,
       "name": "Jakafi",
-      "price": 85,
+      "price": 175,
       "expiry": 2023,
       "desc": "Ruxolitinib, sold under the brand name Jakafi among others, is a medication used for the treatment of intermediate or high-risk myelofibrosis, a type of myeloproliferative neoplasm that affects the bone."
     },
@@ -57,28 +57,28 @@
     {
       "id": 4,
       "name": "Hiprex",
-      "price": 85,
+      "price": 315,
       "expiry": 2023,
       "desc": "Hexamethylenetetramine, also known as methenamine, hexamine, or urotropin, is a heterocyclic organic compound with the formula (CH₂)₆N₄. This white crystalline compound is highly soluble in water and polar organic solvents. It has a cage-like structure similar to adamantane"
     },
     {
       "id": 5,
       "name": "Meftal",
-      "price": 85,
+      "price": 200,
       "expiry": 2023,
       "desc": "Meftal Spas tablet is an antispasmodic medicine. It contains a combination of dicyclomine and mefenamic acid. This medicine is used for relieving pain and spasm in the abdomen and during or before menses (periods)."
     },
     {
       "id": 6,
       "name": "Wegovy",
-      "price": 85,
+      "price": 105,
       "expiry": 2023,
       "desc": "WEGOVY® (semaglutide) injection 2.4 mg is an injectable prescription medicine that may help adults and children aged ≥12 years with obesity (BMI ≥30 for adults, BMI ≥ 95th percentile for age and sex for children), or some adults with excess weight (BMI ≥27) (overweight) who also have weight-related medical problems to help them lose weight and keep it off. Wegovy® should be used with a reduced calorie meal plan and increased physical activity"
     },
     {
       "id": 7,
       "name": "Aripiprazole",
-      "price": 85,
+      "price": 815,
       "expiry": 2023,
       "desc": "Aripiprazole is used to treat certain mental/mood disorders (such as bipolar disorder, schizophrenia, Tourette's syndrome, and irritability associated with autistic disorder). It may also be used in combination with other medication to treat depression. Aripiprazole is known as an antipsychotic drug (atypical type)."
     },

@@ -17,6 +17,7 @@ export const favReducer = (state = initial , action) => {
               
             } else {
                 state.fav.push(action.payload)
+                
             }
             console.log(item , state);
             return {

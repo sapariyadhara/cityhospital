@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonToolbar } from 'reactstrap';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { removeToFav } from '../../../redux/action/myfav.action';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 function MyFav(props) {
@@ -24,6 +25,7 @@ function MyFav(props) {
 
     const handleDelete = (id) => {
       dispatch(removeToFav(id))
+    
     }
 
     return (
@@ -77,7 +79,7 @@ function MyFav(props) {
                         </h5>
                       </div>
 
-                      <FavoriteBorderOutlinedIcon onClick={() => handleDelete(c.id)}/>
+                      <FavoriteIcon style={{color : '#FF6337'}} onClick={() => handleDelete(c.id)}/>
                      
                     </div>
                   </div>

@@ -1752,3 +1752,40 @@ section {
 .main-header {
   height: 138px;
 }
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+
+input:checked + .slider {
+    color: #FF6337;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #FF6337;
+}
