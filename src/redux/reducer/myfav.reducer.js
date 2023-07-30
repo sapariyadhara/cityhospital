@@ -24,6 +24,12 @@ export const favReducer = (state = initial , action) => {
                 error : null ,
                 loading : false
             }
+        case ActionType.REMOVE_TO_FAV :
+            return{
+                fav : state.fav.filter((v) => v.pid !== action.payload),
+                error : null ,
+                loading : false
+            }
         default:
             return state
 

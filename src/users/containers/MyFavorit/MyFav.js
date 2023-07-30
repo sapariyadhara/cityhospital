@@ -1,9 +1,13 @@
 import React from 'react';
 import { H2 } from '../../components/Ui/Hadding/Haddinds.style';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonToolbar } from 'reactstrap';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { removeToFav } from '../../../redux/action/myfav.action';
+
 
 function MyFav(props) {
+  const dispatch = useDispatch()
     const mediData = useSelector((state) => state.Medicine)
     const favData = useSelector((state) => state.myfav )
     console.log(mediData , favData);
@@ -19,7 +23,7 @@ function MyFav(props) {
     console.log(newFavData , 'newFavData');
 
     const handleDelete = (id) => {
-
+      dispatch(removeToFav(id))
     }
 
     return (
@@ -73,11 +77,8 @@ function MyFav(props) {
                         </h5>
                       </div>
 
-                      <Button onClick={() => handleDelete(c.id)}>
-                        <a href="#!" style={{ color: "#cecece" }}>
-                          <i className="fas fa-trash-alt" />
-                        </a>
-                      </Button>
+                      <FavoriteBorderOutlinedIcon onClick={() => handleDelete(c.id)}/>
+                     
                     </div>
                   </div>
                 </div>

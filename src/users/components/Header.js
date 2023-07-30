@@ -86,7 +86,7 @@ function Header({ count }) {
 
             <div className="d-none d-lg-flex social-links align-items-center">
              <Link to={'/MyFav'}>
-             <Badge color="secondary" overlap="circular" badgeContent={favCount}>
+             <Badge color="warning" overlap="circular" badgeContent={favCount}>
             <FavoriteIcon />
               </Badge>
               </Link>
