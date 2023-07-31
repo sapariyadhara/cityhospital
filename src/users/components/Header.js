@@ -20,7 +20,17 @@ function Header({ count }) {
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
   const favData = useSelector((state) => state.myfav )
+  
+  // let c1 = JSON.parse(localStorage.getItem("cart"))
+  // console.log(c1);
+  // if(count === 0){
+  //   let count = c1.reduce((acc , v , i) => acc + v.qty ,0)
+  //   console.log(count);
+  //   localStorage.setItem("count1" , JSON.stringify(count))
+  // }
 
+
+  // console.log(count);
   useEffect(() => {
     try {
       fetch("http://localhost:3004/medicines")

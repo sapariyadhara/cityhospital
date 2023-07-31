@@ -5,7 +5,7 @@ function Medicine1({ onCartCount }) {
   const [mediData, setMediData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   // const [cardD , setCardD] = useState([])
-
+  // localStorage.getItem("count1")
   useEffect(() => {
     try {
       fetch("http://localhost:3004/medicines")
@@ -62,7 +62,9 @@ function Medicine1({ onCartCount }) {
         localStorage.setItem("cart", JSON.stringify(cardD));
       }
     }
-    onCartCount((prev) => prev + 1);
+ onCartCount((prev) => prev + 1);
+ 
+    // localStorage.setItem("count" , JSON.stringify(count)) 
   };
 
   return (
