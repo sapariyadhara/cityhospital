@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../../redux/action/department.action";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { Col, Row } from "reactstrap";
+
 
 function Departments(props) {
+  const dispatch = useDispatch()
+  const dipartData = useSelector(state => state.department)
+  console.log(dipartData, 'dipartData');
+
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
   return (
     <div>
       <main>
@@ -183,6 +200,33 @@ function Departments(props) {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="row">
+
+              {
+                dipartData.depart.map((v) => {
+                  return (
+                    <div class="col-md-4 p-2">
+                    <Card sx={{ maxWidth: 345 }}>
+
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {v.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {v.desc}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button size="small">Share</Button>
+                      </CardActions>
+                    </Card>
+                    </div>
+                  )
+                })
+              }
+
             </div>
           </div>
         </section>
