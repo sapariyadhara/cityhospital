@@ -42,7 +42,7 @@ export const cartSlice = createSlice({
            
         },
         deleteToCart: (state, action) => {
-            state.items = state.items
+            state.items = state.items.filter((v) => v.pid !== action.payload)
           
         }
     }
