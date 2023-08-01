@@ -21,6 +21,7 @@ import Cart from '../users/containers/Cart/Cart';
 import Medicine1 from '../users/containers/medicene1/Medicine1';
 import Cart1 from '../users/containers/CartAdd1/Cart1';
 import MyFav from '../users/containers/MyFavorit/MyFav';
+import Counter1 from '../users/containers/Counter/Counter1';
 
 
 
@@ -35,6 +36,7 @@ function UserRoutes(props) {
                 <Route path='/Appoinment' element={<Appoinment />} />
                 <Route path='/Contect1' element={<Contect1 />} />
                 <Route path='/Counter' element={<Counter />} />
+                <Route path='/Counter1' element={<Counter1 />} />
                 <Route path='/Departments' element={<Departments />} />
                 <Route element={<ProtectedRoute />}>
                     <Route path='/Medicine' element={<Medicines />} />

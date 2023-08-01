@@ -51,6 +51,7 @@ function Header({ count }) {
 
   ///////////////////////////////add to cart with redux///////////////////
 
+  console.log(cartData);
   let countCart = 0
 
   if (cartData.items) {
@@ -186,6 +187,11 @@ function Header({ count }) {
                 <li>
                   <Link className="nav-link scrollto" to={"/Counter"}>
                     Counter
+                  </Link>
+                </li>
+                <li>
+                  <Link className="nav-link scrollto" to={"/Counter1"}>
+                    Counter1
                   </Link>
                 </li>
               </ul>

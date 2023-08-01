@@ -2,11 +2,12 @@ import React from "react";
 import { H2, P } from "../../components/Ui/Hadding/Haddinds.style";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "reactstrap";
-import {
-  decCartQty,
-  deleteToCart,
-  incCartQty,
-} from "../../../redux/action/cart.action";
+import { decCartQty, deleteToCart, incCartQty } from "../../../redux/slice/cartSlice";
+// import {
+//   decCartQty,
+//   deleteToCart,
+//   incCartQty,
+// } from "../../../redux/action/cart.action";
 
 function Cart(props) {
   let mediData = useSelector((state) => state.Medicine);
@@ -71,7 +72,7 @@ function Cart(props) {
                       <div className="ms-3">
                         <h5> {c.name} </h5>
                         <p className="small mb-0">
-                          {c.desc.substring(0, 50)}
+                          {c.desc}
                           {"..."}
                         </p>
                       </div>

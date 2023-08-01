@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'reactstrap';
 import { decrement, increment } from '../../../redux/slice/counterSlice';
 
-function Counter(props) {
+function Counter1(props) {
     const dispatch = useDispatch()
     const counterVal = useSelector(state => state.Counter)
   
@@ -20,7 +20,7 @@ function Counter(props) {
 
     return (
         <>
-        <h1>Counter With Redux</h1>
+        <h1>Counter With Redux1</h1>
             <Button onClick={() => handleInc()}> + </Button>
 
             <span> {counterVal.count} </span>
@@ -30,4 +30,4 @@ function Counter(props) {
     );
 }
 
-export default Counter;
+export default Counter1;
