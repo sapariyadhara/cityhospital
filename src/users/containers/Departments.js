@@ -16,7 +16,7 @@ function Departments(props) {
   console.log(dipartData, 'dipartData');
 
   useEffect(() => {
-    dispatch(getData());
+    // dispatch(getData());
   }, []);
   return (
     <div>
@@ -202,7 +202,7 @@ function Departments(props) {
               </div>
             </div>
 
-            <div class="row">
+            {/* <div class="row">
 
               {
                 dipartData.depart.map((v) => {
@@ -227,7 +227,7 @@ function Departments(props) {
                 })
               }
 
-            </div>
+            </div> */}
           </div>
         </section>
       </main>

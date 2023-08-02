@@ -6,7 +6,9 @@ import { favReducer } from "./myfav.reducer";
 import counterReducer from "../slice/counterSlice";
 import counter1Reducer from "../slice/countter1Slice";
 import cartReducer from "../slice/cartSlice";
-import { departmentReducer } from "./department.reducer";
+import departmentSlice from "../slice/departmentSlice";
+import departmentReducer from "../slice/departmentSlice";
+// import { departmentReducer } from "./department.reducer";
 
 
 export const rootReducer = combineReducers({
@@ -16,5 +18,5 @@ export const rootReducer = combineReducers({
     cart : cartReducer,
     myfav : favReducer,
     counter1 : counter1Reducer,
-    department : departmentReducer 
+    department : departmentReducer
 })

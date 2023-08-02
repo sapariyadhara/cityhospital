@@ -8,6 +8,7 @@ import { addData, deleteData, getData, updateData } from '../../../redux/action/
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { IconButton } from '@mui/material';
+import { addDepartments, deleteDepartments, fetchDepartments } from '../../../redux/slice/departmentSlice';
 
 function Department(props) {
 
@@ -15,13 +16,14 @@ function Department(props) {
 
     const dispatch = useDispatch()
     const departD = useSelector(state => state.department)
-    // const departmentD = useSelector(state => state.department)
+  
   
     console.log(departD , 'department');
   
     React.useEffect(() => {
   
-      dispatch(getData())
+      // dispatch(getData())
+      dispatch(fetchDepartments())
   
   
     }, [])
@@ -31,9 +33,10 @@ function Department(props) {
         
        
         if (update) {
-            dispatch(updateData(data))
+            // dispatch(updateData(data))
         } else {
-            dispatch(addData(data))
+            // dispatch(addData(data))
+            dispatch(addDepartments(data))
         }
        
         setUpdate(null)
@@ -41,7 +44,8 @@ function Department(props) {
       }
   
       const handleDelete = (id) => {
-        dispatch(deleteData(id))
+        // dispatch(deleteData(id))
+        dispatch(deleteDepartments(id))
       }
 
       const handleUpdate = (data) => {
