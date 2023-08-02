@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addDepartmentData, deleteDepartmentData, getDepartmentData } from "../../common/apis/department.api"
+import { addDepartmentData, deleteDepartmentData, getDepartmentData, updateDepartmentData } from "../../common/apis/department.api"
 
 const initState = {
     isloading : false ,
@@ -31,6 +31,14 @@ export const deleteDepartments = createAsyncThunk(
     }
 )
 
+export const updatedepartments = createAsyncThunk(
+    'department/update',
+    async (data) => {
+        let response = await updateDepartmentData(data)
+        return response.data
+    }
+)
+
 export const departmentSlice = createSlice({
     name : 'department',
     initialState : initState ,
@@ -46,6 +54,17 @@ export const departmentSlice = createSlice({
             })
             .addCase(deleteDepartments.fulfilled , (state , action) => {
                 state.depart = state.depart.filter((v) => v.id !== action.payload)
+            })
+            .addCase(updatedepartments.fulfilled , (state , action) => {
+                let udata = state.depart.map((v) => {
+                    if(v.id ===  action.payload.id){
+                        return action.payload
+                    } else {
+                        return v
+                    }
+                })
+                state.depart=udata
+
             })
     }
 })

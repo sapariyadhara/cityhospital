@@ -8,7 +8,7 @@ import { addData, deleteData, getData, updateData } from '../../../redux/action/
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { IconButton } from '@mui/material';
-import { addDepartments, deleteDepartments, fetchDepartments } from '../../../redux/slice/departmentSlice';
+import { addDepartments, deleteDepartments, fetchDepartments, updatedepartments } from '../../../redux/slice/departmentSlice';
 
 function Department(props) {
 
@@ -34,6 +34,7 @@ function Department(props) {
        
         if (update) {
             // dispatch(updateData(data))
+            dispatch(updatedepartments(data))
         } else {
             // dispatch(addData(data))
             dispatch(addDepartments(data))
