@@ -8,6 +8,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Col, Row } from "reactstrap";
+import {  fetchDepartments } from '../../redux/slice/departmentSlice';
+
 
 
 function Departments(props) {
@@ -17,6 +19,7 @@ function Departments(props) {
 
   useEffect(() => {
     // dispatch(getData());
+    dispatch(fetchDepartments())
   }, []);
   return (
     <div>
@@ -202,7 +205,7 @@ function Departments(props) {
               </div>
             </div>
 
-            {/* <div class="row">
+            <div class="row">
 
               {
                 dipartData.depart.map((v) => {
@@ -226,8 +229,9 @@ function Departments(props) {
                   )
                 })
               }
+              
 
-            </div> */}
+            </div>
           </div>
         </section>
       </main>

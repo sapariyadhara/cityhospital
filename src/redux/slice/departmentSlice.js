@@ -39,12 +39,26 @@ export const updatedepartments = createAsyncThunk(
     }
 )
 
+export const isloadingData = createAsyncThunk(
+    'department/loading'
+)
+
 export const departmentSlice = createSlice({
     name : 'department',
     initialState : initState ,
     reducers : {},
     extraReducers : (builder) => {
         builder
+        .addCase(fetchDepartments.pending , (state , action) => {
+            if(fetchDepartments.pending){
+                state.isloading = true
+            } else {
+                state.isloading = false
+            }
+           
+            state.error = null
+            console.log(state.isloading ,action)    
+        })
             .addCase(fetchDepartments.fulfilled , (state , action) => {
                 console.log(action);
                     state.depart = action.payload
