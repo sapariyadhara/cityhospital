@@ -22,14 +22,20 @@ import Medicine1 from '../users/containers/medicene1/Medicine1';
 import Cart1 from '../users/containers/CartAdd1/Cart1';
 import MyFav from '../users/containers/MyFavorit/MyFav';
 import Counter1 from '../users/containers/Counter/Counter1';
+import { CounterContext } from '../users/containers/CounterContext/CounterContext';
+import Dislpay from '../users/containers/CounterContext/Display';
+import Buttons from '../users/containers/CounterContext/Buttons';
+
 
 
 
 function UserRoutes(props) {
-    const [cartCount , setCartCount] = useState(0)
+    const [cartCount, setCartCount] = useState(0)
+    const [count, setCount] = useState(0);
+
     return (
         <>
-            <Header count={cartCount}/>
+            <Header count1={cartCount} />
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/about' element={<About />} />
@@ -41,7 +47,7 @@ function UserRoutes(props) {
                 <Route element={<ProtectedRoute />}>
                     <Route path='/Medicine' element={<Medicines />} />
                 </Route>
-                <Route path='/Medicine1' element={<Medicine1 onCartCount={setCartCount}/>} />
+                <Route path='/Medicine1' element={<Medicine1 onCartCount={setCartCount} />} />
                 <Route path='/Doctors' element={<Doctors />} />
                 <Route path='/Doctor/:id' element={<Doctor />} />
                 <Route path='/Doctor/visiting_doctor' element={<VisitingDoctor />} />
@@ -55,6 +61,12 @@ function UserRoutes(props) {
                 <Route path='/Cart' element={<Cart />} />
                 <Route path='/Cart1' element={<Cart1 />} />
                 <Route path='/MyFav' element={<MyFav />} />
+               <Route>
+               <CounterContext.Provider value={{count : count , setCount : setCount}}>
+                    <Dislpay />
+                    <Buttons />
+                </CounterContext.Provider>
+               </Route>
             </Routes>
             <Footer />
         </>

@@ -15,7 +15,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 
-function Header({ count }) {
+function Header({ count1 }) {
   const [countData, setCountData] = useState([])
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
@@ -104,7 +104,7 @@ function Header({ count }) {
 
               <Link to={'/Cart1'}>
                 <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
-                  <StyledBadge badgeContent={count} color="secondary">
+                  <StyledBadge badgeContent={count1} color="secondary">
                     <ShoppingCartIcon />
                   </StyledBadge>
                 </IconButton>
@@ -192,6 +192,11 @@ function Header({ count }) {
                 <li>
                   <Link className="nav-link scrollto" to={"/Counter1"}>
                     Counter1
+                  </Link>
+                </li>
+                <li>
+                  <Link className="nav-link scrollto" to={"/CounterContext"}>
+                  CounterContext
                   </Link>
                 </li>
               </ul>

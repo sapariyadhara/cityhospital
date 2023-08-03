@@ -1,6 +1,6 @@
 
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 // import Contect from './users/containers/Contect';
 import Test2 from './users/containers/Test2';
 import SideDrawermui from './users/containers/SideDrawermui';
@@ -12,9 +12,9 @@ import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 
-function App() {
 
-  const {store, persistor} = configureStore()
+function App() {
+  const { store, persistor } = configureStore()
   return (
 
 
@@ -34,6 +34,8 @@ function App() {
           </Routes>
         </PersistGate>
       </Provider>
+
+    
     </>
   );
 }
