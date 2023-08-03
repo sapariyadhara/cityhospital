@@ -85,7 +85,7 @@ function Department(props) {
   return (
     <>
  <>
-           <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
+           {/* <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           rows={departD.depart}
@@ -98,15 +98,16 @@ function Department(props) {
           pageSizeOptions={[5, 10]}
           checkboxSelection
         />
-      </div>
+      </div> */}
 
           </>
-{/* 
+
       {
         departD.isloading ? <Box sx={{ display: 'flex', width: '200px ' }}>
           <CircularProgress />
         </Box>
           :
+          departD.error ? departD.error: 
           <>
            <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
       <div style={{ height: 400, width: '100%' }}>
@@ -124,7 +125,7 @@ function Department(props) {
       </div>
 
           </>
-      } */}
+      } 
 
      
     </>

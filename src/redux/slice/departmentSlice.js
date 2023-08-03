@@ -1,18 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { addDepartmentData, deleteDepartmentData, getDepartmentData, updateDepartmentData } from "../../common/apis/department.api"
+import { resolvePath } from "react-router-dom"
 
 const initState = {
-    isloading : false ,
-    depart : [] ,
+    isloading: false,
+    depart: [],
     error: null,
 }
 
 export const fetchDepartments = createAsyncThunk(
     'department/fetch',
+
     async () => {
+        await new Promise((resolve, reject) => setTimeout(resolve, 1000))
         let response = await getDepartmentData()
         return response.data;
     }
+
 )
 
 export const addDepartments = createAsyncThunk(
@@ -26,8 +30,8 @@ export const addDepartments = createAsyncThunk(
 export const deleteDepartments = createAsyncThunk(
     'department/delete',
     async (id) => {
-        let response = await deleteDepartmentData(id)
-        return response.id
+       await deleteDepartmentData(id)
+        return id
     }
 )
 
@@ -43,42 +47,54 @@ export const isloadingData = createAsyncThunk(
     'department/loading'
 )
 
+const onRejected = (state, action) => {
+    state.isloading = false;
+    state.error = action.error.message
+}
+
+const onLoading = (state, action) => {
+    state.isloading = true;
+    state.error = null ;
+}
 export const departmentSlice = createSlice({
-    name : 'department',
-    initialState : initState ,
-    reducers : {},
-    extraReducers : (builder) => {
+    name: 'department',
+    initialState: initState,
+    reducers: {},
+    extraReducers: (builder) => {
         builder
-        .addCase(fetchDepartments.pending , (state , action) => {
-            if(fetchDepartments.pending){
-                state.isloading = true
-            } else {
-                state.isloading = false
-            }
-           
-            state.error = null
-            console.log(state.isloading ,action)    
-        })
-            .addCase(fetchDepartments.fulfilled , (state , action) => {
+            .addCase(fetchDepartments.pending,onLoading)
+            .addCase(fetchDepartments.fulfilled, (state, action) => {
                 console.log(action);
-                    state.depart = action.payload
+                state.depart = action.payload
+                state.isloading = false
+                state.error = null
             })
-            .addCase(addDepartments.fulfilled , (state , action) => {
+            .addCase(fetchDepartments.rejected , onRejected)
+
+            .addCase(addDepartments.pending,onLoading)
+            .addCase(addDepartments.fulfilled, (state, action) => {
                 state.depart = state.depart.concat(action.payload)
+                state.isloading = false
+                state.error = null
             })
-            .addCase(deleteDepartments.fulfilled , (state , action) => {
+            .addCase(addDepartments.rejected,onRejected)
+
+            .addCase(deleteDepartments.fulfilled, (state, action) => {
                 state.depart = state.depart.filter((v) => v.id !== action.payload)
+                state.isloading = false
+                state.error = null 
             })
-            .addCase(updatedepartments.fulfilled , (state , action) => {
+            .addCase(updatedepartments.fulfilled, (state, action) => {
                 let udata = state.depart.map((v) => {
-                    if(v.id ===  action.payload.id){
+                    if (v.id === action.payload.id) {
                         return action.payload
                     } else {
                         return v
                     }
                 })
-                state.depart=udata
-
+                state.depart = udata
+                state.isloading = false
+                state.error = null
             })
     }
 })
