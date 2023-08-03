@@ -11,29 +11,41 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
+// import "./CounterContext";
+import { CounterContext } from './users/containers/CounterContext/CounterContext';
+import Dislpay from './users/containers/CounterContext/Display';
+import Buttons from './users/containers/CounterContext/Buttons';
+
+
 
 
 function App() {
-  const { store, persistor } = configureStore()
+  // const { store, persistor } = configureStore()
+  const [count, setCount] = useState(0);
   return (
 
 
     <>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+      {/* <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}> */}
           {/* <ThemeProvider theme={theme}>
     <Sidenavbar /> */}
           {/* <SideDrawermui /> */}
           {/* <Test2 /> */}
           {/* </ThemeProvider> */}
-          <Routes>
+          {/* <Routes>
             <Route path='/*' element={<UserRoutes />} />
             <Route element={<ProtectedRoute />}>
               <Route path='/admin/*' element={<AdminRoutes />} />
             </Route>
           </Routes>
         </PersistGate>
-      </Provider>
+      </Provider> */}
+    <CounterContext.Provider value={{ count: count, setCount: setCount }}>
+        <Dislpay />
+        <Buttons />
+    </CounterContext.Provider>
+   
 
     
     </>
