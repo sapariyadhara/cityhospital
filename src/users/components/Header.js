@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LinkCustom from "./Ui/Link/LinkCustom";
 // import { LinkT } from "./Ui/Link/Link.style";
@@ -10,12 +10,19 @@ import { useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { ThemeContext } from "../../Context/ThemeContext";
+import { Button } from "reactstrap";
+
+
 
 
 
 
 
 function Header({ count1 }) {
+  const theme = useContext(ThemeContext)
+  console.log(theme);
+
   const [countData, setCountData] = useState([])
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
@@ -87,7 +94,7 @@ function Header({ count1 }) {
   return (
     <div>
       <div className="main-header">
-        <div id="topbar" className="d-flex align-items-center fixed-top">
+        <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
           <div className="container d-flex justify-content-between">
             <div className="contact-info d-flex align-items-center">
               <i className="bi bi-envelope" />{" "}
@@ -96,6 +103,7 @@ function Header({ count1 }) {
             </div>
 
             <div className="d-none d-lg-flex social-links align-items-center">
+              <Button onClick={() => theme.toogletheme(theme.theme)}>Toogle Theme</Button>
              <Link to={'/MyFav'}>
              <Badge color="warning" overlap="circular" badgeContent={favCount}>
             <FavoriteIcon />
@@ -192,11 +200,6 @@ function Header({ count1 }) {
                 <li>
                   <Link className="nav-link scrollto" to={"/Counter1"}>
                     Counter1
-                  </Link>
-                </li>
-                <li>
-                  <Link className="nav-link scrollto" to={"/CounterContext"}>
-                  CounterContext
                   </Link>
                 </li>
               </ul>
