@@ -26,18 +26,8 @@ function Header({ count1 }) {
   const [countData, setCountData] = useState([])
   let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
-  const favData = useSelector((state) => state.myfav )
-  
-  // let c1 = JSON.parse(localStorage.getItem("cart"))
-  // console.log(c1);
-  // if(count === 0){
-  //   let count = c1.reduce((acc , v , i) => acc + v.qty ,0)
-  //   console.log(count);
-  //   localStorage.setItem("count1" , JSON.stringify(count))
-  // }
+  const favData = useSelector((state) => state.myfav)
 
-
-  // console.log(count);
   useEffect(() => {
     try {
       fetch("http://localhost:3004/medicines")
@@ -52,8 +42,8 @@ function Header({ count1 }) {
 
   let favCount = 0
 
-  if(favData.fav){
-    favCount = favData.fav.reduce((acc , v , i) => acc + v.qty ,0)
+  if (favData.fav) {
+    favCount = favData.fav.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
   ///////////////////////////////add to cart with redux///////////////////
@@ -96,18 +86,18 @@ function Header({ count1 }) {
       <div className="main-header">
         <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
           <div className="container d-flex justify-content-between">
-            <div className="contact-info d-flex align-items-center">
+            <div className={`contact-info d-flex align-items-center`}>
               <i className="bi bi-envelope" />{" "}
               <a href="mailto:contact@example.com">cityhospital@example.com</a>
               <i className="bi bi-phone" /> +91 9988776655
             </div>
 
             <div className="d-none d-lg-flex social-links align-items-center">
-              <Button onClick={() => theme.toogletheme(theme.theme)}>Toogle Theme</Button>
-             <Link to={'/MyFav'}>
-             <Badge color="warning" overlap="circular" badgeContent={favCount}>
-            <FavoriteIcon />
-              </Badge>
+
+              <Link to={'/MyFav'}>
+                <Badge color="warning" overlap="circular" badgeContent={favCount}>
+                  <FavoriteIcon />
+                </Badge>
               </Link>
 
               <Link to={'/Cart1'}>
@@ -138,10 +128,21 @@ function Header({ count1 }) {
               <a href="#" className="linkedin">
                 <i className="bi bi-linkedin" />
               </a>
+              {
+                theme.theme === 'light' ?
+                  <button className="darkbtn" onClick={() => theme.toogletheme(theme.theme)} >
+                    Dark Mode
+                  </button> :
+                  <button className="darkbtn" onClick={() => theme.toogletheme(theme.theme)} >
+                    Light Mode
+                  </button>
+              }
+
             </div>
+
           </div>
         </div>
-        <header id="header" className="fixed-top">
+        <header id="header" className={`fixed-top ${theme.theme}`}>
           <div className="container d-flex align-items-center">
             <div className="logo">
               <Link to={"/"}>

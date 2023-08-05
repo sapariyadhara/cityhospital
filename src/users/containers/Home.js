@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { A, H4, I, Icon, IconBoxCus, P } from "../components/Ui/IconBox/IconBoxCustom.style";
 import { H2 } from "../components/Ui/Hadding/Haddinds.style";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 function Home(props) {
+  const theme = useContext(ThemeContext)
   return (
     <div>
-      <div>
-        <section id="hero" className="d-flex align-items-center">
-          <div className="container">
+      <div className={` home ${theme.theme}`}>
+        <section id="hero" className={`d-flex align-items-center `}>
+          <div className='container'>
             <h1>
               Welcome to City <br />
               Multispeciality Hospital

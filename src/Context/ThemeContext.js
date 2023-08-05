@@ -15,7 +15,7 @@ export const ThemeProvider = ({ children }) => {
         console.log(theme);
         const newTheme = theme === 'light' ? 'dark' : 'light'
 
-        dispatch({ type: TOGGELE_THEME, paylord: newTheme })
+        dispatch({ type: TOGGELE_THEME, payload: newTheme })
     }
 
     return (

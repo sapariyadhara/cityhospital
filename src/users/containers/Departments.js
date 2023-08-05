@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/action/department.action";
 import Card from '@mui/material/Card';
@@ -10,10 +10,12 @@ import Typography from '@mui/material/Typography';
 import { Col, Row } from "reactstrap";
 import { fetchDepartments } from '../../redux/slice/departmentSlice';
 import { Link, useParams } from "react-router-dom";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 
 
 function Departments(props) {
+  const theme = useContext(ThemeContext)
 
   const dispatch = useDispatch()
   const dipartData = useSelector(state => state.department)
@@ -29,7 +31,7 @@ function Departments(props) {
   return (
     <div>
       <main>
-        <section id="departments" className="departments">
+        <section id="departments" className={`departments ${theme.theme}`}>
           <div className="container">
             <div className="section-title">
               <h2>Departments</h2>
