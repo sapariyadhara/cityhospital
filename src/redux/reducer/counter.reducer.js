@@ -18,7 +18,9 @@ export const counterReducer = (state = initstate, action) => {
             }
 
         case ActionType.INCREMENT_IF_ODD:
-            return (state % 2) ? state + 1 : state;
+            return {
+                count: (state.count % 2!== 0)? state.count + 1 : state
+            }
 
         default:
             return state

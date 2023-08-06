@@ -12,10 +12,11 @@ import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { ThemeProvider } from './Context/ThemeContext';
-import rootSaga from './sagas';
+// import rootSaga from './sagas';
 import createSagaMiddleware from 'redux-saga'
 import { applyMiddleware, createStore } from 'redux';
 import { rootReducer } from './redux/reducer';
+import rootSaga from './redux/saga/counterSaga';
 
 
 const sagaMiddleware = createSagaMiddleware();
