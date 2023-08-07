@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 
 
@@ -19,14 +21,65 @@ function Auth(props) {
   //     }
   // } , [])
 
-  const handleLogin = () => {
+  const handleLogin = (values) => {
     localStorage.setItem("status", "true");
     navigate("/");
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        if(user.emailVerified){
+            console.log('Email varifed');
+        } else {
+          console.log('Check varifed');
+        }
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+
   };
 
-  const handleRegister = () => {};
+  const handleRegister = (values) => {
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+            // ...
+            sendEmailVerification(auth.currentUser)
+              .then(() => {
+                // Email verification sent!
+                // ...
+                console.log('Email verification sent!');
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+              });
+          } else {
+            // User is signed out
+            // ...
+          }
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
-  const handleForgotten = () => {};
+  const handleForgotten = () => { };
 
   let authObj = {},
     initVal = {};
@@ -82,23 +135,23 @@ function Auth(props) {
     validationSchema: formSchema,
     enableReinitialize: true,
     onSubmit: (values, action) => {
-      action.resetForm();
       console.log(values);
       localStorage.setItem("auth", JSON.stringify(values));
       navigate("/Medicine");
       if (authtype === "login") {
-        handleLogin();
+        handleLogin(values);
       } else if (authtype === "signup") {
-        handleRegister();
+        handleRegister(values);
       } else if (authtype === "forgotten") {
         handleForgotten();
       }
+      action.resetForm();
     },
   });
 
   const { values, errors, touched, handleBlur, handleSubmit, handleChange } =
     formik;
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <div>
@@ -137,7 +190,7 @@ function Auth(props) {
             <div className="row justify-content-center">
               {authtype === "login" || authtype === "forgotten" ? null : (
                 <div className="col-md-7 form-group">
-                <Input
+                  <Input
                     type="text"
                     name="name"
                     id="name"
@@ -148,7 +201,7 @@ function Auth(props) {
                     errorText={errors.name && touched.name
                       ? errors.name
                       : null}
-                />
+                  />
                 </div>
               )}
 
@@ -165,8 +218,8 @@ function Auth(props) {
                     ? errors.email
                     : null}
                 />
-            
-             
+
+
               </div>
 
               {authtype === "login" || authtype === "signup" ? (
@@ -248,7 +301,7 @@ function Auth(props) {
               ) : null}
             </div>
           </form>
-          
+
         </div>
       </section>
     </div>

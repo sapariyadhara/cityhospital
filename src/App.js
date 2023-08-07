@@ -19,21 +19,21 @@ import { rootReducer } from './redux/reducer';
 import rootSaga from './redux/saga/counterSaga';
 
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(rootSaga);
+// const sagaMiddleware = createSagaMiddleware();
+// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+// sagaMiddleware.run(rootSaga);
 
 
 
 function App() {
-  // const { store, persistor } = configureStore()
+  const { store, persistor } = configureStore()
   return (
 
 
     <>
       <Provider store={store}>
         <ThemeProvider>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
+        <PersistGate loading={null} persistor={persistor}>
           {/* <ThemeProvider theme={theme}>
     <Sidenavbar /> */}
           {/* <SideDrawermui /> */}
@@ -45,7 +45,7 @@ function App() {
               <Route path='/admin/*' element={<AdminRoutes />} />
             </Route>
           </Routes>
-        {/* </PersistGate> */}
+        </PersistGate>
         </ThemeProvider>
       </Provider>  
     </>
