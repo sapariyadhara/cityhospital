@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 
@@ -29,8 +29,8 @@ function Auth(props) {
         // Signed in 
         const user = userCredential.user;
         console.log(user);
-        if(user.emailVerified){
-            console.log('Email varifed');
+        if (user.emailVerified) {
+          console.log('Email varifed');
         } else {
           console.log('Check varifed');
         }
@@ -46,6 +46,7 @@ function Auth(props) {
   const handleRegister = (values) => {
     createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
+        console.log('Signed in');
         // Signed in 
         const user = userCredential.user;
         console.log(user);
@@ -53,7 +54,7 @@ function Auth(props) {
           if (user) {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/auth.user
-            const uid = user.uid;
+            // const uid = user.uid;
             // ...
             sendEmailVerification(auth.currentUser)
               .then(() => {
@@ -66,6 +67,21 @@ function Auth(props) {
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
               });
+
+
+            //password update
+            const user = auth.currentUser;
+            // const newPassword = getASecureRandomPassword();
+
+            updatePassword(user, values.password)
+              .then(() => {
+                // Update successful.
+                console.log('Update successful Password.');
+              }).catch((error) => {
+                // An error ocurred
+                console.log('An error ocurred password');
+                // ...
+              })
           } else {
             // User is signed out
             // ...
@@ -79,7 +95,20 @@ function Auth(props) {
       });
   };
 
-  const handleForgotten = () => { };
+  const handleForgotten = (values) => {
+    sendPasswordResetEmail(auth, values.email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        console.log('Password reset email sent!');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode , errorMessage);
+        // ..
+      });
+  };
 
   let authObj = {},
     initVal = {};
@@ -143,7 +172,7 @@ function Auth(props) {
       } else if (authtype === "signup") {
         handleRegister(values);
       } else if (authtype === "forgotten") {
-        handleForgotten();
+        handleForgotten(values);
       }
       action.resetForm();
     },
