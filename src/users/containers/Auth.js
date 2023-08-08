@@ -5,14 +5,17 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
+import { sendPasswordResetEmail, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { signupRequest } from "../../redux/action/auth.action";
 
 
 
 function Auth(props) {
   const [authtype, setAuthtype] = useState("login");
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   // useEffect(() => {
   //     let localData = JSON.parse(localStorage.getItem('auth'))
@@ -22,8 +25,7 @@ function Auth(props) {
   // } , [])
 
   const handleLogin = (values) => {
-    localStorage.setItem("status", "true");
-    navigate("/");
+   
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         // Signed in 
@@ -31,6 +33,8 @@ function Auth(props) {
         console.log(user);
         if (user.emailVerified) {
           console.log('Email varifed');
+          localStorage.setItem("status", "true");
+          navigate("/");
         } else {
           console.log('Check varifed');
         }
@@ -44,55 +48,7 @@ function Auth(props) {
   };
 
   const handleRegister = (values) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        console.log('Signed in');
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/auth.user
-            // const uid = user.uid;
-            // ...
-            sendEmailVerification(auth.currentUser)
-              .then(() => {
-                // Email verification sent!
-                // ...
-                console.log('Email verification sent!');
-              })
-              .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-              });
-
-
-            //password update
-            const user = auth.currentUser;
-            // const newPassword = getASecureRandomPassword();
-
-            updatePassword(user, values.password)
-              .then(() => {
-                // Update successful.
-                console.log('Update successful Password.');
-              }).catch((error) => {
-                // An error ocurred
-                console.log('An error ocurred password');
-                // ...
-              })
-          } else {
-            // User is signed out
-            // ...
-          }
-        });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    dispatch(signupRequest(values))
   };
 
   const handleForgotten = (values) => {
