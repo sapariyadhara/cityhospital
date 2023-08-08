@@ -21,7 +21,7 @@ import { Button } from "reactstrap";
 
 function Header({ count1 }) {
   const theme = useContext(ThemeContext)
-  console.log(theme);
+  // console.log(theme);
 
   const [countData, setCountData] = useState([])
   let localData = localStorage.getItem("status");
@@ -48,7 +48,7 @@ function Header({ count1 }) {
 
   ///////////////////////////////add to cart with redux///////////////////
 
-  console.log(cartData);
+  // console.log(cartData);
   let countCart = 0
 
   if (cartData.items) {

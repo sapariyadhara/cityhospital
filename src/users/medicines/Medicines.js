@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/action/medicine.action";
 import { Row } from "reactstrap";
 // import { addToCart } from "../../redux/action/cart.action";
-import { addToFav } from "../../redux/action/myfav.action";
+import { addToFav, removeToFav } from "../../redux/action/myfav.action";
 import { addToCart } from "../../redux/slice/cartSlice";
 import { ThemeContext } from "../../Context/ThemeContext";
 import { hover } from "@testing-library/user-event/dist/hover";
@@ -52,8 +52,16 @@ function Medicines(props) {
   }
 
   const handleAddToFav = (id) => {
-    // console.log(id);
+    console.log(id);
       dispatch(addToFav(id))  
+  //     console.log(mFav.fav);
+  // let newData =  mFav.fav.filter((v) => v.pid === id )
+  // console.log(newData);
+  //     if(newData){
+  //       dispatch(removeToFav(id))  
+  //      } else {
+  //       dispatch(addToFav(id))
+  //      }
   } 
 
 
