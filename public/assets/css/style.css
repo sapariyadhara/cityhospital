@@ -1811,7 +1811,7 @@ input:focus + .slider {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  /* background-color: #ccc; */
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -1829,11 +1829,11 @@ input:focus + .slider {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  /* background-color: #2196F3; */
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  /* box-shadow: 0 0 1px #2196F3; */
 }
 
 input:checked + .slider:before {
@@ -1869,7 +1869,10 @@ input:checked + .slider:before {
 
 .dark  a{
   color : #FFF !important;
-  /* background-color:  #444 !important; */
+}
+
+.dark  a i{
+  color : #ed3c0d !important;
 }
 .dark span{
   color : #FFF !important;
@@ -1915,4 +1918,26 @@ input:checked + .slider:before {
   color: #444;
   background-color: #fff;
   border: 2px solid #fff;
+}
+
+.h44 .dark {
+  color : #444 !important ;
+  border : 1px solid #fff !important;
+}
+
+.h44 .dark h6{
+  color : #fff !important ;
+ 
+}
+
+.doctors .dark h4{
+  color: #fff !important;
+}
+
+/* .about .dark h3{
+  color: #fff !important;
+} */
+
+.contact1 .dark .info{
+ border: 2px solid #fff ;
 }

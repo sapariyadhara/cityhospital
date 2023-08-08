@@ -1,10 +1,13 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Yup from 'yup'
 import { H2, H4, I, P } from '../components/Ui/Hadding/Haddinds.style';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 
 function Contect1(props) {
+
+    const theme = useContext(ThemeContext)
 
     let contact1Schema = Yup.object({
         name: Yup.string().min(2).required('Please enter name').matches(/^[a-z]+$/ , 'Please enter valid name'),
@@ -41,7 +44,7 @@ function Contect1(props) {
     return (
         <div>
             <main>
-                <section id="contact" className="contact">
+            <section id="contact" className={`contact1 ${theme.theme}`}>
                     <div className="container">
                         <div className="section-title">
                             <H2>Contact</H2>
@@ -55,9 +58,9 @@ function Contect1(props) {
                         </div>
                     </div>
                     <div className="container">
-                        <div className="row mt-5">
+                        <div className="row mt-5" >
                             <div className="col-lg-4">
-                                <div className="info">
+                                <div className="info" style={{padding : '20px' ,  border : '2px solid #fff'}}>
                                     <div className="address">
                                         <I className="bi bi-geo-alt" />
                                         <H4>Location:</H4>
@@ -75,13 +78,14 @@ function Contect1(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-8 mt-5 mt-lg-0">
+                            <div className="col-lg-8 mt-5 mt-lg-0" style={{padding : '20px' ,  border : '2px solid #fff'}}>
                                 <form
                                     action
                                     method="post"
                                     role="form"
                                     className="php-email-form"
                                     onSubmit={handleSubmit}
+                                    
                                 >
                                     <div className="row">
                                         <div className="col-md-6 form-group">

@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MedicineList1 from "./MedicineList1";
+import { ThemeContext } from "../../../Context/ThemeContext";
 
 function Medicine1({ onCartCount }) {
+  const theme = useContext(ThemeContext)
+
   const [mediData, setMediData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   // const [cardD , setCardD] = useState([])
@@ -68,7 +71,7 @@ function Medicine1({ onCartCount }) {
   };
 
   return (
-    <section id="contact" className="contact">
+    <section id="contact" className={`contact ${theme.theme}`}>
       <div className="container">
         <div className="section-title">
           <h2>Medicines1</h2>

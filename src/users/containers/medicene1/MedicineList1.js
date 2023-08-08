@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CoustomCard from '../../components/Ui/CoustomCard';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col } from "reactstrap";
+import { ThemeContext } from '../../../Context/ThemeContext';
 
 function MedicineList1({mdData , onHandleClick }) {
+  const theme = useContext(ThemeContext)
+
     // console.log(mdData , 'mdData');
     return (
         <>
         {mdData.map((v, i) => {
         return (
             <div class="col-md-6 p-2">
-            <Card>
+            <Card className={`card1 ${theme.theme}`}>
               {
                 v.url ?
                   <img

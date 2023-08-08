@@ -1,12 +1,14 @@
-import React from "react";      
+import React, { useContext } from "react";      
 import Button from "../components/Ui/Button/Button";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 function Appoinment(props) {
+  const theme = useContext(ThemeContext)
   return (
     <div>
       <main>
-        <section id="appointment" className="appointment">
+        <section id="appointment" className={`appointment ${theme.theme}`}>
           <div className="container">
             <div className="section-title">
               <H2>Make an Appointment</H2>

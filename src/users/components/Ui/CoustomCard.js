@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { ThemeContext } from '../../../Context/ThemeContext';
 
 function CoustomCard({ value, btnVal, onClick1, handleAddFav }) {
+    const theme = useContext(ThemeContext)
     // const handleAddFav = (id) => {
     //     console.log(id , value); 
     // }
     return (
         <>
-            <Card>
+            <Card className={`h44 ${theme.theme}`}>
                 {
                     value.url ?
                         <img
@@ -20,7 +22,7 @@ function CoustomCard({ value, btnVal, onClick1, handleAddFav }) {
 
                 <CardBody>
                     <CardTitle tag="h5" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>{value.name}</span>
+                        <h4>{value.name}</h4>
                         <label className="switch">
                             <input type="checkbox" />
                             <FavoriteIcon className="slider round" onClick={() => handleAddFav(value.id)} />

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import {signUpSchema} from "../schemas/index"
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const  initialValues  = {
   name : '' ,
@@ -10,6 +11,7 @@ const  initialValues  = {
 } 
 
 function Contect(props) {
+  const theme = useContext(ThemeContext)
 
   const {values , errors , touched ,handleBlur , handleChange , handleSubmit} = useFormik({
   initialValues : initialValues  ,
@@ -23,7 +25,7 @@ function Contect(props) {
   return (
     <div>
       <main>
-        <section id="contact" className="contact">
+        <section id="contact" className={`contact ${theme.theme}`}>
           <div className="container">
             <div className="section-title">
               <h2>Contact</h2>

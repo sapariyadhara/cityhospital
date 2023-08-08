@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ListMedicines from "./ListMedicines";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../redux/action/medicine.action";
@@ -6,8 +6,11 @@ import { Row } from "reactstrap";
 // import { addToCart } from "../../redux/action/cart.action";
 import { addToFav } from "../../redux/action/myfav.action";
 import { addToCart } from "../../redux/slice/cartSlice";
+import { ThemeContext } from "../../Context/ThemeContext";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 function Medicines(props) {
+  const theme = useContext(ThemeContext)
   const dispatch = useDispatch();
   const mediUser = useSelector((state) => state.Medicine);
   const mFav = useSelector((state) => state.myfav)
@@ -55,7 +58,7 @@ function Medicines(props) {
 
 
   return (
-    <section id="contact" className="contact">
+    <section id="contact" className={`contact ${theme.theme}`}>
       <div className="container">
         <div className="section-title">
           <h2>Medicines</h2>
@@ -82,7 +85,7 @@ function Medicines(props) {
             aria-describedby="search-addon"
             onChange={(e) => handleChange(e.target.value)}
           />
-          <button type="button" class="btn btn-outline-primary">
+          <button type="button" class="btn btn-outline-primary"  style={{backgroundColor : '#ed3c0d' , border : '#fff' , color : '#fff'}}>
             search
           </button>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -9,10 +9,13 @@ import { sendPasswordResetEmail, onAuthStateChanged, sendEmailVerification, sign
 import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { signupRequest } from "../../redux/action/auth.action";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 
 
 function Auth(props) {
+  const theme = useContext(ThemeContext)
+
   const [authtype, setAuthtype] = useState("login");
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -33,8 +36,7 @@ function Auth(props) {
         console.log(user);
         if (user.emailVerified) {
           console.log('Email varifed');
-          localStorage.setItem("status", "true");
-          navigate("/");
+         
         } else {
           console.log('Check varifed');
         }
@@ -44,7 +46,8 @@ function Auth(props) {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-
+      localStorage.setItem("status", "true");
+      navigate("/");
   };
 
   const handleRegister = (values) => {
@@ -140,7 +143,7 @@ function Auth(props) {
 
   return (
     <div>
-      <section id="appointment" className="appointment">
+      <section id="appointment" className={`appointment ${theme.theme}`}>
         <div className="container">
           <div className="section-title">
             {authtype === "login" ? (

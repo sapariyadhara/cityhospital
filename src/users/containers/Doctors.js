@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const doctorData = [
   {
@@ -34,6 +35,8 @@ const doctorData = [
 ];
 
 function Doctors(props) {
+  const theme = useContext(ThemeContext)
+
   const [doctorFData, setDoctorFData] = useState(doctorData);
   console.log(doctorFData);
 
@@ -41,7 +44,7 @@ function Doctors(props) {
   return (
     <div>
       <main>
-        <section id="doctors" className="doctors">
+        <section id="doctors" className={`doctors ${theme.theme}`}>
           <div className="container">
             <div className="section-title">
               <h2>Doctors</h2>
@@ -63,7 +66,7 @@ function Doctors(props) {
                  
                   <div className="col-lg-6">
                   <Link to={'/Doctor/'+ v.id }>
-                <div className="member d-flex align-items-start">
+                <div className={`${theme.theme} member d-flex align-items-start`}>
                   <div className="pic">
                     <img
                       src={v.url}

@@ -193,16 +193,16 @@ function Header({ count1 }) {
                     Contact
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link className="nav-link scrollto" to={"/Counter"}>
                     Counter
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link className="nav-link scrollto" to={"/Counter1"}>
                     Counter1
                   </Link>
-                </li>
+                </li> */}
               </ul>
               <i className="bi bi-list mobile-nav-toggle" />
             </nav>
