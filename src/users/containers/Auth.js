@@ -8,7 +8,7 @@ import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
 import { sendPasswordResetEmail, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
-import { signupRequest } from "../../redux/action/auth.action";
+import { forgotPassRequest, loginRequest, signupRequest } from "../../redux/action/auth.action";
 import { ThemeContext } from "../../Context/ThemeContext";
 
 
@@ -20,34 +20,10 @@ function Auth(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //     let localData = JSON.parse(localStorage.getItem('auth'))
-  //     if(!localData){
-  //         navigate('/Medicine')
-  //     }
-  // } , [])
-
   const handleLogin = (values) => {
-   
-    signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        if (user.emailVerified) {
-          console.log('Email varifed');
-         
-        } else {
-          console.log('Check varifed');
-        }
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-      localStorage.setItem("status", "true");
-      navigate("/");
+     localStorage.setItem("status", "true");
+          navigate("/");
+      dispatch(loginRequest(values))
   };
 
   const handleRegister = (values) => {
@@ -55,18 +31,7 @@ function Auth(props) {
   };
 
   const handleForgotten = (values) => {
-    sendPasswordResetEmail(auth, values.email)
-      .then(() => {
-        // Password reset email sent!
-        // ..
-        console.log('Password reset email sent!');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode , errorMessage);
-        // ..
-      });
+   dispatch(forgotPassRequest(values))
   };
 
   let authObj = {},

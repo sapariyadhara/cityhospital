@@ -48,3 +48,5 @@ export const UPDATE_DEPARTMENT = "UPDATE_DEPARTMENT"
 //auth data with firebase
 
 export const SINGUP_REQUEST = "SINGUP_REQUEST"
+export const LOGIN_REQUEST = "LOGIN_REQUEST"
+export const FORGOTPASS_REQUEST = "FORGOTPASS_REQUEST"
