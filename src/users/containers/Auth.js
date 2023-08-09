@@ -5,15 +5,16 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
-import { sendPasswordResetEmail, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
-import { auth } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { forgotPassRequest, loginRequest, signupRequest } from "../../redux/action/auth.action";
 import { ThemeContext } from "../../Context/ThemeContext";
+import { useSnackbar } from "notistack";
+
 
 
 
 function Auth(props) {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const theme = useContext(ThemeContext)
 
   const [authtype, setAuthtype] = useState("login");
@@ -21,13 +22,15 @@ function Auth(props) {
   const dispatch = useDispatch()
 
   const handleLogin = (values) => {
-     localStorage.setItem("status", "true");
-          navigate("/");
+    //  localStorage.setItem("status", "true");
+    //       navigate("/");
       dispatch(loginRequest(values))
+      enqueueSnackbar('Login Successfully')
   };
 
   const handleRegister = (values) => {
     dispatch(signupRequest(values))
+    enqueueSnackbar('Now You are Signup')
   };
 
   const handleForgotten = (values) => {

@@ -13,6 +13,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { ThemeProvider } from './Context/ThemeContext';
 // import rootSaga from './sagas';
 import { persistor, store } from './redux/store';
+import { SnackbarProvider } from 'notistack';
 
 
 
@@ -21,23 +22,25 @@ import { persistor, store } from './redux/store';
 function App() {
   return (
     <>
-      <Provider store={store}>
-        <ThemeProvider>
-        <PersistGate loading={null} persistor={persistor}>
-          {/* <ThemeProvider theme={theme}>
+      <SnackbarProvider>
+        <Provider store={store}>
+          <ThemeProvider>
+            <PersistGate loading={null} persistor={persistor}>
+              {/* <ThemeProvider theme={theme}>
     <Sidenavbar /> */}
-          {/* <SideDrawermui /> */}
-          {/* <Test2 /> */}
-          {/* </ThemeProvider> */}
-          <Routes>
-            <Route path='/*' element={<UserRoutes />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path='/admin/*' element={<AdminRoutes />} />
-            </Route>
-          </Routes>
-        </PersistGate>
-        </ThemeProvider>
-      </Provider>  
+              {/* <SideDrawermui /> */}
+              {/* <Test2 /> */}
+              {/* </ThemeProvider> */}
+              <Routes>
+                <Route path='/*' element={<UserRoutes />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path='/admin/*' element={<AdminRoutes />} />
+                </Route>
+              </Routes>
+            </PersistGate>
+          </ThemeProvider>
+        </Provider>
+      </SnackbarProvider>
     </>
   );
 }
