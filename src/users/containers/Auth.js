@@ -22,8 +22,8 @@ function Auth(props) {
   const dispatch = useDispatch()
 
   const handleLogin = (values) => {
-    //  localStorage.setItem("status", "true");
-    //       navigate("/");
+     localStorage.setItem("status", "true");
+          navigate("/");
       dispatch(loginRequest(values))
       enqueueSnackbar('Login Successfully')
   };
