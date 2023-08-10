@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { addDepartmentData, deleteDepartmentData, getDepartmentData, updateDepartmentData } from "../../common/apis/department.api"
-import { resolvePath } from "react-router-dom"
 
+
+//redux toolkit
 const initState = {
     isloading: false,
     depart: [],

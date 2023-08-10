@@ -25,11 +25,10 @@ function CoustomCard({ value, btnVal, onClick1, handleAddFav }) {
                         <h4>{value.name}</h4>
                         <label className="switch">
                             <input type="checkbox" />
-                            <FavoriteIcon className="slider round" onClick={() => handleAddFav(value.id)} />
+                            <FavoriteIcon id='sliderround' className="slider round" onClick={() => handleAddFav(value.id)} />
                             {/* <span className="slider round" ><FavoriteBorderOutlinedIcon  className="slider round" onClick={() => handleAddFav(value.id)} /> </span> */}
                         </label>
 
-                        {/* <span id='span1'> <FavoriteBorderOutlinedIcon className="slider round" onClick={() => handleAddFav(value.id)} /></span> */}
                     </CardTitle>
 
                     <CardSubtitle

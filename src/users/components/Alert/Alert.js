@@ -11,7 +11,7 @@ function Alert(props) {
     useEffect(() => {
         if(alert.text !== ''){
             enqueueSnackbar(alert.text,
-                 { autoHideDuration: 2000 ,
+                 { autoHideDuration: 3000 ,
                     variant : alert.color ,
                     anchorOrigin: {
                         vertical: 'top',

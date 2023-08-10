@@ -61,6 +61,7 @@ function DoctorForm({onhandleSubmit , onUpdate}) {
           console.log(values);
           action.resetForm();
           onhandleSubmit(dV);
+          handleClose()
         },
       });
     
