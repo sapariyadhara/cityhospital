@@ -14,6 +14,7 @@ import { ThemeProvider } from './Context/ThemeContext';
 // import rootSaga from './sagas';
 import { persistor, store } from './redux/store';
 import { SnackbarProvider } from 'notistack';
+import Alert from './users/components/Alert/Alert';
 
 
 
@@ -22,7 +23,7 @@ import { SnackbarProvider } from 'notistack';
 function App() {
   return (
     <>
-      <SnackbarProvider>
+      <SnackbarProvider  maxSnack={3}>
         <Provider store={store}>
           <ThemeProvider>
             <PersistGate loading={null} persistor={persistor}>
@@ -31,9 +32,10 @@ function App() {
               {/* <SideDrawermui /> */}
               {/* <Test2 /> */}
               {/* </ThemeProvider> */}
+              <Alert />
               <Routes>
                 <Route path='/*' element={<UserRoutes />} />
-                <Route element={<ProtectedRoute />}>
+                <Route>
                   <Route path='/admin/*' element={<AdminRoutes />} />
                 </Route>
               </Routes>

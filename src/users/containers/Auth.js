@@ -8,13 +8,9 @@ import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
 import { useDispatch } from "react-redux";
 import { forgotPassRequest, loginRequest, signupRequest } from "../../redux/action/auth.action";
 import { ThemeContext } from "../../Context/ThemeContext";
-import { useSnackbar } from "notistack";
-
-
 
 
 function Auth(props) {
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const theme = useContext(ThemeContext)
 
   const [authtype, setAuthtype] = useState("login");
@@ -22,15 +18,15 @@ function Auth(props) {
   const dispatch = useDispatch()
 
   const handleLogin = (values) => {
-     localStorage.setItem("status", "true");
-          navigate("/");
+    //  localStorage.setItem("status", "true");
+    //       navigate("/");
       dispatch(loginRequest(values))
-      enqueueSnackbar('Login Successfully')
+     
   };
 
   const handleRegister = (values) => {
     dispatch(signupRequest(values))
-    enqueueSnackbar('Now You are Signup')
+  
   };
 
   const handleForgotten = (values) => {

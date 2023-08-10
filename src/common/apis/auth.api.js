@@ -17,12 +17,12 @@ export const signupApi = (values) => {
                 .then(() => {
                   // Email verification sent!
                   // ...
-                  resolve({ messeage: 'Email verification sent!', user: user })
+                  resolve({ message: 'Email verification sent!', user: user })
                 })
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorMessage = error.message;
-                  reject(errorCode, errorMessage);
+                  reject({message : errorCode});
                 });
             } else {
               // User is signed out
@@ -55,7 +55,7 @@ export const loginApi = values => {
         const user = userCredential.user;
         console.log(user);
         if (user.emailVerified) {
-          resolve({ messeage: 'Email varifed' });
+          resolve({ message: 'Email varifed' });
           // localStorage.setItem("status", "true");
           // navigate("/");
         } else {
@@ -84,7 +84,7 @@ export const forgotPassApi = (values) => {
     .then(() => {
       // Password reset email sent!
       // ..
-      resolve('Password reset email sent!');
+      resolve({message:'Password reset email sent!'});
     })
     .catch((error) => {
       const errorCode = error.code;

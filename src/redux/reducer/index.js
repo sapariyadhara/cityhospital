@@ -6,12 +6,13 @@ import { favReducer } from "./myfav.reducer";
 import counterReducer from "../slice/counterSlice";
 import counter1Reducer from "../slice/countter1Slice";
 import cartReducer from "../slice/cartSlice";
-import departmentSlice from "../slice/departmentSlice";
 import departmentReducer from "../slice/departmentSlice";
+import alertReducer from "../slice/alertSlice";
 // import { departmentReducer } from "./department.reducer";
 
 
 export const rootReducer = combineReducers({
+    alert : alertReducer,
     Counter : counterReducer ,
     Doctor : doctorReducer ,
     Medicine : medicineReducer,
