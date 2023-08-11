@@ -38,7 +38,13 @@ export const authReducer = (state = init, action) => {
                 return{
                     user : null,
                     isloading : false,
-                    error  :null
+                    error  : null
+                }
+            case ActionType.FORGOTPASS_REQUEST :
+                return{
+                    user : action.payload,
+                    isloading : false,
+                    error  : null
                 }
         default:
             return state

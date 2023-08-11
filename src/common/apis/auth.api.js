@@ -98,13 +98,15 @@ export const forgotPassApi = (values) => {
   })
 }
 
-export const logOutApi = (values) => {
+export const logOutApi = () => {
   return new Promise((resolve , reject) => {
-    signOut(values).then(() => {
+    signOut(auth)
+    .then(() => {
       // Sign-out successful.
-
+      resolve({message : "Log-out successful."});
     }).catch((error) => {
       // An error happened.
+      reject({message : "An error happened."});
     })
   })
 }

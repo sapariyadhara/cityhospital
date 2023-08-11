@@ -1,9 +1,9 @@
 
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as ActionType from '../ActionTypes'
-import { forgotPassApi, loginApi, signupApi } from '../../common/apis/auth.api'
+import { forgotPassApi, logOutApi, loginApi, signupApi } from '../../common/apis/auth.api'
 import { setAlert } from '../slice/alertSlice';
-import { authError, emailVarification, loggedIn } from '../action/auth.action';
+import { authError, emailVarification, forgotPassRequest, loggedIn } from '../action/auth.action';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* signupUser(action) {
@@ -36,8 +36,20 @@ function* forgotUser(action) {
   try {
     const user = yield call(forgotPassApi, action.payload)
     console.log(user);
+    yield put(forgotPassRequest(user.user))
     yield put(setAlert({text : user.message , color : 'success'}))
-    // yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
+  } catch (e) {
+    console.log(e)
+    yield put(authError(e.message))
+    yield put(setAlert({text : e.message , color : 'error'}))
+  }
+}
+
+function* logOutUser(action){
+  try {
+    const user = yield call(logOutApi, action.payload)
+    console.log(user);
+    yield put(setAlert({text : user.message , color : 'success'}))
   } catch (e) {
     console.log(e)
     yield put(authError(e.message))
@@ -58,12 +70,15 @@ function* forgotSaga() {
   yield takeEvery(ActionType.FORGOTPASS_REQUEST, forgotUser)
 }
 
-
+function* logOutSaga() {
+  yield takeEvery(ActionType.LOGOUT, logOutUser)
+}
 
 export function* authSaga() {
     yield all([
         signupSaga(),
         loginSaga(),
-        forgotSaga()
+        forgotSaga(),
+        logOutSaga()
     ])
 }

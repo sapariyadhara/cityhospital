@@ -20,8 +20,8 @@ export const loggedIn = (data) => (dispatch) => {
         dispatch({type : ActionType.LOGGED_IN , payload : data})
 }
 
-export const logOut = (data) => (dispatch) => {
-        dispatch({type : ActionType.LOGOUT, payload:data })
+export const logOut = () => (dispatch) => {
+        dispatch({type : ActionType.LOGOUT })
 }
 
 export const forgotPassRequest = (data) => (dispatch) => {

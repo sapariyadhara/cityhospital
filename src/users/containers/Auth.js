@@ -21,8 +21,8 @@ function Auth(props) {
   console.log(authdata);
 
   const handleLogin = (values) => {
-    //  localStorage.setItem("status", "true");
-    //       navigate("/");
+     localStorage.setItem("status", "true");
+          navigate("/");
       dispatch(loginRequest(values))
      
   };
@@ -136,8 +136,10 @@ function Auth(props) {
               </P>
             )}
           </div>
+        
           {
-            authdata.isloading ? <CircularProgress /> :
+            authdata.isloading ? 
+            <div style={{display : 'block',textAlign : 'center' }}> <CircularProgress /> </div> :
             <form
             method="post"
             role="form"

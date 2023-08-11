@@ -6,12 +6,13 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from "../../Context/ThemeContext";
 import { Button } from "reactstrap";
+import { logOut } from "../../redux/action/auth.action";
 
 
 
@@ -22,6 +23,7 @@ import { Button } from "reactstrap";
 function Header({ count1 }) {
   const theme = useContext(ThemeContext)
   // console.log(theme);
+  const dispatch = useDispatch()
 
   const [countData, setCountData] = useState([])
   let localData = localStorage.getItem("status");
@@ -61,6 +63,7 @@ function Header({ count1 }) {
 
   const handleLogout = () => {
     localStorage.removeItem("status");
+    dispatch(logOut())
   };
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
