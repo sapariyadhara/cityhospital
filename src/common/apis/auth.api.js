@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signupApi = (values) => {
@@ -22,7 +22,7 @@ export const signupApi = (values) => {
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorMessage = error.message;
-                  reject({message : errorCode});
+                  reject({ message: errorCode });
                 });
             } else {
               // User is signed out
@@ -35,9 +35,9 @@ export const signupApi = (values) => {
           // const errorMessage = error.message;
           // reject(errorCode, errorMessage);
           if (errorCode.localeCompare("auth/email-already-in-use") === 0) {
-            reject({message : "Alredy User Regester"})
+            reject({ message: "Alredy User Regester" })
           } else if (errorCode.localeCompare("auth/network-request-failed") === 0) {
-            reject({message : "Please Check Your Internet Conection"})
+            reject({ message: "Please Check Your Internet Conection" })
           }
         })
     })
@@ -55,11 +55,11 @@ export const loginApi = values => {
         const user = userCredential.user;
         console.log(user);
         if (user.emailVerified) {
-          resolve({ message: 'Email varifed' });
+          resolve({ user: user, message: 'Email varifed' });
           // localStorage.setItem("status", "true");
           // navigate("/");
         } else {
-          reject({message :'Check varifed'});
+          reject({ message: 'Check varifed' });
           // alert('Varify Email First')
         }
         // ...
@@ -70,30 +70,41 @@ export const loginApi = values => {
         // const errorMessage = error.message;
         // reject(errorCode, errorMessage)
         if (errorCode.localeCompare("auth/wrong-password") === 0) {
-          reject({message : "Please Enter Carrect Password"})
+          reject({ message: "Please Enter Carrect Password" })
         } else if (errorCode.localeCompare("auth/user-not-found") === 0) {
-          reject({message : "Please Sign up First"})
+          reject({ message: "Please Sign up First" })
         }
       });
   })
 }
 
 export const forgotPassApi = (values) => {
-  return new Promise((resolve , reject) => {
+  return new Promise((resolve, reject) => {
     sendPasswordResetEmail(auth, values.email)
-    .then(() => {
-      // Password reset email sent!
-      // ..
-      resolve({message:'Password reset email sent!'});
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        resolve({ message: 'Password reset email sent!' });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // reject(errorCode, errorMessage);
+        if (errorCode.localeCompare("auth/user-not-found") === 0) {
+          reject({ message: "Please Sign up First" })
+        }
+        // ..
+      });
+  })
+}
+
+export const logOutApi = (values) => {
+  return new Promise((resolve , reject) => {
+    signOut(values).then(() => {
+      // Sign-out successful.
+
+    }).catch((error) => {
+      // An error happened.
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // reject(errorCode, errorMessage);
-      if (errorCode.localeCompare("auth/user-not-found") === 0) {
-        reject({message : "Please Sign up First"})
-      }
-      // ..
-    });
   })
 }

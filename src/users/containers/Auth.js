@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { forgotPassRequest, loginRequest, signupRequest } from "../../redux/action/auth.action";
 import { ThemeContext } from "../../Context/ThemeContext";
+import { CircularProgress } from "@mui/material";
 
 
 function Auth(props) {
@@ -16,6 +17,8 @@ function Auth(props) {
   const [authtype, setAuthtype] = useState("login");
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const authdata = useSelector(state => state.auth)
+  console.log(authdata);
 
   const handleLogin = (values) => {
     //  localStorage.setItem("status", "true");
@@ -133,7 +136,9 @@ function Auth(props) {
               </P>
             )}
           </div>
-          <form
+          {
+            authdata.isloading ? <CircularProgress /> :
+            <form
             method="post"
             role="form"
             className="php-email-form"
@@ -253,6 +258,8 @@ function Auth(props) {
               ) : null}
             </div>
           </form>
+          }
+        
 
         </div>
       </section>
