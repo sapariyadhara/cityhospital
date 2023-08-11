@@ -111,6 +111,7 @@ function Header({ count1 }) {
                 </IconButton>
               </Link>
 
+             
 
               <Link to={'/Cart'}>
                 <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>

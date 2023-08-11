@@ -1,5 +1,6 @@
 import * as  ActionType from '../ActionTypes'
 
+
 const initial = {
     fav: [],
     loading: false,
