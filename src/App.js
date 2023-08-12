@@ -35,7 +35,7 @@ function App() {
               <Alert />
               <Routes>
                 <Route path='/*' element={<UserRoutes />} />
-                <Route>
+                <Route element={<ProtectedRoute />} >
                   <Route path='/admin/*' element={<AdminRoutes />} />
                 </Route>
               </Routes>

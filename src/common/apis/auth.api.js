@@ -89,7 +89,6 @@ export const forgotPassApi = (values) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // reject(errorCode, errorMessage);
         if (errorCode.localeCompare("auth/user-not-found") === 0) {
           reject({ message: "Please Sign up First" })
         }

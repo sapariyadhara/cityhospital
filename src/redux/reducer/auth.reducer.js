@@ -11,6 +11,7 @@ export const authReducer = (state = init, action) => {
     switch (action.type) {
         case ActionType.SINGUP_REQUEST:
         case ActionType.LOGIN_REQUEST:
+        case ActionType.LOGOUT_REQUEST :
             return {
                 user: null,
                 isloading: true,
@@ -34,7 +35,7 @@ export const authReducer = (state = init, action) => {
                 isloading : false,
                 error  :null
             }
-            case ActionType.LOGGED_IN :
+            case ActionType.LOGGED_OUT :
                 return{
                     user : null,
                     isloading : false,

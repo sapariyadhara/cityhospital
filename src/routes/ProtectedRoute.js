@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
 function ProtectedRoute(props) {
-    let localData = localStorage.getItem("status")
-    const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     let auth = JSON.parse(localStorage.getItem('auth'))
-    //     if(!auth){
-    //         navigate('/auth')
-    //     }
-    // } , [])
+    const auth = useSelector(state => state.auth)
+    console.log(auth);
     return (
        
-        localData ?  <Outlet /> : <Navigate to={'/auth'} replace />
+        auth.user ?  <Outlet /> : <Navigate to={'/auth'} replace />
        
     );
 }

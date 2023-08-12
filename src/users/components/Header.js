@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from "../../Context/ThemeContext";
 import { Button } from "reactstrap";
-import { logOut } from "../../redux/action/auth.action";
+import { logOutRequest } from "../../redux/action/auth.action";
 
 
 
@@ -21,12 +21,13 @@ import { logOut } from "../../redux/action/auth.action";
 
 
 function Header({ count1 }) {
+   // console.log(theme);
   const theme = useContext(ThemeContext)
-  // console.log(theme);
+ //log out
   const dispatch = useDispatch()
+  const auth = useSelector(state => state.auth)
 
   const [countData, setCountData] = useState([])
-  let localData = localStorage.getItem("status");
   let cartData = useSelector(state => state.cart)
   const favData = useSelector((state) => state.myfav)
 
@@ -62,8 +63,7 @@ function Header({ count1 }) {
   ///////////////////////////////////////////////////////////////////////////
 
   const handleLogout = () => {
-    localStorage.removeItem("status");
-    dispatch(logOut())
+    dispatch(logOutRequest())
   };
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -215,7 +215,7 @@ function Header({ count1 }) {
               Appointment
             </Link>
 
-            {localData ? (
+            {auth.user ? (
               <Link
                 to={"/Auth"}
                 className="appointment-btn scrollto"

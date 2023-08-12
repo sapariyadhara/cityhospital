@@ -21,9 +21,12 @@ function Auth(props) {
   console.log(authdata);
 
   const handleLogin = (values) => {
-    localStorage.setItem("status", "true");
-    navigate("/");
-    dispatch(loginRequest(values))
+    dispatch(loginRequest({
+      data : values,
+      callback : (route) => {
+        navigate(route);
+      }
+    }))
 
   };
 
