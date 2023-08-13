@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 
 const doctorF = [
@@ -34,6 +35,7 @@ const doctorF = [
 ]
 
 function Doctor(props) {
+  const theme = useContext(ThemeContext)
   const { id } = useParams()
   const [doctorD, setDoctorD] = useState(doctorF)
 
@@ -45,35 +47,43 @@ function Doctor(props) {
 
 
   return (
-    <div>
+    <div className={`container1 ${theme.theme}`}>
       {
-        <div className="col-lg-6">
+        <div>
 
-          <div className="member d-flex align-items-start">
-            <div className="pic">
+          <div className="pDoctor member d-flex align-items-start">
+            <div className="pic1">
               <img
                 src={fData[0].url}
                 className="img-doctor"
                 alt
               />
             </div>
-            <div className="member-info">
+            <div className="member-info1">
               <h4>{fData[0].name}</h4>
-              <span>{fData[0].designation}</span>
+              <span style={{fontSize : '24px' ,fontWeight : '500'}}>{fData[0].designation}</span>
+              <p style={{marginTop : '10px'}}>
+             <h5> About our doctor :</h5> {fData[0].description}
+              </p>
+              <h5>Professional Memberships</h5>
               <p>
-                {fData[0].description}
+            <p>1. Bombay Orthopaedic Society (BOS)</p>
+            <p>2. Association of Spine Surgeons of India (ASSI)</p>
+            <p>3. Minimally Invasive Spine Surgeon of India (MISSI)</p>
+            <p>4. South Gujarat Orthopaedic Association (SGOA)</p>
+            <p>5. Spine Association of Gujarat (SAG)</p>
               </p>
               <div className="social">
-                <a href>
+                <a target='blank' href='https://twitter.com/i/flow'>
                   <i className="ri-twitter-fill" />
                 </a>
-                <a href>
+                <a target='blank' href='https://www.facebook.com/'>
                   <i className="ri-facebook-fill" />
                 </a>
-                <a href>
+                <a target='blank' href='https://www.instagram.com/'>
                   <i className="ri-instagram-fill" />
                 </a>
-                <a href>
+                <a target='blank' href='https://www.linkedin.com/login'>
                   {" "}
                   <i className="ri-linkedin-box-fill" />{" "}
                 </a>

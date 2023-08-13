@@ -42,7 +42,7 @@ function Doctors(props) {
 
 
   return (
-    <div>
+    <>
       <main>
         <section id="doctors" className={`doctors ${theme.theme}`}>
           <div className="container">
@@ -107,7 +107,7 @@ function Doctors(props) {
           </div>
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
