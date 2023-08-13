@@ -1,17 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LinkCustom from "./Ui/Link/LinkCustom";
-// import { LinkT } from "./Ui/Link/Link.style";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from "react-redux";
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from "../../Context/ThemeContext";
-import { Button } from "reactstrap";
 import { logOutRequest } from "../../redux/action/auth.action";
 
 
@@ -20,7 +16,7 @@ import { logOutRequest } from "../../redux/action/auth.action";
 
 
 
-function Header({ count1 }) {
+function Header(props) {
    // console.log(theme);
   const theme = useContext(ThemeContext)
  //log out
@@ -102,17 +98,6 @@ function Header({ count1 }) {
                   <FavoriteIcon />
                 </Badge>
               </Link>
-
-              <Link to={'/Cart1'}>
-                <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
-                  <StyledBadge badgeContent={count1} color="secondary">
-                    <ShoppingCartIcon />
-                  </StyledBadge>
-                </IconButton>
-              </Link>
-
-             
-
               <Link to={'/Cart'}>
                 <IconButton aria-label="cart" style={{ marginRight: 'auto' }}>
                   <StyledBadge badgeContent={countCart} color="secondary">
@@ -160,9 +145,6 @@ function Header({ count1 }) {
             <nav id="navbar" className="navbar order-last order-lg-0">
               <ul>
                 <li>
-                  {/* <LinkCustom to={"/"} text="Home" />
-                  Home */}
-                  {/* </LinkCustom> */}
                   <Link className="nav-link scrollto" to={"/"}>
                     Home
                   </Link>
@@ -175,11 +157,6 @@ function Header({ count1 }) {
                 <li>
                   <Link className="nav-link scrollto" to={"/Medicine"}>
                     Medicine
-                  </Link>
-                </li>
-                <li>
-                  <Link className="nav-link scrollto" to={"/Medicine1"}>
-                    Medicine1
                   </Link>
                 </li>
                 <li>
@@ -197,16 +174,6 @@ function Header({ count1 }) {
                     Contact
                   </Link>
                 </li>
-                {/* <li>
-                  <Link className="nav-link scrollto" to={"/Counter"}>
-                    Counter
-                  </Link>
-                </li> */}
-                {/* <li>
-                  <Link className="nav-link scrollto" to={"/Counter1"}>
-                    Counter1
-                  </Link>
-                </li> */}
               </ul>
               <i className="bi bi-list mobile-nav-toggle" />
             </nav>
