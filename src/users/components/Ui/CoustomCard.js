@@ -24,13 +24,14 @@ function CoustomCard({ value, btnVal, onClick1, handleAddFav }) {
                 }
 
                 <CardBody>
-                <Link to={'/Medicine/' + value.id}>
-                    <CardTitle tag="h5" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <h4 style={{color : '#000'}}>{value.name}</h4>
-                        <label id="switch" className="switch">
+                <label style={{textAlign : 'right'}} id="switch" className="switch">
                             <input type="checkbox" />
                             <FavoriteIcon id='sliderround' className="slider round" onClick={() => handleAddFav(value.id)} />
                         </label>
+                <Link to={'/Medicine/' + value.id}>
+                    <CardTitle tag="h5" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <h4 style={{color : '#000'}}>{value.name}</h4>
+                       
 
                     </CardTitle>
 

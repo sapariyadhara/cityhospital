@@ -1834,10 +1834,12 @@ input:focus+.slider {
 /* toggel button */
 
 .switch {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 60px;
   height: 34px;
+  top: 20px;
+  right: -18px;
 }
 
 .switch input {
