@@ -56,7 +56,7 @@ function Doctors(props) {
                 sagittis nec. Phasellus a eleifend elit.
               </p>
               {/* <Link to={'/Doctor/1'}> Doctor 1</Link> */}
-              <Link to={'/Doctor/visiting_doctor'}>Visiting Doctor</Link>
+              {/* <Link to={'/Doctor/visiting_doctor'}>Visiting Doctor</Link> */}
 
             </div>
             <div className="row">

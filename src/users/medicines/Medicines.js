@@ -54,14 +54,6 @@ function Medicines(props) {
   const handleAddToFav = (id) => {
     console.log(id);
       dispatch(addToFav(id))  
-  //     console.log(mFav.fav);
-  // let newData =  mFav.fav.filter((v) => v.pid === id )
-  // console.log(newData);
-  //     if(newData){
-  //       dispatch(removeToFav(id))  
-  //      } else {
-  //       dispatch(addToFav(id))
-  //      }
   } 
 
 
@@ -98,7 +90,6 @@ function Medicines(props) {
           </button>
         </div>
         <div class="row">
-          {/* <ListMedicines mdata={filterData.length > 0 ? filterData :  mediUser} /> */}
           <ListMedicines 
           mdata={filterData.length > 0 ? filterData : mediUser.medicineD} 
           handleCart1={handleCart} 
