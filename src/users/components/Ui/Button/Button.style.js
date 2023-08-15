@@ -40,3 +40,14 @@ export const OutlinedButton = styled(StyledButton)`
     color: #fff;
   }
 `;
+
+export const LinearButton = styled(StyledButton)`
+    color: #ff6337;
+    background:linear-gradient(to left red, orange , yellow , green , blue );
+    border: 2px solid #ff6337;
+
+    &:hover{
+    background: #ff6337;
+    color: #fff;
+  }
+`;

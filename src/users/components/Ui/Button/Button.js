@@ -1,5 +1,5 @@
 import React from 'react';
-import {OutlinedButton, PrimaryButton, SecendoryButton, StyledButton} from './Button.style';
+import {LinearButton, OutlinedButton, PrimaryButton, SecendoryButton, StyledButton} from './Button.style';
 
 function Button({children , type , btnDisabled=false}) {
  
@@ -11,6 +11,8 @@ function Button({children , type , btnDisabled=false}) {
             return SecendoryButton ;
           case 'outlined':
             return OutlinedButton ; 
+          case 'linear':
+            return LinearButton ;
             default :
             return PrimaryButton;
       }
