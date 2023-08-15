@@ -31,3 +31,7 @@ export const loggedOut = () => (dispatch) => {
 export const forgotPassRequest = (data) => (dispatch) => {
         dispatch({type : ActionType.FORGOTPASS_REQUEST , payload : data})
 }
+
+export const signinWithGoogle = () => (dispatch) => {
+        dispatch({type : ActionType.SIGNIN_WITH_GOOGLE_REQUEST})
+}

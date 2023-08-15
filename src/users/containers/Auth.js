@@ -6,10 +6,12 @@ import Button from "../components/Ui/Button/Button";
 import Input from "../components/Ui/Input/Input";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
 import { useDispatch, useSelector } from "react-redux";
-import { forgotPassRequest, loginRequest, signupRequest } from "../../redux/action/auth.action";
+import { forgotPassRequest, loginRequest, signinWithGoogle, signupRequest } from "../../redux/action/auth.action";
 import { ThemeContext } from "../../Context/ThemeContext";
 import { ButtonBase, CircularProgress } from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';
+
+
 
 
 function Auth(props) {
@@ -21,14 +23,16 @@ function Auth(props) {
   const authdata = useSelector(state => state.auth)
   console.log(authdata);
 
+
+
   const continueWithGoogle = () => {
-    
+    dispatch(signinWithGoogle())
   }
 
   const handleLogin = (values) => {
     dispatch(loginRequest({
-      data : values,
-      callback : (route) => {
+      data: values,
+      callback: (route) => {
         navigate(route);
       }
     }))
@@ -122,7 +126,7 @@ function Auth(props) {
         <div className="container">
           <div className="section-title">
             {authtype === "login" ? (
-              
+
               <H2>Login</H2>
             ) : authtype === "forgotten" ? (
               <H2>Reset Password </H2>
@@ -229,8 +233,8 @@ function Auth(props) {
                       <Button type='outlined'>Submit</Button>
                     )}
                   </div>
-                  
-                    
+
+
                   {authtype === "login" ? (
                     <span>
                       Create a new account ?
@@ -348,7 +352,7 @@ function Auth(props) {
                 <div className="text-center">
                   {authtype === "login" ? (
                     <>
-                     <Button type='primary'>Login</Button>
+                      <Button type='primary'>Login</Button>
                     </>
                   ) : authtype === "signup" ? (
                     <Button type='primary'>Signup</Button>
@@ -357,26 +361,31 @@ function Auth(props) {
                   )}
                 </div>
 
-                <div style={{marginTop : '20px'}} className="text-center">
+                <div style={{ marginTop: '20px' }} className="text-center">
                   {authtype === "login" ? (
-                     <ButtonBase 
-                     onClick={() => continueWithGoogle()}
-                     style={{
-                      color: '#ff6337', background:'#fff' ,border :'2px solid #ff6337'
-                      , padding : '10px' , borderRadius : '30px' , fontWeight : '600'
-                     }}
+                    <ButtonBase
+                      onClick={() => continueWithGoogle()}
+                      style={{
+                        color: '#ff6337', background: '#fff', border: '2px solid #ff6337'
+                        , padding: '10px', borderRadius: '30px', fontWeight: '600'
+                      }}
 
-                     > <GoogleIcon style={{marginRight : '10px'}}/> Continue With Google</ButtonBase>
+                    > <img src="https://imagepng.org/wp-content/uploads/2019/08/google-icon.png"
+                      style={{ width: '30px', height: '30px', marginRight: '10px' }}>
+                      </img> Continue With Google</ButtonBase>
                   ) : authtype === "signup" ? (
-                    <ButtonBase 
-                    style={{
-                      color: '#ff6337', background:'#fff' ,border :'2px solid #ff6337'
-                      ,padding : '10px' , borderRadius : '30px' , fontWeight : '600'
-                     }}
+                    <ButtonBase
+                      onClick={() => continueWithGoogle()}
+                      style={{
+                        color: '#ff6337', background: '#fff', border: '2px solid #ff6337'
+                        , padding: '10px', borderRadius: '30px', fontWeight: '600'
+                      }}
 
-                    > <GoogleIcon style={{marginRight : '10px'}}/> Continue With Google</ButtonBase>
+                    > <img src="https://imagepng.org/wp-content/uploads/2019/08/google-icon.png"
+                      style={{ width: '30px', height: '30px', marginRight: '10px' }}>
+                      </img> Continue With Google</ButtonBase>
                   ) : (
-                   null
+                    null
                   )}
                 </div>
 

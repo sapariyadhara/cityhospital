@@ -12,6 +12,7 @@ export const authReducer = (state = init, action) => {
         case ActionType.SINGUP_REQUEST:
         case ActionType.LOGIN_REQUEST:
         case ActionType.LOGOUT_REQUEST :
+        case ActionType.SIGNIN_WITH_GOOGLE_REQUEST:
             return {
                 user: null,
                 isloading: true,

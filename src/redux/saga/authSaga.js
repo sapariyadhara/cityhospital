@@ -1,9 +1,9 @@
 
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as ActionType from '../ActionTypes'
-import { forgotPassApi, logOutApi, loginApi, signupApi } from '../../common/apis/auth.api'
+import { forgotPassApi, logOutApi, loginApi, signinWithGoogleApi, signupApi } from '../../common/apis/auth.api'
 import { setAlert } from '../slice/alertSlice';
-import { authError, emailVarification, forgotPassRequest, loggedIn, loggedOut } from '../action/auth.action';
+import { authError, emailVarification, forgotPassRequest, loggedIn, loggedOut, signinWithGoogle } from '../action/auth.action';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* signupUser(action) {
@@ -60,6 +60,19 @@ function* logOutUser(action){
   }
 }
 
+function* signinWithGUser(action){
+  try {
+    const user = yield call(signinWithGoogleApi)
+    console.log(user);
+    yield put(signinWithGoogle())
+    yield put(setAlert({text : user.message , color : 'success'}))
+  } catch (e) {
+    console.log(e)
+    yield put(authError(e.message))
+    yield put(setAlert({text : e.message , color : 'error'}))
+  }
+}
+
 // watcher Function 
 function* signupSaga() {
   yield takeEvery(ActionType.SINGUP_REQUEST, signupUser)
@@ -77,11 +90,16 @@ function* logOutSaga() {
   yield takeEvery(ActionType.LOGOUT_REQUEST, logOutUser)
 }
 
+function* signinwithGSaga() {
+  yield takeEvery(ActionType.SIGNIN_WITH_GOOGLE_REQUEST, signinWithGUser)
+}
+
 export function* authSaga() {
     yield all([
         signupSaga(),
         loginSaga(),
         forgotSaga(),
-        logOutSaga()
+        logOutSaga(),
+        signinwithGSaga()
     ])
 }
