@@ -2057,3 +2057,39 @@ input:checked+.slider:before {
   color: #000 !important;
  
 }
+
+header .menubar{
+  margin-left: 20px;
+  display: none;
+}
+
+header .menubar a{
+  color: #444;
+}
+
+.auth-btn{
+  margin-left: 25px;
+    background: #FF6337;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+}
+
+@media (max-width: 991px) {
+  header .menubar{
+    display: block;
+  }
+ 
+}
+
+@media (max-width: 768px) {
+  .appointment-btn{
+    display: none;
+  }
+ 
+}
+

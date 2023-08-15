@@ -10,16 +10,19 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from "../../Context/ThemeContext";
 import { logOutRequest } from "../../redux/action/auth.action";
 
-
-
+import Dropdown from '@mui/joy/Dropdown';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 
 
 function Header(props) {
-   // console.log(theme);
+  // console.log(theme);
   const theme = useContext(ThemeContext)
- //log out
+  //log out
   const dispatch = useDispatch()
   const auth = useSelector(state => state.auth)
 
@@ -175,7 +178,7 @@ function Header(props) {
                   </Link>
                 </li>
               </ul>
-              <i className="bi bi-list mobile-nav-toggle" />
+
             </nav>
             <Link to={"/Appoinment "} className="appointment-btn scrollto">
               <span className="d-none d-md-inline">Make an</span>
@@ -185,18 +188,60 @@ function Header(props) {
             {auth.user ? (
               <Link
                 to={"/Auth"}
-                className="appointment-btn scrollto"
+                className="auth-btn"
                 onClick={handleLogout}
               >
-                <span className="d-none d-md-inline">Logout</span>
+                <span className="">Logout</span>
               </Link>
             ) : (
-              <Link to={"/Auth"} className="appointment-btn scrollto">
+              <Link to={"/Auth"} className="auth-btn">
                 {" "}
-                <span className="d-none d-md-inline">Login/ Signup</span>
+                <span className="">Login/ Signup</span>
               </Link>
             )}
+            <Dropdown >
+              <MenuButton className='menubar'><MenuIcon /></MenuButton>
+              <Menu>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/"}>
+                    Home
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/Departments"}>
+                    Departments
+                  </Link></MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/Medicine"}>
+                    Medicine
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/Doctors"}>
+                    Doctors
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto " to={"/about"}>
+                    About
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/Contect1"}>
+                    Contact
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} to={"/Appoinment "} className="nav-link scrollto" >
+                    <span  className="">Make an </span>
+                    Appointment
+                  </Link>
+                </MenuItem>
+
+              </Menu>
+            </Dropdown>
           </div>
+
         </header>
       </div>
     </div>
