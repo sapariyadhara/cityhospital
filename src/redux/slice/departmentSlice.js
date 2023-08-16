@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { addDepartmentData, deleteDepartmentData, getDepartmentData, updateDepartmentData } from "../../common/apis/department.api"
+import { setAlert } from "./alertSlice"
 
 
 //redux toolkit
@@ -22,6 +23,7 @@ export const fetchDepartments = createAsyncThunk(
 
 export const addDepartments = createAsyncThunk(
     'department/add',
+    
     async (data) => {
         let response = await addDepartmentData(data)
         return response.data

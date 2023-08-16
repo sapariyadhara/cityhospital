@@ -10,6 +10,7 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import {  IconButton } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import { addDepartments, deleteDepartments, fetchDepartments, updatedepartments } from '../../../redux/slice/departmentSlice';
+import { setAlert } from '../../../redux/slice/alertSlice';
 
 function Department(props) {
 
@@ -36,9 +37,11 @@ function Department(props) {
     if (update) {
       // dispatch(updateData(data))
       dispatch(updatedepartments(data))
+      dispatch(setAlert({ text: "Update Data", color: 'success' }))
     } else {
       // dispatch(addData(data))
       dispatch(addDepartments(data))
+      dispatch(setAlert({ text: "Add Data", color: 'success' }))
     }
 
     setUpdate(null)
@@ -48,6 +51,7 @@ function Department(props) {
   const handleDelete = (id) => {
     // dispatch(deleteData(id))
     dispatch(deleteDepartments(id))
+    dispatch(setAlert({ text: "Delete Data", color: 'error' }))
   }
 
   const handleUpdate = (data) => {
