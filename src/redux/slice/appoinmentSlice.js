@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs , deleteDoc , doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 
@@ -10,7 +10,7 @@ const initState = {
 }
 
 export const aptAdd = createAsyncThunk(
-    'appoinment/fetch',
+    'appoinment/add',
 
     async (data) => {
         console.log('data', data)
@@ -28,18 +28,39 @@ export const aptAdd = createAsyncThunk(
     }
 )
 
-export const aptgetData = createAsyncThunk(
-    '/appoinment/getall',
+export const getAptData = createAsyncThunk(
+    'appoinment/get',
     async () => {
-        // console.log('getdata', data)
-        const querySnapshot = await getDocs(collection(db, "appoinment"));
-        console.log('querySnapshot',querySnapshot);
-        querySnapshot.forEach((doc) => {
-            console.log('querySnapshot',doc.data());
-            
-            return doc.data;
-        });
+        try {
+            const querySnapshot = await getDocs(collection(db, "appoinment"));
+            let data = [];
+            querySnapshot.forEach((doc) => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
+                })      
+            });
+            return data;
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
     }
+
+)
+
+export const deleteAptData = createAsyncThunk(
+    'appoinment/delete',
+    async (id) => {
+        try {
+            await deleteDoc(doc(db, "appoinment", id));
+            return id
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+    }
+
 )
 
 export const appoinmentSlice = createSlice({
@@ -49,14 +70,20 @@ export const appoinmentSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(aptAdd.fulfilled, (state, action) => {
-                console.log('in add1',action.payload);
+                console.log('in add1', state, action.payload);
+                state.apt = state.apt.concat(action.payload)
+                state.isloading = false
+                state.error = null
+            })
+            .addCase(getAptData.fulfilled, (state, action) => {
+                console.log('in get', action);
                 state.apt = action.payload
                 state.isloading = false
                 state.error = null
             })
-            .addCase(aptgetData.fulfilled, (state , action) => {
-                console.log('in add2',action);
-                state.apt = []
+            .addCase(deleteAptData.fulfilled, (state, action) => {
+                console.log('in get', action);
+                state.apt = state.apt.filter((v) => v.id !== action.payload)
                 state.isloading = false
                 state.error = null
             })
