@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../components/Ui/Button/Button";
 import { H2, P } from "../components/Ui/Hadding/Haddinds.style";
 import { ThemeContext } from "../../Context/ThemeContext";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { aptAdd, aptgetData, deleteAptData, getAptData } from "../../redux/slice/appoinmentSlice";
+import { aptAdd, aptgetData, deleteAptData, getAptData, upDateAptData } from "../../redux/slice/appoinmentSlice";
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -13,17 +13,19 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import PhoneIcon from '@mui/icons-material/Phone';
+import { Margin } from "@mui/icons-material";
 
 
 function Appoinment(props) {
+  //tabs
+  const [value, setValue] = React.useState('1');
+  console.log(value);
+  const [update, setUpdate] = useState(false);
 
   const theme = useContext(ThemeContext)
   const dispatch = useDispatch()
   const apt = useSelector(state => state.apt)
   console.log(apt);
-
-  //tabs
-  const [value, setValue] = React.useState('1');
 
   useEffect(() => {
     dispatch(getAptData())
@@ -40,8 +42,10 @@ function Appoinment(props) {
 
   const handleUpdete = (data) => {
     console.log(data);
+    setUpdate(true)
+    setValue('1');
     setValues(data);
-    
+
   }
 
   const appointmentschema = Yup.object({
@@ -74,12 +78,19 @@ function Appoinment(props) {
     enableReinitialize: true,
     onSubmit: (values, action) => {
       console.log(values);
-      dispatch(aptAdd(values))
-      setValue(2)
+      setValue('2')
+      if (update) {
+        dispatch(upDateAptData(values))
+      } else {
+        dispatch(aptAdd(values))
+      }
+
+
       action.resetForm()
+      setUpdate(false)
     }
   })
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit , setValues} = formik
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues } = formik
   return (
     <div>
       <main>
@@ -224,39 +235,73 @@ function Appoinment(props) {
                 </form>
               </div></TabPanel>
               <TabPanel value="2">
-              <>
-              <h2> List Of Appoinment</h2>
-              <div className="row">
-              {
-              apt.apt.map((v , i) => {
-                return(
-                 
-                  <div className="col-lg-6">
-                 
-                <div className={` member d-flex align-items-start`}>
-                 
-                  <div className="member-info">
-                    <h4>{v.name}</h4>
-                    <span>{v.department}</span>
-                    <p>
-                      {v.email}
-                    </p>
-                   <p>id {v.id}</p>
-                  </div>
-                </div>
-                <div>
-                  <button onClick={()=>handleDelete(v.id)} >Delete</button><br/>
-                  <button onClick={()=>handleUpdete(v)} >edit</button><br/>
-                </div>
-              </div>
-             
-                )
-              })
-            } 
-            </div>
-              </>
+                <>
+                  <h2> List Of Appoinment</h2>
+                  <div className="row">
+                    {
+                      apt.apt.map((v, i) => {
+                        return (
+                          <>
+                            {/* <div className="col-lg-6">
 
-                </TabPanel>
+                              <div className={` member d-flex align-items-start`}>
+
+                                <div className="member-info">
+                                  <h4>{v.name}</h4>
+                                  <span>{v.department}</span>
+                                  <p>
+                                    {v.email}
+                                  </p>
+                                  <p>id {v.id}</p>
+                                </div>
+                              </div>
+                              <div>
+                                <button onClick={() => handleDelete(v.id)} >Delete</button><br />
+                                <button onClick={() => handleUpdete(v)} >edit</button><br />
+                              </div>
+                            </div> */}
+                            <div style={{display : 'flex' , border :'2px solid black', margin : '10px'}} className="col-lg-6">
+                            <div >
+                              {/* Image */}
+                              <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                              <p>Name: {v.name}</p>
+                                <p>Id: {v.id}</p>
+                                <img style={{width : '90px' , height : '90px'}} src="https://www.susansunfilteredwit.com/wp-content/uploads/2020/12/shutterstock_1409823341.png" className="w-100" alt="Blue Jeans Jacket" />
+                                <a href="#!">
+                                  <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }} />
+                                </a>
+                              </div>
+                              {/* Image */}
+                            </div>
+                            <div>
+                              {/* Data */}
+                              
+                              <p>Phone No : {v.phone}</p>
+                              <p>Appoinment Date :{v.date} </p>
+                              <p>{v.department}</p>
+                              <p>{v.message}</p>
+                              <p> </p>
+                              <button onClick={() => handleDelete(v.id)} type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" >
+                                Delete
+                              </button>
+                              <button onClick={() => handleUpdete(v)} type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" >
+                               Update
+                              </button>
+                              <label id="switch" className="switch">
+                                <input type="checkbox" />
+                              </label>
+
+                            </div>
+
+                            </div>
+                          </>
+                        )
+                      })
+                    }
+                  </div>
+                </>
+
+              </TabPanel>
             </TabContext>
           </Box>
 

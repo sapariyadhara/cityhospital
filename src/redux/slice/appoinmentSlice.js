@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, addDoc, getDocs , deleteDoc , doc } from "firebase/firestore";
+import { collection, addDoc, getDocs , deleteDoc , doc , updateDoc} from "firebase/firestore";
 import { db } from "../../firebase";
 
 
@@ -49,6 +49,23 @@ export const getAptData = createAsyncThunk(
 
 )
 
+export const upDateAptData = createAsyncThunk(
+    'appoinment/update',
+    async (data) => {
+        try {
+            const washingtonRef = doc(db, "appoinment", data);
+            await updateDoc(washingtonRef, {
+                ...data
+              });
+              return data
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+    }
+
+)
+
 export const deleteAptData = createAsyncThunk(
     'appoinment/delete',
     async (id) => {
@@ -84,6 +101,19 @@ export const appoinmentSlice = createSlice({
             .addCase(deleteAptData.fulfilled, (state, action) => {
                 console.log('in get', action);
                 state.apt = state.apt.filter((v) => v.id !== action.payload)
+                state.isloading = false
+                state.error = null
+            })
+            .addCase(upDateAptData.fulfilled, (state, action) => {
+                console.log('in get', action);
+                let uData = state.apt.map((v) => {
+                    if(v.id === action.payload.id){
+                        return action.payload
+                    } else {
+                        return v;
+                    }
+                })
+                state.apt = uData
                 state.isloading = false
                 state.error = null
             })
