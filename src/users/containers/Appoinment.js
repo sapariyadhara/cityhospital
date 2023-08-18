@@ -64,6 +64,7 @@ function Appoinment(props) {
           return true;
         }
       }),
+      precfile : Yup.mixed().required("Please Enter Priscription")
   })
   const formik = useFormik({
     initialValues: {
@@ -72,7 +73,8 @@ function Appoinment(props) {
       phone: '',
       date: '',
       message: '',
-      department: ''
+      department: '',
+      precfile : ''
     },
     validationSchema: appointmentschema,
     enableReinitialize: true,
@@ -90,7 +92,7 @@ function Appoinment(props) {
       setUpdate(false)
     }
   })
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues } = formik
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues , setFieldValue} = formik
   return (
     <div>
       <main>
@@ -207,6 +209,17 @@ function Appoinment(props) {
                       <span style={{ color: 'red' }}>{errors.department && touched.department ? errors.department : null}</span>
                     </div>
                   </div>
+                  <div className="col-md-4 form-group mt-3">
+                      <input
+                        type="file"
+                        name="precfile"
+                        className="form-control"
+                        onBlur={handleBlur}
+                        onChange={(event) => setFieldValue("precfile" ,event.target.files[0])}
+                      />
+                      <span style={{ color: 'red' }}>{errors.precfile && touched.precfile ? errors.precfile : null}</span>
+                      <div className="validate" />
+                    </div>
                   <div className="form-group mt-3">
                     <textarea
                       className="form-control"
@@ -242,39 +255,22 @@ function Appoinment(props) {
                       apt.apt.map((v, i) => {
                         return (
                           <>
-                            {/* <div className="col-lg-6">
-
-                              <div className={` member d-flex align-items-start`}>
-
-                                <div className="member-info">
-                                  <h4>{v.name}</h4>
-                                  <span>{v.department}</span>
-                                  <p>
-                                    {v.email}
-                                  </p>
-                                  <p>id {v.id}</p>
-                                </div>
-                              </div>
-                              <div>
-                                <button onClick={() => handleDelete(v.id)} >Delete</button><br />
-                                <button onClick={() => handleUpdete(v)} >edit</button><br />
-                              </div>
-                            </div> */}
-                            <div style={{display : 'flex' , border :'2px solid black', margin : '10px'}} className="col-lg-6">
-                            <div >
-                              {/* Image */}
+                           
+                            <div style={{display : 'flex' , border :'2px solid black', margin : '10px'}} className="col-lg-5">
+                            <div style={{marginRight : '10px'}}>
+                           
                               <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
                               <p>Name: {v.name}</p>
                                 <p>Id: {v.id}</p>
-                                <img style={{width : '90px' , height : '90px'}} src="https://www.susansunfilteredwit.com/wp-content/uploads/2020/12/shutterstock_1409823341.png" className="w-100" alt="Blue Jeans Jacket" />
+                                <img style={{width : '90px' , height : '90px'}} src={v.precfile} className="w-100" alt="Blue Jeans Jacket" />
                                 <a href="#!">
                                   <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }} />
                                 </a>
                               </div>
-                              {/* Image */}
+                        
                             </div>
-                            <div>
-                              {/* Data */}
+                            <div style={{marginRight : '10px '}}>
+                            
                               
                               <p>Phone No : {v.phone}</p>
                               <p>Appoinment Date :{v.date} </p>

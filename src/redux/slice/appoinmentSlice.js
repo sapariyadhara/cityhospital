@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, addDoc, getDocs , deleteDoc , doc , updateDoc} from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 
 const initState = {
@@ -11,17 +12,30 @@ const initState = {
 
 export const aptAdd = createAsyncThunk(
     'appoinment/add',
-
+  
     async (data) => {
         console.log('data', data)
+        let idata = {data}
         try {
-            const docRef = await addDoc(collection(db, "appoinment"), data)
-            return {
-                id: docRef.id,
-                ...data,
-
-            }
-            // console.log("Document written with ID: ", docRef.id);
+            const storage = getStorage();
+            const storageRef = ref(storage, 'prescription/' + data.precfile.name);
+            await uploadBytes(storageRef, data.precfile).then(async (snapshot) => {
+                console.log('Uploaded a blob or file!');
+                await getDownloadURL(snapshot.ref)
+                    .then(async (url) => {
+                        console.log(url);
+                        idata = { ...data, precfile: url }
+                        const docRef = await addDoc(collection(db, "appoinment"),idata )
+                        console.log(docRef);
+                        idata = {
+                            id: docRef.id,
+                            ...data,
+                            precfile: url
+                        }
+                    })
+            });
+         return idata ;
+        //  console.log(idata);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -38,7 +52,7 @@ export const getAptData = createAsyncThunk(
                 data.push({
                     id: doc.id,
                     ...doc.data()
-                })      
+                })
             });
             return data;
         } catch (e) {
@@ -56,8 +70,8 @@ export const upDateAptData = createAsyncThunk(
             const washingtonRef = doc(db, "appoinment", data);
             await updateDoc(washingtonRef, {
                 ...data
-              });
-              return data
+            });
+            return data
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -107,7 +121,7 @@ export const appoinmentSlice = createSlice({
             .addCase(upDateAptData.fulfilled, (state, action) => {
                 console.log('in get', action);
                 let uData = state.apt.map((v) => {
-                    if(v.id === action.payload.id){
+                    if (v.id === action.payload.id) {
                         return action.payload
                     } else {
                         return v;
