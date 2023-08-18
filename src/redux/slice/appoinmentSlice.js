@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "../../firebase";
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 
 const initState = {
@@ -15,10 +15,11 @@ export const aptAdd = createAsyncThunk(
   
     async (data) => {
         console.log('data', data)
-        let idata = {data}
+       
         try {
             const storage = getStorage();
-            const storageRef = ref(storage, 'prescription/' + data.precfile.name);
+            const storageRef = ref(storage, 'prescription/' + data.precfile.name[0]);
+            let idata = {data}
             await uploadBytes(storageRef, data.precfile).then(async (snapshot) => {
                 console.log('Uploaded a blob or file!');
                 await getDownloadURL(snapshot.ref)
@@ -32,6 +33,7 @@ export const aptAdd = createAsyncThunk(
                             ...data,
                             precfile: url
                         }
+                        console.log(idata);
                     })
             });
          return idata ;
@@ -82,14 +84,20 @@ export const upDateAptData = createAsyncThunk(
 
 export const deleteAptData = createAsyncThunk(
     'appoinment/delete',
-    async (id) => {
-        try {
-            await deleteDoc(doc(db, "appoinment", id));
-            return id
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-
+    async ( data) => {
+        console.log(data);
+        // console.log( 'prescription/' + data.precfile.name[0]);
+        // try {
+        //     const desertRef = ref(storage, 'prescription/' + data.precfile.name[0]);
+        //     deleteObject(desertRef).then(async() => {
+        //         // File deleted successfully
+        //         await deleteDoc(doc(db, "appoinment", data.id));
+        //     })
+            
+        //     return data.id
+        // } catch (e) {
+        //     console.error("Error adding document: ", e);
+        // }
     }
 
 )

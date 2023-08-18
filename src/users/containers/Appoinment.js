@@ -35,9 +35,9 @@ function Appoinment(props) {
     setValue(newValue);
   };
 
-  const handleDelete = (id) => {
-    console.log(id);
-    dispatch(deleteAptData(id))
+  const handleDelete = (data) => {
+    console.log(data);
+    dispatch(deleteAptData( data))
   }
 
   const handleUpdete = (data) => {
@@ -277,7 +277,7 @@ function Appoinment(props) {
                               <p>{v.department}</p>
                               <p>{v.message}</p>
                               <p> </p>
-                              <button onClick={() => handleDelete(v.id)} type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" >
+                              <button onClick={() => handleDelete(v)} type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" >
                                 Delete
                               </button>
                               <button onClick={() => handleUpdete(v)} type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" >
