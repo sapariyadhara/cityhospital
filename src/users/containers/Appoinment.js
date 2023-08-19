@@ -218,6 +218,11 @@ function Appoinment(props) {
                         onChange={(event) => setFieldValue("precfile" ,event.target.files[0])}
                       />
                       <span style={{ color: 'red' }}>{errors.precfile && touched.precfile ? errors.precfile : null}</span>
+                      {
+                        values.precfile === '' ? '' :  
+                         <img src={typeof values.precfile === 'string' ? values.precfile : URL.createObjectURL(values.precfile) } style={{width : '50px' , height : '50px'}}/>
+
+                      }
                       <div className="validate" />
                     </div>
                   <div className="form-group mt-3">

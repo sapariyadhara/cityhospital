@@ -12,32 +12,33 @@ const initState = {
 
 export const aptAdd = createAsyncThunk(
     'appoinment/add',
-  
+
     async (data) => {
         console.log('data', data)
-       
+        let idata = { ...data }
         try {
             const storage = getStorage();
-            const storageRef = ref(storage, 'prescription/' + data.precfile.name[0]);
-            let idata = {data}
+            let rNo = Math.floor(Math.random() * 100000)
+            const storageRef = ref(storage, 'prescription/' + rNo + "_" + data.precfile.name);
+
             await uploadBytes(storageRef, data.precfile).then(async (snapshot) => {
                 console.log('Uploaded a blob or file!');
                 await getDownloadURL(snapshot.ref)
                     .then(async (url) => {
                         console.log(url);
-                        idata = { ...data, precfile: url }
-                        const docRef = await addDoc(collection(db, "appoinment"),idata )
+                        idata = { ...data, precfile: url, precName: rNo + "_" + data.precfile.name }
+                        const docRef = await addDoc(collection(db, "appoinment"), idata)
                         console.log(docRef);
                         idata = {
                             id: docRef.id,
                             ...data,
-                            precfile: url
+                            precfile: url,
+                            precName: rNo + "_" + data.precfile.name
                         }
                         console.log(idata);
                     })
             });
-         return idata ;
-        //  console.log(idata);
+            return idata;
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -68,36 +69,78 @@ export const getAptData = createAsyncThunk(
 export const upDateAptData = createAsyncThunk(
     'appoinment/update',
     async (data) => {
+        let idata = { ...data }
         try {
-            const washingtonRef = doc(db, "appoinment", data);
-            await updateDoc(washingtonRef, {
-                ...data
-            });
-            return data
+            if (typeof data.precfile === 'string') {
+                console.log("image not change");
+                const aptRef = doc(db, "appoinment", data);
+                await updateDoc(aptRef, data );
+                return data
+            } else {
+              
+                console.log("image change");
+                const aptRef = ref(storage, 'prescription/' + data.precName);
+                await deleteObject(aptRef).then(async () => {
+                    await deleteDoc(doc(db, "appoinment", data.id));
+                })
+                console.log("delete img");
+                const storage = getStorage();
+                let rNo = Math.floor(Math.random() * 100000)
+                const storageRef = ref(storage, 'prescription/' + rNo + "_" + data.precfile.name);
+
+                await uploadBytes(storageRef, data.precfile).then(async (snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                    await getDownloadURL(snapshot.ref)
+                        .then(async (url) => {
+                            console.log(url);
+                            idata = { ...data, precfile: url, precName: rNo + "_" + data.precfile.name }
+                            const docRef = await updateDoc(collection(db, "appoinment"), idata)
+                            console.log(docRef);
+                            idata = {
+                                id: docRef.id,
+                                ...data,
+                                precfile: url,
+                                precName: rNo + "_" + data.precfile.name
+                            }
+                            console.log(idata);
+                        })
+                });
+                console.log("update img");
+               
+                //old img delete
+                //new img
+                //update new img and data
+            }
+            // const aptRef = doc(db, "appoinment", data);
+            // await updateDoc(aptRef, {
+            //     ...data
+            // });
+            // return data
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-
+        return idata;
     }
 
 )
 
 export const deleteAptData = createAsyncThunk(
     'appoinment/delete',
-    async ( data) => {
+    async (data) => {
         console.log(data);
-        // console.log( 'prescription/' + data.precfile.name[0]);
-        // try {
-        //     const desertRef = ref(storage, 'prescription/' + data.precfile.name[0]);
-        //     deleteObject(desertRef).then(async() => {
-        //         // File deleted successfully
-        //         await deleteDoc(doc(db, "appoinment", data.id));
-        //     })
-            
-        //     return data.id
-        // } catch (e) {
-        //     console.error("Error adding document: ", e);
-        // }
+
+        try {
+            const aptRef = ref(storage, 'prescription/' + data.precName);
+            deleteObject(aptRef).then(async () => {
+                await deleteDoc(doc(db, "appoinment", data.id));
+            })
+
+
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+        return data.id
     }
 
 )
