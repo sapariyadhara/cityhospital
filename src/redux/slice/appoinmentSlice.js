@@ -101,7 +101,7 @@ export const upDateAptData = createAsyncThunk(
                             })
                     });
                 })
-                console.log("delete img");
+                // console.log("delete img");
                
                 return idata;
                 console.log("update img");
