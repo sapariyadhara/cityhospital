@@ -177,6 +177,11 @@ function Header(props) {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link className="nav-link scrollto" to={"/CallbackFun"}>
+                  CallbackFun
+                  </Link>
+                </li>
               </ul>
 
             </nav>
@@ -229,6 +234,11 @@ function Header(props) {
                 <MenuItem>
                   <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/Contect1"}>
                     Contact
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link style={{ color: '#444' }} className="nav-link scrollto" to={"/CallbackFun"}>
+                    CallbackFun
                   </Link>
                 </MenuItem>
                 <MenuItem>
