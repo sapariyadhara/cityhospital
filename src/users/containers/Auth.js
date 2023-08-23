@@ -25,9 +25,9 @@ function Auth(props) {
 
 
 
-  const continueWithGoogle = () => {
-    dispatch(signinWithGoogle())
-  }
+  // const continueWithGoogle = () => {
+  //   dispatch(signinWithGoogle())
+  // }
 
   const handleLogin = (values) => {
     dispatch(loginRequest({
@@ -279,7 +279,7 @@ function Auth(props) {
                 </form>
               </div>
 
-
+ 
               :
               <form
                 method="post"
@@ -361,7 +361,7 @@ function Auth(props) {
                   )}
                 </div>
 
-                <div style={{ marginTop: '20px' }} className="text-center">
+                {/* <div style={{ marginTop: '20px' }} className="text-center">
                   {authtype === "login" ? (
                     <ButtonBase
                       onClick={() => continueWithGoogle()}
@@ -387,7 +387,7 @@ function Auth(props) {
                   ) : (
                     null
                   )}
-                </div>
+                </div> */}
 
                 {authtype === "login" ? (
                   <span>

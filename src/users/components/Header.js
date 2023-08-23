@@ -182,6 +182,11 @@ function Header(props) {
                   CallbackFun
                   </Link>
                 </li>
+                <li>
+                  <Link className="nav-link scrollto" to={"/useRef"}>
+                  UseRef Example 
+                  </Link>
+                </li>
               </ul>
 
             </nav>
