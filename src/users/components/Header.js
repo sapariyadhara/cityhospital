@@ -177,16 +177,6 @@ function Header(props) {
                     Contact
                   </Link>
                 </li>
-                <li>
-                  <Link className="nav-link scrollto" to={"/CallbackFun"}>
-                  CallbackFun
-                  </Link>
-                </li>
-                <li>
-                  <Link className="nav-link scrollto" to={"/useRef"}>
-                  UseRef Example 
-                  </Link>
-                </li>
               </ul>
 
             </nav>

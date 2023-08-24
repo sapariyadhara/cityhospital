@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { H2, P } from "../../components/Ui/Hadding/Haddinds.style";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "reactstrap";
 import { decCartQty, deleteToCart, incCartQty } from "../../../redux/slice/cartSlice";
+import { ThemeContext } from "../../../Context/ThemeContext";
+
 // import {
 //   decCartQty,
 //   deleteToCart,
@@ -13,6 +15,7 @@ function Cart(props) {
   let mediData = useSelector((state) => state.Medicine);
   let cartData = useSelector((state) => state.cart);
   let dispatch = useDispatch();
+  const theme = useContext(ThemeContext)
 
   console.log(mediData, cartData);
 
@@ -43,7 +46,7 @@ function Cart(props) {
   };
   return (
     <>
-      <section id="cart" className="cart">
+      <section id="cart" className={`cart22 ${theme.theme}`}>
         <div className="container">
           <div className="section-title">
             <H2>Cart</H2>

@@ -80,7 +80,7 @@ function Departments(props) {
                             </div>
                             <div className="col-lg-4 text-center order-1 order-lg-2">
                               <img
-                                src="../assets/img/departments-3.jpg"
+                                src={`../assets/img/departments-${c.id}.jpg`}
                                 alt
                                 className="img-fluid"
                               />

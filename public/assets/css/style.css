@@ -2019,12 +2019,15 @@ input:checked+.slider:before {
 }
 
 .pDoctor .member-info1 .social a{
-    font-size: 24px;
-    width: 30px;
-    height: 30px;
-    display: initial;
+  font-size: 24px;
+    width: 35px;
+    text-align: center;
+    height: 35px;
+    display: inline-block;
     padding: 2px;
-    border-radius: 2px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: #a0bcd5;
 }
 
 .pDoctor .member-info1 .social a:hover{
@@ -2092,4 +2095,15 @@ header .menubar a{
   }
  
 }
+
+.nav-link:focus{
+  color : #ed3c0d
+}
+.cart22 {
+  color: #444 !important;
+} 
+.cart22 span {
+  color: #444 !important;
+}
+
 

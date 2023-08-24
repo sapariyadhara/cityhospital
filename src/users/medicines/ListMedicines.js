@@ -1,7 +1,5 @@
 import React from "react";
 import CoustomCard from "../components/Ui/CoustomCard";
-import { Link } from "react-router-dom";
-
 
 function ListMedicines({ mdata, handleCart1, handleAddToFav }) {
   

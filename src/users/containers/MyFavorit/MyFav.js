@@ -1,10 +1,11 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import { H2 } from '../../components/Ui/Hadding/Haddinds.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonToolbar } from 'reactstrap';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { removeToFav } from '../../../redux/action/myfav.action';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { ThemeContext } from '../../../Context/ThemeContext';
 
 
 function MyFav(props) {
@@ -12,6 +13,7 @@ function MyFav(props) {
     const mediData = useSelector((state) => state.Medicine)
     const favData = useSelector((state) => state.myfav )
     console.log(mediData , favData);
+    const theme = useContext(ThemeContext)
 
     let newFavData = favData.fav.map((v) => {
         let fData =     mediData.medicineD.find((m) => m.id === v.pid)
@@ -30,7 +32,7 @@ function MyFav(props) {
 
     return (
         <>
-            <section id="cart" className="cart">
+            <section id="cart" className={`cart22 ${theme.theme}`}>
                 <div className="container">
                     <div className="section-title">
                         <H2>Favorites</H2>

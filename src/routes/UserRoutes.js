@@ -16,8 +16,6 @@ import ProtectedRoute from './ProtectedRoute';
 import Cart from '../users/containers/Cart/Cart';
 import MyFav from '../users/containers/MyFavorit/MyFav';
 import MedicinesDetails from '../users/medicines/MedicinesDetails';
-import CallbackFun from '../users/containers/Example/CallbackFun';
-import UseRefExample from '../users/containers/Example/UseRefExample';
 
 function UserRoutes(props) {
  
@@ -40,8 +38,6 @@ function UserRoutes(props) {
                 <Route path='/Auth' element={<Auth />} />
                 <Route path='/Cart' element={<Cart />} />
                 <Route path='/MyFav' element={<MyFav />} />
-                <Route path='/CallbackFun' element={<CallbackFun />} />
-                <Route path='/useRef' element={<UseRefExample />} />
             </Routes>
             <Footer />
         </>
