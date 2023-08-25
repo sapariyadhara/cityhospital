@@ -11,6 +11,7 @@ import { Col, Row } from "reactstrap";
 import { fetchDepartments } from '../../redux/slice/departmentSlice';
 import { Link, useParams } from "react-router-dom";
 import { ThemeContext } from "../../Context/ThemeContext";
+import { getdptData } from "../../redux/slice/departmentfirebSlice";
 
 
 
@@ -18,13 +19,14 @@ function Departments(props) {
   const theme = useContext(ThemeContext)
 
   const dispatch = useDispatch()
-  const dipartData = useSelector(state => state.department)
+  const dipartData = useSelector(state => state.departmentf)
   console.log(dipartData, 'dipartData');
 
 
   useEffect(() => {
     // dispatch(getData());
-    dispatch(fetchDepartments())
+    // dispatch(fetchDepartments())
+    dispatch(getdptData())
   }, []);
 
 
@@ -40,7 +42,7 @@ function Departments(props) {
               <div className="col-lg-3">
                 <ul className="nav nav-tabs flex-column">
                   {
-                    dipartData.depart.map((c, i) => {
+                    dipartData.department.map((c, i) => {
                       return (
                         <>
 
@@ -68,7 +70,7 @@ function Departments(props) {
               <div className="col-lg-9 mt-4 mt-lg-0">
                 <div className="tab-content">
                   {
-                    dipartData.depart.map((c, i) => {
+                    dipartData.department.map((c, i) => {
                       return (
                         <div className={i === 0 ? 'tab-pane active show' : 'tab-pane'} id={`tab-${i + 1}`}>
                           <div className="row">
@@ -80,7 +82,7 @@ function Departments(props) {
                             </div>
                             <div className="col-lg-4 text-center order-1 order-lg-2">
                               <img
-                                src={`../assets/img/departments-${c.id}.jpg`}
+                                src="../assets/img/departments-3.jpg"
                                 alt
                                 className="img-fluid"
                               />
