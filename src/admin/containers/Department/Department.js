@@ -1,23 +1,25 @@
 import React from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import DepartmentForm from './DepartmentForm';
 import { DataGrid } from '@mui/x-data-grid';
 // import { getData } from '../../../redux/action/department.action';
 import { useDispatch, useSelector } from 'react-redux';
-import { addData, deleteData, getData, updateData } from '../../../redux/action/department.action';
+// import { addData, deleteData, getData, updateData } from '../../../redux/action/department.action';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import {  IconButton } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
-import { addDepartments, deleteDepartments, fetchDepartments, updatedepartments } from '../../../redux/slice/departmentSlice';
+// import CircularProgress from '@mui/material/CircularProgress';
+// import { addDepartments, deleteDepartments, fetchDepartments, updatedepartments } from '../../../redux/slice/departmentSlice';
 import { setAlert } from '../../../redux/slice/alertSlice';
+import { adddptData, deletedptData, getdptData, updatedtpData } from '../../../redux/slice/departmentfirebSlice';
 
 function Department(props) {
-
+  const dispatch = useDispatch()
+  const departD = useSelector(state => state.departmentf)
   const [update, setUpdate] = React.useState(null);
 
-  const dispatch = useDispatch()
-  const departD = useSelector(state => state.department)
+
+  
 
 
   console.log(departD, 'department');
@@ -25,7 +27,8 @@ function Department(props) {
   React.useEffect(() => {
 
     // dispatch(getData())
-    dispatch(fetchDepartments())
+    // dispatch(fetchDepartments())
+    dispatch(getdptData())
 
 
   }, [])
@@ -33,15 +36,16 @@ function Department(props) {
   const handleSubmit = (data) => {
     console.log(data)
 
-
     if (update) {
       // dispatch(updateData(data))
-      dispatch(updatedepartments(data))
-      dispatch(setAlert({ text: "Update Data", color: 'success' }))
+      // dispatch(updatedepartments(data))
+      // dispatch(setAlert({ text: "Update Data", color: 'success' }))
+      dispatch(updatedtpData(data))
     } else {
       // dispatch(addData(data))
-      dispatch(addDepartments(data))
-      dispatch(setAlert({ text: "Add Data", color: 'success' }))
+      // dispatch(addDepartments(data))
+      // dispatch(setAlert({ text: "Add Data", color: 'success' }))
+      dispatch(adddptData(data))
     }
 
     setUpdate(null)
@@ -50,18 +54,18 @@ function Department(props) {
 
   const handleDelete = (id) => {
     // dispatch(deleteData(id))
-    dispatch(deleteDepartments(id))
-    dispatch(setAlert({ text: "Delete Data", color: 'error' }))
+    // dispatch(deleteDepartments(id))
+    // dispatch(setAlert({ text: "Delete Data", color: 'error' }))
+    dispatch(deletedptData(id))
   }
 
   const handleUpdate = (data) => {
-    // dispatch(updateData(data))
     setUpdate(data)
   }
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Name', width: 130 },
+    { field: 'name', headerName: 'Name', width: 170 },
     { field: 'desc', headerName: 'Description', width: 130 },
     {
       field: "action",
@@ -89,10 +93,10 @@ function Department(props) {
   return (
     <>
  <>
-           {/* <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
+           <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={departD.depart}
+          rows={departD.department}
           columns={columns}
           initialState={{
             pagination: {
@@ -102,11 +106,11 @@ function Department(props) {
           pageSizeOptions={[5, 10]}
           checkboxSelection
         />
-      </div> */}
+      </div>
 
           </>
 
-      {
+      {/* {
         departD.isloading ? <Box sx={{ display: 'flex', width: '200px ' }}>
           <CircularProgress />
         </Box>
@@ -129,7 +133,7 @@ function Department(props) {
       </div>
 
           </>
-      } 
+      }  */}
 
      
     </>

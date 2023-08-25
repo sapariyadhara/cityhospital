@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
 import { doctorReducer } from "./doctor.reducer";
 import { medicineReducer } from "./medicine.reducer";
-// import { cartReducer } from "./cart.reducer";
 import { favReducer } from "./myfav.reducer";
 import counterReducer from "../slice/counterSlice";
 import counter1Reducer from "../slice/countter1Slice";
 import cartReducer from "../slice/cartSlice";
-import departmentReducer from "../slice/departmentSlice";
+// import departmentReducer from "../slice/departmentSlice";
 import alertReducer from "../slice/alertSlice";
 import { authReducer } from "./auth.reducer";
 import appoinmentReducer from "../slice/appoinmentSlice";
-// import { departmentReducer } from "./department.reducer";
+import  departmentfirebaseReducer  from "../slice/departmentfirebSlice";
+
 
 
 export const rootReducer = combineReducers({
@@ -21,7 +21,8 @@ export const rootReducer = combineReducers({
     cart : cartReducer,
     myfav : favReducer,
     counter1 : counter1Reducer,
-    department : departmentReducer,
+    // department : departmentReducer,
     auth : authReducer,
-    apt : appoinmentReducer
+    apt : appoinmentReducer,
+    departmentf : departmentfirebaseReducer
 })
