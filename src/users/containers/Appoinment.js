@@ -215,7 +215,7 @@ function Appoinment(props) {
                         name="precfile"
                         className="form-control"
                         onBlur={handleBlur}
-                        onChange={(event) => setFieldValue("precfile" ,event.target.files[0])}
+                        onChange={(event) => setFieldValue("precfile" , event.target.files[0])}
                       />
                       <span style={{ color: 'red' }}>{errors.precfile && touched.precfile ? errors.precfile : null}</span>
                       {

@@ -1,5 +1,5 @@
 import React from 'react';
-// import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import DepartmentForm from './DepartmentForm';
 import { DataGrid } from '@mui/x-data-grid';
 // import { getData } from '../../../redux/action/department.action';
@@ -8,42 +8,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import {  IconButton } from "@mui/material";
-// import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 // import { addDepartments, deleteDepartments, fetchDepartments, updatedepartments } from '../../../redux/slice/departmentSlice';
 import { setAlert } from '../../../redux/slice/alertSlice';
 import { adddptData, deletedptData, getdptData, updatedtpData } from '../../../redux/slice/departmentfirebSlice';
+
 
 function Department(props) {
   const dispatch = useDispatch()
   const departD = useSelector(state => state.departmentf)
   const [update, setUpdate] = React.useState(null);
 
-
-  
-
-
   console.log(departD, 'department');
 
   React.useEffect(() => {
-
-    // dispatch(getData())
-    // dispatch(fetchDepartments())
     dispatch(getdptData())
-
-
   }, [])
 
   const handleSubmit = (data) => {
     console.log(data)
 
     if (update) {
-      // dispatch(updateData(data))
-      // dispatch(updatedepartments(data))
       // dispatch(setAlert({ text: "Update Data", color: 'success' }))
       dispatch(updatedtpData(data))
     } else {
-      // dispatch(addData(data))
-      // dispatch(addDepartments(data))
       // dispatch(setAlert({ text: "Add Data", color: 'success' }))
       dispatch(adddptData(data))
     }
@@ -53,8 +41,6 @@ function Department(props) {
   }
 
   const handleDelete = (id) => {
-    // dispatch(deleteData(id))
-    // dispatch(deleteDepartments(id))
     // dispatch(setAlert({ text: "Delete Data", color: 'error' }))
     dispatch(deletedptData(id))
   }
@@ -64,9 +50,11 @@ function Department(props) {
   }
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Name', width: 170 },
+    { field: 'id', headerName: 'ID', width: 170 },
+    { field: 'name', headerName: 'Name', width: 200 },
+    
     { field: 'desc', headerName: 'Description', width: 130 },
+    { field: 'dpartimg', headerName: 'Department Image', width: 170 },
     {
       field: "action",
       headerName: "Actoin",
@@ -92,7 +80,31 @@ function Department(props) {
 
   return (
     <>
- <>
+ {/* <>
+           <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
+      <div style={{ height: 400, width: '100%' }}>
+        <DataGrid
+          rows={departD.department}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+        />
+      </div>
+
+          </> */}
+
+      {
+        departD.isloading ? <Box sx={{ display: 'flex', width: '200px ' }}>
+          <CircularProgress />
+        </Box>
+          :
+          departD.error ? departD.error: 
+          <>
            <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
@@ -109,31 +121,7 @@ function Department(props) {
       </div>
 
           </>
-
-      {/* {
-        departD.isloading ? <Box sx={{ display: 'flex', width: '200px ' }}>
-          <CircularProgress />
-        </Box>
-          :
-          departD.error ? departD.error: 
-          <>
-           <DepartmentForm onhandleSubmit={handleSubmit} onUpdate={update} />
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={departD.depart}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
-      </div>
-
-          </>
-      }  */}
+      } 
 
      
     </>

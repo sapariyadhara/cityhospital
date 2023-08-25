@@ -32,12 +32,14 @@ function DepartmentForm({onhandleSubmit , onUpdate}) {
     const departmentSchema = Yup.object({
         name: Yup.string().required("Please Enter Name"),
         desc: Yup.string().required("Please Enter Description"),
+        dpartimg : Yup.mixed().required("Please Upload Image")
     })
 
     const formik = useFormik({
         initialValues: {
             name: '',
-            desc: ''
+            desc: '',
+            dpartimg : ''
         },
         validationSchema: departmentSchema,
         enableReinitialize: true,
@@ -49,7 +51,7 @@ function DepartmentForm({onhandleSubmit , onUpdate}) {
         }
     })
 
-    const { errors, values, touched, handleBlur, handleChange, handleSubmit } = formik
+    const { errors, values, touched, handleBlur, handleChange, handleSubmit , setFieldValue } = formik
     return (
         <>
             <div>
@@ -92,6 +94,23 @@ function DepartmentForm({onhandleSubmit , onUpdate}) {
                                 onChange={handleChange}
                             />
                             <span style={{color : 'red'}}>{errors.desc && touched.desc ? errors.desc : null}</span>
+                            <TextField
+                                margin="dense"
+                                id="dpartimg"
+                                name='dpartimg'
+                                // label="Department Image"
+                                type="file"
+                                fullWidth
+                                variant="standard"
+                                onBlur={handleBlur}
+                                onChange={(event) => setFieldValue("dpartimg" , event.target.files[0])}
+                            />
+                            <span style={{color : 'red'}}>{errors.dpartimg && touched.dpartimg ? errors.dpartimg : null}</span>
+                            {
+                        values.dpartimg === '' ? '' :  
+                         <img src={typeof values.dpartimg === 'string' ? values.dpartimg : URL.createObjectURL(values.dpartimg) } style={{width : '50px' , height : '50px'}}/>
+
+                      }
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
                                 <Button type='submit'>Submit</Button>
