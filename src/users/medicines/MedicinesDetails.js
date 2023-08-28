@@ -55,9 +55,9 @@ function MedicinesDetails(props) {
                                             <button onClick={() => handleAddtoCart1(fData[0].id)} type="button" className="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" >
                                                 Add to Cart
                                             </button>
-                                            <label  id="switch" className="switch">
+                                            <label id="switch" className="switch">
                                                 <input type="checkbox" />
-                                                <FavoriteIcon style={{border : '1px solid #FF6337' , borderRadius : '5px' , padding : '3px' , fontSize : '31px' , marginTop : '-6px'}} id='sliderround' className="slider round" onClick={() => handleaddToFav(fData[0].id)} />
+                                                <FavoriteIcon style={{ border: '1px solid #FF6337', borderRadius: '5px', padding: '3px', fontSize: '31px', marginTop: '-6px' }} id='sliderround' className="slider round" onClick={() => handleaddToFav(fData[0].id)} />
                                             </label>
 
                                         </div>

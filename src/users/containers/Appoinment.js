@@ -95,8 +95,8 @@ function Appoinment(props) {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues , setFieldValue} = formik
   return (
     <div>
-      <main>
-        <section id="appointment" className={`container appointment ${theme.theme}`}>
+      <main className={`container33  ${theme.theme}`}>
+        <section id="appointment" className={`container`}>
           <div className="section-title">
             <H2>Make an Appointment</H2>
             <P>

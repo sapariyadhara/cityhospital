@@ -2082,6 +2082,12 @@ header .menubar a{
     display: inline-block;
 }
 
+#sliderround1{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
 @media (max-width: 991px) {
   header .menubar{
     display: block;

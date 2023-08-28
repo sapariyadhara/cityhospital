@@ -28,7 +28,7 @@ function UserRoutes(props) {
                 <Route path='/Appoinment' element={<Appoinment />} />
                 <Route path='/Contect1' element={<Contect1 />} />
                 <Route path='/Departments' element={<Departments />} />
-                <Route element={<ProtectedRoute />}>
+                <Route>
                     <Route path='/Medicine' element={<Medicines />} />
                     <Route path='/Medicine/:id' element={<MedicinesDetails />} />
                 </Route>
