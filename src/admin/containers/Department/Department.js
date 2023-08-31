@@ -40,9 +40,9 @@ function Department(props) {
 
   }
 
-  const handleDelete = (id) => {
+  const handleDelete = (data) => {
     // dispatch(setAlert({ text: "Delete Data", color: 'error' }))
-    dispatch(deletedptData(id))
+    dispatch(deletedptData(data))
   }
 
   const handleUpdate = (data) => {
@@ -62,7 +62,7 @@ function Department(props) {
         <>
           <IconButton
             aria-label="delete"
-            onClick={() => handleDelete(params.row.id)}
+            onClick={() => handleDelete(params.row)}
           >
             <DeleteIcon />
           </IconButton>

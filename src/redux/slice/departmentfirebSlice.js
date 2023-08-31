@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "../../firebase";
+import { getDownloadURL, getStorage, ref, uploadBytes, deleteObject } from "firebase/storage";
 
 const initState = {
     isloading: false,
@@ -18,22 +18,22 @@ export const adddptData = createAsyncThunk(
             const storage = getStorage();
             let rNo = Math.floor(Math.random() * 100000)
             const storageRef = ref(storage, 'department-img/' + rNo + data.dpartimg.name);
-            await uploadBytes(storageRef, data.dpartimg).then(async(snapshot) => {
+            await uploadBytes(storageRef, data.dpartimg).then(async (snapshot) => {
                 console.log('Uploaded a blob or file!');
-              await  getDownloadURL(snapshot.ref)
-                    .then( async (url) => {
-                        idata = { ...data , dpartimg : url , departName :  rNo + data.dpartimg.name}
+                await getDownloadURL(snapshot.ref)
+                    .then(async (url) => {
+                        idata = { ...data, dpartimg: url, departName: rNo + data.dpartimg.name }
                         const docRef = await addDoc(collection(db, "department"), idata)
                         idata = {
                             id: docRef.id,
                             ...data,
-                            dpartimg : url ,
-                            departName :  rNo + data.dpartimg.name
+                            dpartimg: url,
+                            departName: rNo + data.dpartimg.name
                         }
                     });
             });
-          
-          return idata  
+
+            return idata
             // console.log("Document written with ID: ", docRef.id);
         } catch (e) {
 
@@ -63,13 +63,17 @@ export const getdptData = createAsyncThunk(
 
 export const deletedptData = createAsyncThunk(
     'department/delete',
-    async (id) => {
+    async (data) => {
         try {
-            await deleteDoc(doc(db, "department", id));
-            return id
+            const dptRef = ref(storage, 'department-img/' + data.departName);
+            // Delete the file img
+            deleteObject(dptRef).then(async () => {
+                await deleteDoc(doc(db, "department", data.id));
+            })
         } catch (e) {
             console.error("Error deleteing document: ", e);
         }
+        return data.id
     }
 )
 
@@ -77,13 +81,44 @@ export const updatedtpData = createAsyncThunk(
     'department/update',
     async (data) => {
         try {
-            const washingtonRef = doc(db, "department", data.id);
+            if (typeof data.dpartimg === 'string') {
+                console.log("image not change");
+                const dptRef = doc(db, "department", data.id);
+                await updateDoc(dptRef, data);
+                return data
+            } else {
+                let idata = { ...data }
+                console.log("image change");
+                const dptRef = ref(storage, 'department-img/' + data.departName);
+                await deleteObject(dptRef).then(async () => {
+                    let rNo = Math.floor(Math.random() * 100000)
+                    const storageRef = ref(storage, 'department-img/' + rNo + "_" + data.dpartimg.name);
 
-            // Set the "capital" field of the city 'DC'
-            await updateDoc(washingtonRef, {
-                ...data
-            });
-            return data
+                    await uploadBytes(storageRef, data.dpartimg).then(async (snapshot) => {
+                        console.log('Uploaded a blob or file!');
+                        await getDownloadURL(snapshot.ref)
+                            .then(async (url) => {
+                                console.log(url);
+                                idata = { ...data, dpartimg: url, departName: rNo + "_" + data.dpartimg.name }
+                                const dptRef = doc(db, "department", data.id);
+                                await updateDoc(dptRef, idata)
+                                idata = {
+                                    ...data,
+                                    dpartimg: url,
+                                    departName: rNo + "_" + data.dpartimg.name 
+                                }
+                                console.log(idata);
+                            })
+                    });
+                })
+                // console.log("delete img");
+
+                return idata;
+
+                //old img delete
+                //new img
+                //update new img and data
+            }
         } catch (e) {
             console.error("Error deleteing document: ", e);
         }
