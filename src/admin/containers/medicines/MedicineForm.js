@@ -39,11 +39,11 @@ function MedicineForm({ onHandleSubmit, onUpdate }) {
     expiry: Yup.date()
       .min(nd, "Please Enter Future Date.")
       .required("Please Enter Expire Date"),
-      price: Yup.number()
+    price: Yup.number()
       .min(0)
       .required("Please Enter Amount")
       .typeError("Please Enter Valid Amount"),
-      desc: Yup.string()
+    desc: Yup.string()
       .test("pres", "Please Enter Max 100 Word", function (val) {
         let arr = val.split(" ");
         if (arr.length > 100) {
@@ -53,6 +53,7 @@ function MedicineForm({ onHandleSubmit, onUpdate }) {
         }
       })
       .required("Please Enter Prescription"),
+      mediImg: Yup.mixed().required("Please Upload Image")
   });
 
   const formik = useFormik({
@@ -61,6 +62,7 @@ function MedicineForm({ onHandleSubmit, onUpdate }) {
       expiry: "",
       price: "",
       desc: "",
+      mediImg : ""
     },
     validationSchema: medicineSchema,
     enableReinitialize: true,
@@ -74,7 +76,7 @@ function MedicineForm({ onHandleSubmit, onUpdate }) {
 
 
 
-  const { values, errors, touched, setValues, handleBlur, handleChange, handleSubmit } =
+  const { values, errors, touched, setValues, handleBlur, handleChange, handleSubmit , setFieldValue } =
     formik;
 
   return (
@@ -137,6 +139,22 @@ function MedicineForm({ onHandleSubmit, onUpdate }) {
               <span style={{ color: "red" }}>
                 {errors.price && touched.price ? errors.price : null}
               </span>
+              <TextField
+                margin="dense"
+                id="mediImg"
+                name='mediImg'
+                type="file"
+                fullWidth
+                variant="standard"
+                onBlur={handleBlur}
+                onChange={(event) => setFieldValue("mediImg", event.target.files[0])}
+              />
+              <span style={{ color: 'red' }}>{errors.mediImg && touched.mediImg ? errors.mediImg : null}</span>
+              {
+                values.mediImg === '' ? '' :
+                  <img src={typeof values.mediImg === 'string' ? values.mediImg : URL.createObjectURL(values.mediImg)} style={{ width: '50px', height: '50px' }} />
+
+              }
               <TextField
                 margin="dense"
                 id="pres"

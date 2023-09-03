@@ -26,6 +26,7 @@ function Departments(props) {
   useEffect(() => {
     // dispatch(getData());
     // dispatch(fetchDepartments())
+    
     dispatch(getdptData())
   }, []);
 

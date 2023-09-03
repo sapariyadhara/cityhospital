@@ -10,6 +10,7 @@ import alertReducer from "../slice/alertSlice";
 import { authReducer } from "./auth.reducer";
 import appoinmentReducer from "../slice/appoinmentSlice";
 import  departmentfirebaseReducer  from "../slice/departmentfirebSlice";
+import  medicinefirebaseReducer  from "../slice/medicineSlice";
 
 
 
@@ -24,5 +25,6 @@ export const rootReducer = combineReducers({
     // department : departmentReducer,
     auth : authReducer,
     apt : appoinmentReducer,
-    departmentf : departmentfirebaseReducer
+    departmentf : departmentfirebaseReducer,
+    medicinef : medicinefirebaseReducer
 })
