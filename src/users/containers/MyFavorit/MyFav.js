@@ -10,13 +10,13 @@ import { ThemeContext } from '../../../Context/ThemeContext';
 
 function MyFav(props) {
   const dispatch = useDispatch()
-    const mediData = useSelector((state) => state.Medicine)
+    const mediData = useSelector((state) => state.medicinef)
     const favData = useSelector((state) => state.myfav )
     console.log(mediData , favData);
     const theme = useContext(ThemeContext)
 
     let newFavData = favData.fav.map((v) => {
-        let fData =     mediData.medicineD.find((m) => m.id === v.pid)
+        let fData =     mediData.medic.find((m) => m.id === v.pid)
         let newD = {...fData , ...v}
 
         return newD

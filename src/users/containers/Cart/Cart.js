@@ -12,7 +12,7 @@ import { ThemeContext } from "../../../Context/ThemeContext";
 // } from "../../../redux/action/cart.action";
 
 function Cart(props) {
-  let mediData = useSelector((state) => state.Medicine);
+  let mediData = useSelector((state) => state.medicinef);
   let cartData = useSelector((state) => state.cart);
   let dispatch = useDispatch();
   const theme = useContext(ThemeContext)
@@ -20,7 +20,7 @@ function Cart(props) {
   console.log(mediData, cartData);
 
   let cartitems = cartData.items.map((v) => {
-    let medicineD = mediData.medicineD.find((m) => m.id === v.pid);
+    let medicineD = mediData.medic.find((m) => m.id === v.pid);
     let mData = { ...medicineD, ...v };
 
     return mData;

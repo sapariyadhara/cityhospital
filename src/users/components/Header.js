@@ -15,6 +15,8 @@ import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 
 
@@ -32,10 +34,17 @@ function Header(props) {
 
   useEffect(() => {
     try {
-      fetch("http://localhost:3004/medicines")
-        .then((response) => response.json())
-        .then((data) => setCountData(data))
-        .catch((error) => console.log(error))
+       
+            const querySnapshot = getDocs(collection(db, "medicine"));
+            let data = [];
+            querySnapshot.forEach((doc) => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
+                })
+            });
+          
+            setCountData(data)
     } catch (error) {
       console.log(error)
     }
